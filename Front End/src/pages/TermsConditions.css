@@ -1,0 +1,368 @@
+/* Terms & Conditions Page Styles */
+.terms-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Terms Hero Section */
+.terms-hero {
+  background: linear-gradient(135deg, #228B22 0%, #32CD32 50%, #90EE90 100%);
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.terms-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.terms-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.terms-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.terms-hero p {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.last-updated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.last-updated i {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.last-updated span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Terms Content Section */
+.terms-content {
+  padding: 4rem 2rem;
+}
+
+.terms-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+}
+
+/* Terms Navigation */
+.terms-navigation {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.terms-navigation h3 {
+  color: #228B22;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.terms-navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.terms-navigation li {
+  margin-bottom: 0.8rem;
+}
+
+.terms-navigation a {
+  display: block;
+  padding: 0.8rem 1rem;
+  color: #2c3e50;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.terms-navigation a:hover {
+  background: #f0f8f0;
+  color: #228B22;
+  transform: translateX(5px);
+}
+
+/* Terms Main Content */
+.terms-main-content {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.terms-section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 2rem;
+}
+
+.terms-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.terms-section h2 {
+  color: #228B22;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  border-bottom: 3px solid #e9ecef;
+  padding-bottom: 0.8rem;
+}
+
+.terms-section p {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.terms-section ul {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.terms-section li {
+  margin-bottom: 0.5rem;
+}
+
+.terms-section strong {
+  color: #228B22;
+  font-weight: 600;
+}
+
+/* Contact Info Section */
+.contact-info {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #228B22;
+}
+
+.contact-item i {
+  color: #228B22;
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+}
+
+.contact-item span {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Terms Footer */
+.terms-footer {
+  background: #f0f8f0;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 3rem;
+  border: 2px solid #e9ecef;
+}
+
+.terms-footer p {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.terms-footer p:last-child {
+  margin-bottom: 0;
+}
+
+.terms-footer strong {
+  color: #228B22;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .terms-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .terms-navigation {
+    position: static;
+    order: 2;
+  }
+  
+  .terms-main-content {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .terms-hero {
+    padding: 4rem 1rem;
+  }
+  
+  .terms-hero h1 {
+    font-size: 2.8rem;
+  }
+  
+  .terms-hero p {
+    font-size: 1.1rem;
+  }
+  
+  .last-updated {
+    padding: 0.8rem 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .terms-content {
+    padding: 3rem 1rem;
+  }
+  
+  .terms-main-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .terms-section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .terms-navigation {
+    padding: 1.5rem;
+  }
+  
+  .terms-navigation h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terms-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .terms-hero p {
+    font-size: 1rem;
+  }
+  
+  .terms-content {
+    padding: 2rem 1rem;
+  }
+  
+  .terms-main-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .terms-section h2 {
+    font-size: 1.4rem;
+  }
+  
+  .terms-section p,
+  .terms-section ul {
+    font-size: 0.95rem;
+  }
+  
+  .terms-navigation {
+    padding: 1rem;
+  }
+  
+  .terms-navigation a {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .contact-item {
+    padding: 0.8rem;
+  }
+  
+  .contact-item span {
+    font-size: 0.9rem;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.terms-navigation a:focus {
+  outline: 2px solid #228B22;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .terms-navigation {
+    display: none;
+  }
+  
+  .terms-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .terms-hero {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .terms-section h2 {
+    color: black !important;
+  }
+  
+  .terms-section p,
+  .terms-section li {
+    color: black !important;
+  }
+}

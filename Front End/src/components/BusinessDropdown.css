@@ -1,0 +1,397 @@
+/* Main dropdown container */
+.business-dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+}
+
+/* Desktop specific styles */
+.business-dropdown:not(.mobile) {
+  margin-left: 1.25rem;
+}
+
+/* Mobile specific styles */
+.business-dropdown.mobile {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  display: block;
+}
+
+.mobile-business-toggle {
+  width: 100%;
+}
+
+.business-dropdown.mobile .business-dropdown-toggle.mobile {
+  display: flex;
+  justify-content: flex-start;
+  background: none;
+  border: none;
+  color: #333;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  text-align: left;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin: 0;
+  border-radius: 0;
+}
+
+.business-dropdown.mobile .business-dropdown-toggle.mobile:hover {
+  background-color: #f5f5f5;
+}
+
+.business-dropdown.mobile .business-icon {
+  color: #228B22;
+  font-size: 1.2rem;
+}
+
+.business-dropdown.mobile .business-dropdown-menu {
+  position: static;
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.business-dropdown.mobile .business-dropdown-menu.active {
+  max-height: 500px;
+  padding: 0.5rem 0;
+}
+
+/* Mobile specific menu items */
+.business-dropdown.mobile .business-dropdown-item {
+  padding: 0.75rem 3.5rem;
+  color: #555;
+  font-size: 1rem;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.business-dropdown.mobile .business-dropdown-item:hover {
+  background-color: #f5f5f5;
+  color: #4a6cf7;
+}
+
+.business-dropdown.mobile .dropdown-icon {
+  width: 1.2rem;
+  text-align: center;
+}
+
+/* Dropdown toggle button */
+.business-dropdown-toggle {
+  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  color: white;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1001;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-right: 3rem;
+  box-shadow: 0 4px 20px rgba(74, 108, 247, 0.3);
+  letter-spacing: 0.5px;
+  min-width: 200px;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.2;
+}
+
+/* Mobile specific toggle button */
+.business-dropdown-toggle.mobile {
+  background: none;
+  color: #333;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 500;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+}
+
+.business-dropdown-toggle.mobile:hover {
+  background-color: #f5f5f5;
+  transform: none;
+  box-shadow: none;
+}
+
+.business-dropdown-toggle.mobile .business-icon {
+  color: #4a6cf7;
+}
+
+.business-dropdown-toggle:hover {
+  background: linear-gradient(135deg, #006400 0%, #228B22 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.4);
+  letter-spacing: 0.6px;
+}
+
+.business-dropdown-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(34, 139, 34, 0.25);
+}
+
+/* Dropdown arrow */
+.business-dropdown-toggle::after {
+  content: '▼';
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.55rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.9;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+.business-dropdown-toggle.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Show dropdown when active */
+.business-dropdown.active .business-dropdown-menu:not(.mobile) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Mobile specific active state */
+.business-dropdown.active .business-dropdown-menu.mobile {
+  max-height: 500px; /* Adjust based on content */
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  padding: 0.5rem 0;
+}
+
+/* Dropdown menu */
+.business-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  min-width: 240px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Show dropdown when active */
+.business-dropdown:not(.mobile).active .business-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Mobile dropdown menu */
+.business-dropdown-menu.mobile {
+  position: static;
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  transform: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.business-dropdown-menu.mobile.active {
+  max-height: 500px; /* Adjust based on content */
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  padding: 0.5rem 0;
+}
+
+/* Dropdown menu items */
+/* Base dropdown item styles */
+.business-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.business-dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #4a6cf7;
+}
+
+.business-dropdown-item .dropdown-icon {
+  margin-right: 0.75rem;
+  width: 1.2rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.business-dropdown-item:hover .dropdown-icon {
+  color: #4a6cf7;
+}
+
+/* Dropdown item icons */
+.dropdown-icon {
+  font-size: 1.1rem;
+  color: #64748b;
+  transition: all 0.25s ease;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  width: 18px;
+  text-align: center;
+}
+
+/* Hover and active states */
+.dropdown-item:hover {
+  background-color: #f8faff;
+  color: #4a6cf7;
+  padding-left: 2rem;
+  border-left-color: #4a6cf7;
+}
+
+.dropdown-item:hover .dropdown-icon {
+  color: #4a6cf7;
+  transform: scale(1.1);
+}
+
+.dropdown-item:active {
+  background-color: #f0f4ff;
+  transform: translateX(2px);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+  margin: 0.5rem 1.75rem;
+  border: none;
+  opacity: 0.7;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive adjustments */
+.business-dropdown {
+  margin-left: 1.5rem;
+}
+
+/* Large desktop styles */
+@media (min-width: 1200px) {
+  .business-dropdown-toggle {
+    padding: 1rem 2.25rem;
+    padding-right: 3rem;
+    font-size: 1.1rem;
+    min-width: 220px;
+  }
+  
+  .business-dropdown-toggle::after {
+    right: 1.75rem;
+    font-size: 0.6rem;
+  }
+}
+
+/* Medium desktop styles */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .business-dropdown-toggle {
+    padding: 0.9rem 2rem;
+    padding-right: 2.75rem;
+    min-width: 200px;
+  }
+}
+
+/* Tablet and small desktop */
+@media (max-width: 991px) {
+  .business-dropdown {
+    margin-left: 1rem;
+  }
+  
+  .business-dropdown-toggle {
+    padding: 0.8rem 1.5rem;
+    padding-right: 2.5rem;
+    min-width: 180px;
+    font-size: 1rem;
+  }
+  
+  .business-dropdown-toggle::after {
+    right: 1.25rem;
+  }
+}
+
+.business-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 280px;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  padding: 0.75rem 0;
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transform-origin: top right;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.dropdown-item {
+  padding: 0.9rem 1.75rem;
+}
+
+.dropdown-item:hover {
+  padding-left: 2rem;
+}
+
