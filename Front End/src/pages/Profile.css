@@ -177,9 +177,13 @@
 /* Profile Actions */
 .profile-actions {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.edit-btn {
+.edit-btn,
+.picture-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -197,7 +201,8 @@
   backdrop-filter: blur(10px);
 }
 
-.edit-btn:hover {
+.edit-btn:hover,
+.picture-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
@@ -499,6 +504,7 @@
   }
 
   .edit-btn,
+  .picture-btn,
   .save-btn,
   .cancel-btn {
     width: 100%;

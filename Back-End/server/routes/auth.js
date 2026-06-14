@@ -4,6 +4,7 @@ const User = require('../models/user');
 const Business = require('../models/Business');
 const jwt = require('jsonwebtoken');
 const { sendPasswordResetEmail, sendWelcomeEmail, sendEmailVerificationEmail } = require('../services/emailService');
+const { normalizePhone, isValidPhone, phoneValidationMessage } = require('../utils/phone');
 
 const router = express.Router();
 
@@ -19,6 +20,7 @@ const sanitizeUser = (user) => ({
   location: user.location,
   userType: user.userType,
   isVerified: user.isVerified,
+  emailVerified: user.emailVerified,
   isActive: user.isActive,
   profilePicture: user.profilePicture,
   createdAt: user.createdAt,
@@ -28,7 +30,7 @@ const sanitizeUser = (user) => ({
 
 // Input validation middleware
 const validateRegistrationInput = (req, res, next) => {
-  const { firstName, lastName, email, password, confirmPassword, location } = req.body;
+  const { firstName, lastName, email, password, confirmPassword, location, phone } = req.body;
   
   const errors = [];
   
@@ -54,6 +56,10 @@ const validateRegistrationInput = (req, res, next) => {
   
   if (!location || !location.city) {
     errors.push('City is required in location information');
+  }
+
+  if (phone && !isValidPhone(phone)) {
+    errors.push(phoneValidationMessage);
   }
   
   if (errors.length > 0) {
@@ -137,19 +143,23 @@ router.post('/register', validateRegistrationInput, async (req, res) => {
         address: location.address ? location.address.trim() : undefined,
         coordinates: location.coordinates || undefined
       },
-      phone: phone ? phone.trim() : undefined,
+      phone: normalizePhone(phone),
       userType: userType || 'customer', // Ensure customer is default
       tags: ['Customer'] // Explicitly set Customer tag
     });
 
     await newUser.save();
 
-    // Send welcome email (don't block registration if email fails)
+    const verificationToken = newUser.generateEmailVerificationToken();
+    await newUser.save();
+    const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${verificationToken}`;
+
+    // Send verification first, then a welcome email. Registration still succeeds if delivery is temporarily unavailable.
     try {
+      await sendEmailVerificationEmail(email, verificationUrl, firstName, 'customer');
       await sendWelcomeEmail(email, firstName);
     } catch (emailError) {
-      console.error('Welcome email failed to send:', emailError);
-      // Don't fail registration for email issues
+      console.error('Customer registration email failed to send:', emailError);
     }
 
     // Generate JWT token
@@ -161,7 +171,7 @@ router.post('/register', validateRegistrationInput, async (req, res) => {
 
     // Return success with token
     return res.status(201).json({ 
-      message: 'Registration successful! Welcome to AAA Services.',
+      message: 'Registration successful! Please check your email to verify your account.',
       user: sanitizeUser(newUser),
       token,
       nextSteps: userType === 'business' ? [
@@ -246,7 +256,7 @@ router.post('/business/register', validateRegistrationInput, async (req, res) =>
         address: location.address ? location.address.trim() : undefined,
         coordinates: location.coordinates || undefined
       },
-      phone: phone ? phone.trim() : undefined,
+      phone: normalizePhone(phone),
       userType: 'business',
       profilePicture: images?.logo || undefined,
       tags: ['Service Provider'] // Explicitly set Service Provider tag
@@ -261,7 +271,7 @@ router.post('/business/register', validateRegistrationInput, async (req, res) =>
       businessType,
       description: description.trim(),
       contact: {
-        phone: businessContact?.phone || phone || '',
+        phone: normalizePhone(businessContact?.phone || phone) || '',
         email: businessContact?.email || email,
         website: businessContact?.website || undefined
       },
@@ -299,7 +309,7 @@ router.post('/business/register', validateRegistrationInput, async (req, res) =>
     await newUser.save();
 
     // Create verification URL
-    const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/verify-email?token=${verificationToken}`;
+    const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/verify-email?token=${verificationToken}`;
 
     // Send email verification email (don't block registration if email fails)
     try {
@@ -657,7 +667,7 @@ router.post('/forgot-password', async (req, res) => {
     await user.save();
 
     // Create reset URL
-    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password?token=${resetToken}`;
 
     // Send password reset email
     try {
@@ -980,7 +990,7 @@ router.post('/resend-verification', async (req, res) => {
     await user.save();
 
     // Create verification URL
-    const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/verify-email?token=${verificationToken}`;
+    const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/verify-email?token=${verificationToken}`;
 
     // Send verification email
     try {

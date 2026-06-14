@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   FaMapMarkerAlt, 
   FaPhone, 
@@ -18,6 +18,24 @@ import {
 } from 'react-icons/fa';
 
 const Footer = () => {
+  const location = useLocation();
+
+  const footerLinkClassName = (to) => {
+    const [targetPath, targetSearch = ''] = to.split('?');
+    const targetCategory = new URLSearchParams(targetSearch).get('category');
+    const currentCategory = new URLSearchParams(location.search).get('category');
+    const pathMatches = targetPath === '/'
+      ? location.pathname === '/' || location.pathname === '/home'
+      : location.pathname === targetPath;
+    const queryMatches = targetCategory ? targetCategory === currentCategory : !currentCategory;
+
+    return pathMatches && queryMatches ? 'active' : undefined;
+  };
+
+  const FooterLink = ({ to, children }) => (
+    <Link to={to} className={footerLinkClassName(to)}>{children}</Link>
+  );
+
   return (
     <footer className="footer">
       <div className="footer-main">
@@ -60,12 +78,12 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Quick Links</h4>
             <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/reviews">Customer Reviews</Link></li>
-              <li><Link to="/complaint">File a Complaint</Link></li>
+              <li><FooterLink to="/">Home</FooterLink></li>
+              <li><FooterLink to="/services">Services</FooterLink></li>
+              <li><FooterLink to="/about">About Us</FooterLink></li>
+              <li><FooterLink to="/contact">Contact</FooterLink></li>
+              <li><FooterLink to="/reviews">Customer Reviews</FooterLink></li>
+              <li><FooterLink to="/complaint">File a Complaint</FooterLink></li>
             </ul>
           </div>
 
@@ -73,12 +91,12 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Service Categories</h4>
             <ul className="footer-links">
-              <li><Link to="/service-categories">All Service Categories</Link></li>
-              <li><Link to="/services?category=plumbing">Plumbing Services</Link></li>
-              <li><Link to="/services?category=electrical">Electrical Services</Link></li>
-              <li><Link to="/services?category=cleaning">Cleaning Services</Link></li>
-              <li><Link to="/services?category=repair">Home Repairs</Link></li>
-              <li><Link to="/services?category=transport">Transportation</Link></li>
+              <li><FooterLink to="/service-categories">All Service Categories</FooterLink></li>
+              <li><FooterLink to="/services?category=plumbing">Plumbing Services</FooterLink></li>
+              <li><FooterLink to="/services?category=electrical">Electrical Services</FooterLink></li>
+              <li><FooterLink to="/services?category=cleaning">Cleaning Services</FooterLink></li>
+              <li><FooterLink to="/services?category=repair">Home Repairs</FooterLink></li>
+              <li><FooterLink to="/services?category=transport">Transportation</FooterLink></li>
             </ul>
           </div>
 
@@ -86,12 +104,12 @@ const Footer = () => {
           <div className="footer-section">
             <h4>For Service Providers</h4>
             <ul className="footer-links">
-              <li><Link to="/service-provider-signup">Join as Provider</Link></li>
-              <li><Link to="/business/login">Provider Login</Link></li>
-              <li><Link to="/business/dashboard">Provider Dashboard</Link></li>
-              <li><Link to="/business/profile">Manage Profile</Link></li>
-              <li><Link to="/business/inbox">Inbox & Inquiries</Link></li>
-              <li><Link to="/pricing">Pricing Plans</Link></li>
+              <li><FooterLink to="/service-provider-signup">Join as Provider</FooterLink></li>
+              <li><FooterLink to="/business/login">Provider Login</FooterLink></li>
+              <li><FooterLink to="/business/dashboard">Provider Dashboard</FooterLink></li>
+              <li><FooterLink to="/business/profile">Manage Profile</FooterLink></li>
+              <li><FooterLink to="/business/inbox">Inbox & Inquiries</FooterLink></li>
+              <li><FooterLink to="/pricing">Pricing Plans</FooterLink></li>
             </ul>
           </div>
 
@@ -99,12 +117,12 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Support & Legal</h4>
             <ul className="footer-links">
-              <li><Link to="/help">Help Center</Link></li>
-              <li><Link to="/faq">FAQ</Link></li>
-              <li><Link to="/privacy">Privacy Policy</Link></li>
-              <li><Link to="/terms">Terms & Conditions</Link></li>
-              <li><Link to="/refund">Refund Policy</Link></li>
-              <li><Link to="/safety">Safety Guidelines</Link></li>
+              <li><FooterLink to="/help-center">Help Center</FooterLink></li>
+              <li><FooterLink to="/faq">FAQ</FooterLink></li>
+              <li><FooterLink to="/privacy-policy">Privacy Policy</FooterLink></li>
+              <li><FooterLink to="/terms-conditions">Terms & Conditions</FooterLink></li>
+              <li><FooterLink to="/refund">Refund Policy</FooterLink></li>
+              <li><FooterLink to="/safety">Safety Guidelines</FooterLink></li>
             </ul>
           </div>
 
@@ -192,11 +210,11 @@ const Footer = () => {
           </div>
           <div className="footer-bottom-right">
             <div className="footer-bottom-links">
-              <Link to="/privacy">Privacy Policy</Link>
+              <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
               <span className="separator">|</span>
-              <Link to="/terms">Terms & Conditions</Link>
+              <FooterLink to="/terms-conditions">Terms & Conditions</FooterLink>
               <span className="separator">|</span>
-              <Link to="/sitemap">Sitemap</Link>
+              <FooterLink to="/sitemap">Sitemap</FooterLink>
             </div>
           </div>
         </div>

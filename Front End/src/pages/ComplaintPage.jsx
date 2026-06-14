@@ -3,7 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FaSearch, FaMapMarkerAlt, FaStar, FaBuilding, FaRegUser } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
 import StandaloneComplaintForm from '../components/StandaloneComplaintForm';
+import { useBusinesses } from '../hooks/useApiQueries';
 import './ComplaintPage.css';
+
+const EMPTY_BUSINESSES = [];
 
 const ComplaintPage = () => {
   const navigate = useNavigate();
@@ -11,12 +14,10 @@ const ComplaintPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   
   // Business search and selection states
-  const [businesses, setBusinesses] = useState([]);
   const [filteredBusinesses, setFilteredBusinesses] = useState([]);
   const [selectedBusiness, setSelectedBusiness] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showBusinessList, setShowBusinessList] = useState(false);
-  const [isLoadingBusinesses, setIsLoadingBusinesses] = useState(false);
   
   // Get user token from localStorage
   const userToken = localStorage.getItem('token');
@@ -40,26 +41,9 @@ const ComplaintPage = () => {
     other: 'Other'
   };
 
-  // Fetch businesses from API
-  useEffect(() => {
-    const fetchBusinesses = async () => {
-      try {
-        setIsLoadingBusinesses(true);
-        const response = await fetch('http://localhost:5000/api/business?status=active&limit=100');
-        if (response.ok) {
-          const data = await response.json();
-          setBusinesses(data.businesses || []);
-          setFilteredBusinesses(data.businesses || []);
-        }
-      } catch (error) {
-        console.error('Error fetching businesses:', error);
-      } finally {
-        setIsLoadingBusinesses(false);
-      }
-    };
-
-    fetchBusinesses();
-  }, []);
+  const { data: businessData, isLoading: isLoadingBusinesses } =
+    useBusinesses({ status: 'active', limit: 100 });
+  const businesses = businessData?.businesses || EMPTY_BUSINESSES;
 
   // Filter businesses based on search query
   useEffect(() => {

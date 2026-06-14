@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    // Determine connection URI - prefer local MongoDB over Atlas
-    const mongoUri = process.env.MONGO_URI_LOCAL || process.env.MONGO_URI || 'mongodb://localhost:27017/aaa_services';
+    const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/aaa_services';
     
     // Connection options optimized for both local and Atlas
     const options = {

@@ -2,7 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaStar, FaArrowLeft, FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
+import { useBusinesses } from '../hooks/useApiQueries';
 import './ReviewPage.css';
+
+const EMPTY_BUSINESSES = [];
 
 const ReviewPage = () => {
   const [rating, setRating] = useState(0);
@@ -11,12 +14,10 @@ const ReviewPage = () => {
   const [reviewTitle, setReviewTitle] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedBusiness, setSelectedBusiness] = useState(null);
-  const [businesses, setBusinesses] = useState([]);
   const [filteredBusinesses, setFilteredBusinesses] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showBusinessList, setShowBusinessList] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -50,30 +51,13 @@ const ReviewPage = () => {
     5: 'Great!'
   };
   
-  // Load businesses from API
-  useEffect(() => {
-    const fetchBusinesses = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('http://localhost:5000/api/business?status=active&limit=100');
-        
-        if (response.ok) {
-          const data = await response.json();
-          setBusinesses(data.businesses || []);
-        } else {
-          console.error('Failed to fetch businesses:', response.status);
-          setError('Failed to load businesses. Please try again later.');
-        }
-      } catch (err) {
-        console.error('Error fetching businesses:', err);
-        setError('Failed to load businesses. Please try again later.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const { data: businessData, isLoading, error: businessError } =
+    useBusinesses({ status: 'active', limit: 100 });
+  const businesses = businessData?.businesses || EMPTY_BUSINESSES;
 
-    fetchBusinesses();
-  }, []);
+  useEffect(() => {
+    if (businessError) setError('Failed to load businesses. Please try again later.');
+  }, [businessError]);
   
   // Filter businesses based on category and search
   useEffect(() => {

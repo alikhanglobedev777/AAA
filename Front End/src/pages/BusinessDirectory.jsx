@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import BusinessAvatar from '../components/BusinessAvatar';
-
-const API_BASE = 'http://localhost:5000/api';
+import { useBusinesses } from '../hooks/useApiQueries';
 
 const BusinessCard = ({ business, onOpen }) => {
   const primaryService = business.services?.[0]?.name || business.businessType;
@@ -50,38 +49,22 @@ const BusinessCard = ({ business, onOpen }) => {
 const BusinessDirectory = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [businesses, setBusinesses] = useState([]);
-
   const city = searchParams.get('city') || '';
   const type = searchParams.get('type') || '';
   const search = searchParams.get('q') || '';
-
-  const fetchBusinesses = async () => {
-    try {
-      setLoading(true);
-      setError('');
-
-      const params = new URLSearchParams();
-      params.set('status', 'active');
-      if (city) params.set('city', city);
-      if (type) params.set('businessType', type);
-      if (search) params.set('search', search);
-      params.set('limit', '24');
-
-      const res = await fetch(`${API_BASE}/business?${params.toString()}`);
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Failed to load businesses');
-      setBusinesses(data.businesses || []);
-    } catch (err) {
-      setError(err.message || 'Failed to load businesses');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => { fetchBusinesses(); /* eslint-disable-next-line */ }, [city, type, search]);
+  const {
+    data,
+    isLoading: loading,
+    error: queryError,
+  } = useBusinesses({
+    status: 'active',
+    city,
+    businessType: type,
+    search,
+    limit: 24,
+  });
+  const businesses = data?.businesses || [];
+  const error = queryError?.message || '';
 
   const onOpenProfile = (business) => {
     // Generate slug from business name

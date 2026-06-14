@@ -3,16 +3,7 @@ const router = express.Router();
 const Complaint = require('../models/Complaint');
 const Business = require('../models/Business');
 const User = require('../models/user');
-const nodemailer = require('nodemailer');
-
-// Create transporter for Gmail SMTP
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'aaaservicesdirectory@gmail.com',
-    pass: 'qggwfeapxfsqtlxo'
-  }
-});
+const { sendMail } = require('../services/emailService');
 
 // Middleware to verify JWT token
 const authenticateToken = async (req, res, next) => {
@@ -178,7 +169,7 @@ router.post('/', authenticateToken, async (req, res) => {
       html: confirmationEmail
     };
 
-    await transporter.sendMail(mailOptions);
+    await sendMail(mailOptions);
 
     // Send notification email to business (if they have an email)
     if (business.contact?.email || business.email) {
@@ -231,7 +222,7 @@ router.post('/', authenticateToken, async (req, res) => {
         html: businessNotification
       };
 
-      await transporter.sendMail(businessMailOptions);
+      await sendMail(businessMailOptions);
     }
 
     res.status(201).json({
@@ -442,7 +433,7 @@ router.patch('/:id/status', authenticateToken, requireAdmin, async (req, res) =>
           html: statusUpdateEmail
         };
 
-        await transporter.sendMail(mailOptions);
+        await sendMail(mailOptions);
       }
     }
 
@@ -552,7 +543,7 @@ router.patch('/:id/resolve', authenticateToken, requireAdmin, async (req, res) =
         html: resolutionEmail
       };
 
-      await transporter.sendMail(mailOptions);
+      await sendMail(mailOptions);
     }
 
     res.json({

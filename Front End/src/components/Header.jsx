@@ -1,10 +1,13 @@
 import React, { useState, useRef, useContext, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { AuthContext } from '../context/AuthContext';
 import { FaUserCircle, FaSignOutAlt, FaSearch, FaMapMarkerAlt, FaHome, FaStar, FaInbox, FaWrench, FaBolt, FaBroom, FaUtensils, FaHammer, FaTruck, FaShieldAlt, FaPaintRoller, FaLeaf, FaTools, FaHeartbeat, FaBook } from 'react-icons/fa';
 import BusinessDropdown from './BusinessDropdown';
 import BusinessAvatar from './BusinessAvatar';
+import { queryKeys, useBusinesses } from '../hooks/useApiQueries';
+import { fetchJson, toQueryString } from '../lib/api';
 import './Header.css';
 import './BusinessDropdown.css';
 
@@ -47,7 +50,22 @@ const Header = () => {
   const { isAuthenticated, logout, user } = useContext(AuthContext);
   const isBusiness = user?.userType === 'business';
   const navigate = useNavigate();
-  const API_BASE = 'http://localhost:5000/api';
+  const queryClient = useQueryClient();
+  const citiesQuery = useBusinesses(
+    { status: 'active', limit: 500 },
+    { enabled: false }
+  );
+
+  const prefetchCategory = useCallback((businessType = '') => {
+    const params = { status: 'active', businessType, limit: 50 };
+    const queryString = toQueryString(params);
+
+    queryClient.prefetchQuery({
+      queryKey: queryKeys.businesses(params),
+      queryFn: ({ signal }) => fetchJson(`/business?${queryString}`, { signal }),
+      staleTime: 5 * 60 * 1000,
+    });
+  }, [queryClient]);
   
   const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
@@ -59,6 +77,31 @@ const Header = () => {
 
   // Close mobile menu when route changes
   const location_route = useLocation();
+  const currentCategory = new URLSearchParams(location_route.search).get('category');
+
+  const isPathActive = useCallback((path, exact = false) => {
+    const currentPath = location_route.pathname;
+
+    if (path === '/') {
+      return currentPath === '/' || currentPath === '/home';
+    }
+
+    return exact ? currentPath === path : currentPath === path || currentPath.startsWith(`${path}/`);
+  }, [location_route.pathname]);
+
+  const isCategoryActive = useCallback((category) => {
+    if (location_route.pathname !== '/services') return false;
+    return category === 'view-all' ? !currentCategory || currentCategory === 'view-all' : currentCategory === category;
+  }, [currentCategory, location_route.pathname]);
+
+  const navClassName = useCallback((path, baseClass = 'nav-link', exact = false) => (
+    `${baseClass}${isPathActive(path, exact) ? ' active' : ''}`
+  ), [isPathActive]);
+
+  const categoryClassName = useCallback((category) => (
+    `category-link${isCategoryActive(category) ? ' active' : ''}`
+  ), [isCategoryActive]);
+
   useEffect(() => {
     closeMobileMenu();
   }, [location_route, closeMobileMenu]);
@@ -111,10 +154,7 @@ const Header = () => {
     if (citiesFetchedRef.current) return;
     try {
       setLoadingCities(true);
-      // Fetch active businesses (includes service providers) and derive cities
-      const res = await fetch(`${API_BASE}/business?status=active&limit=500`);
-      if (!res.ok) throw new Error('Failed to load businesses');
-      const data = await res.json();
+      const data = citiesQuery.data || (await citiesQuery.refetch()).data;
       const businesses = Array.isArray(data?.businesses) ? data.businesses : [];
       const seen = new Map();
       for (const b of businesses) {
@@ -133,7 +173,7 @@ const Header = () => {
     } finally {
       setLoadingCities(false);
     }
-  }, [API_BASE]);
+  }, [citiesQuery]);
 
   const handleLocationFocus = useCallback(async () => {
     setShowCitySuggestions(true);
@@ -246,7 +286,7 @@ const Header = () => {
           <div className="logo-container">
             <Link to="/" className="logo-link" onClick={closeMobileMenu}>
               <img 
-                src={process.env.PUBLIC_URL + '/favicon_transbg.png'} 
+                src="/favicon_transbg.png" 
                 alt="AAA Logo" 
                 className="logo-img" 
                 loading="eager"
@@ -387,8 +427,8 @@ const Header = () => {
                 onLogout={handleLogout}
                 isMobile={false}
               />
-              <Link to="/reviews" className="action-link">Write a Review</Link>
-              <Link to="/complaint" className="action-link">File a Complaint</Link>
+              <Link to="/reviews" className={navClassName('/reviews', 'action-link', true)}>Write a Review</Link>
+              <Link to="/complaint" className={navClassName('/complaint', 'action-link', true)}>File a Complaint</Link>
             </div>
             
             {isAuthenticated ? (
@@ -414,14 +454,14 @@ const Header = () => {
                   <div className="dropdown-menu">
                     <Link 
                       to={isBusiness ? "/business/dashboard" : "/customer-dashboard"} 
-                      className="dropdown-item" 
+                      className={navClassName(isBusiness ? "/business/dashboard" : "/customer-dashboard", 'dropdown-item')} 
                       onClick={() => setShowProfileDropdown(false)}
                     >
                       <FaHome /> Dashboard
                     </Link>
                     <Link 
                       to={isBusiness ? "/business/profile" : "/profile"} 
-                      className="dropdown-item" 
+                      className={navClassName(isBusiness ? "/business/profile" : "/profile", 'dropdown-item')} 
                       onClick={() => setShowProfileDropdown(false)}
                     >
                       <FaUserCircle /> View Profile
@@ -453,8 +493,8 @@ const Header = () => {
               </div>
             ) : (
               <div className="auth-buttons">
-                <Link to="/login" className="login-btn">Log In</Link>
-                <Link to="/signup" className="signup-btn">Sign Up</Link>
+                <Link to="/login" className={navClassName('/login', 'login-btn', true)}>Log In</Link>
+                <Link to="/signup" className={navClassName('/signup', 'signup-btn', true)}>Sign Up</Link>
               </div>
             )}
             
@@ -477,14 +517,14 @@ const Header = () => {
       <div className="category-nav">
         <div className="category-container">
           <div className="category-links">
-            <Link to="/services?category=plumbing" className="category-link">Plumbing</Link>
-            <Link to="/services?category=electrical" className="category-link">Electrical</Link>
-            <Link to="/services?category=cleaning" className="category-link">Cleaning</Link>
-            <Link to="/services?category=food" className="category-link">Food</Link>
-            <Link to="/services?category=construction" className="category-link">Construction</Link>
-            <Link to="/services?category=transport" className="category-link">Transport</Link>
-            <Link to="/services?category=security" className="category-link">Security</Link>
-            <Link to="/services?category=view-all" className="category-link">View All</Link>
+            <Link to="/services?category=plumbing" className={categoryClassName('plumbing')} onMouseEnter={() => prefetchCategory('plumbing')} onFocus={() => prefetchCategory('plumbing')}>Plumbing</Link>
+            <Link to="/services?category=electrical" className={categoryClassName('electrical')} onMouseEnter={() => prefetchCategory('electrical')} onFocus={() => prefetchCategory('electrical')}>Electrical</Link>
+            <Link to="/services?category=cleaning" className={categoryClassName('cleaning')} onMouseEnter={() => prefetchCategory('cleaning')} onFocus={() => prefetchCategory('cleaning')}>Cleaning</Link>
+            <Link to="/services?category=food" className={categoryClassName('food')} onMouseEnter={() => prefetchCategory('food')} onFocus={() => prefetchCategory('food')}>Food</Link>
+            <Link to="/services?category=construction" className={categoryClassName('construction')} onMouseEnter={() => prefetchCategory('construction')} onFocus={() => prefetchCategory('construction')}>Construction</Link>
+            <Link to="/services?category=transport" className={categoryClassName('transport')} onMouseEnter={() => prefetchCategory('transport')} onFocus={() => prefetchCategory('transport')}>Transport</Link>
+            <Link to="/services?category=security" className={categoryClassName('security')} onMouseEnter={() => prefetchCategory('security')} onFocus={() => prefetchCategory('security')}>Security</Link>
+            <Link to="/services" className={categoryClassName('view-all')} onMouseEnter={() => prefetchCategory()} onFocus={() => prefetchCategory()}>View All</Link>
           </div>
         </div>
       </div>
@@ -495,7 +535,7 @@ const Header = () => {
           <div className="mobile-nav-header">
             <div className="logo-container">
               <Link to="/" className="logo-link" onClick={closeMobileMenu}>
-                <img src={`${process.env.PUBLIC_URL}/favicon_transbg.png`} alt="AAA Logo" className="logo-img" />
+                <img src="/favicon_transbg.png" alt="AAA Logo" className="logo-img" />
               </Link>
             </div>
             <button className="close-btn" onClick={closeMobileMenu}>
@@ -629,25 +669,25 @@ const Header = () => {
           </div>
           
           <div className="mobile-nav-links">
-            <Link to="/" className="nav-link" onClick={closeMobileMenu}>Home</Link>
-            <Link to="/services?category=plumbing" className="nav-link" onClick={closeMobileMenu}>Plumbing</Link>
-            <Link to="/services?category=electrical" className="nav-link" onClick={closeMobileMenu}>Electrical</Link>
-            <Link to="/services?category=cleaning" className="nav-link" onClick={closeMobileMenu}>Cleaning</Link>
-            <Link to="/services?category=food" className="nav-link" onClick={closeMobileMenu}>Food</Link>
-            <Link to="/services?category=construction" className="nav-link" onClick={closeMobileMenu}>Construction</Link>
-            <Link to="/services?category=transport" className="nav-link" onClick={closeMobileMenu}>Transport</Link>
-            <Link to="/services?category=security" className="nav-link" onClick={closeMobileMenu}>Security</Link>
-            <Link to="/services" className="nav-link" onClick={closeMobileMenu}>View All</Link>
-            <Link to="/service-categories" className="nav-link" onClick={closeMobileMenu}>Service Categories</Link>
+            <Link to="/" className={navClassName('/')} onClick={closeMobileMenu}>Home</Link>
+            <Link to="/services?category=plumbing" className={`nav-link${isCategoryActive('plumbing') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('plumbing')} onClick={closeMobileMenu}>Plumbing</Link>
+            <Link to="/services?category=electrical" className={`nav-link${isCategoryActive('electrical') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('electrical')} onClick={closeMobileMenu}>Electrical</Link>
+            <Link to="/services?category=cleaning" className={`nav-link${isCategoryActive('cleaning') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('cleaning')} onClick={closeMobileMenu}>Cleaning</Link>
+            <Link to="/services?category=food" className={`nav-link${isCategoryActive('food') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('food')} onClick={closeMobileMenu}>Food</Link>
+            <Link to="/services?category=construction" className={`nav-link${isCategoryActive('construction') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('construction')} onClick={closeMobileMenu}>Construction</Link>
+            <Link to="/services?category=transport" className={`nav-link${isCategoryActive('transport') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('transport')} onClick={closeMobileMenu}>Transport</Link>
+            <Link to="/services?category=security" className={`nav-link${isCategoryActive('security') ? ' active' : ''}`} onPointerDown={() => prefetchCategory('security')} onClick={closeMobileMenu}>Security</Link>
+            <Link to="/services" className={`nav-link${isCategoryActive('view-all') ? ' active' : ''}`} onPointerDown={() => prefetchCategory()} onClick={closeMobileMenu}>View All</Link>
+            <Link to="/service-categories" className={navClassName('/service-categories', 'nav-link', true)} onClick={closeMobileMenu}>Service Categories</Link>
             
             {isAuthenticated && isBusiness && (
-              <Link to="/business/dashboard" className="nav-link" onClick={closeMobileMenu}>Dashboard</Link>
+              <Link to="/business/dashboard" className={navClassName('/business/dashboard')} onClick={closeMobileMenu}>Dashboard</Link>
             )}
             
-            <Link to="/about" className="nav-link" onClick={closeMobileMenu}>About Us</Link>
-            <Link to="/contact" className="nav-link" onClick={closeMobileMenu}>Contact</Link>
-            <Link to="/reviews" className="nav-link" onClick={closeMobileMenu}>Write a Review</Link>
-            <Link to="/complaint" className="nav-link" onClick={closeMobileMenu}>File a Complaint</Link>
+            <Link to="/about" className={navClassName('/about', 'nav-link', true)} onClick={closeMobileMenu}>About Us</Link>
+            <Link to="/contact" className={navClassName('/contact', 'nav-link', true)} onClick={closeMobileMenu}>Contact</Link>
+            <Link to="/reviews" className={navClassName('/reviews', 'nav-link', true)} onClick={closeMobileMenu}>Write a Review</Link>
+            <Link to="/complaint" className={navClassName('/complaint', 'nav-link', true)} onClick={closeMobileMenu}>File a Complaint</Link>
             
             <BusinessDropdown 
               isAuthenticated={isAuthenticated} 
@@ -670,10 +710,10 @@ const Header = () => {
                     {user?.firstName ? `${user.firstName} ${user.lastName}` : 'Profile'}
                   </span>
                 </div>
-                <Link to={isBusiness ? "/business/dashboard" : "/customer-dashboard"} className="nav-link" onClick={closeMobileMenu}>
+                <Link to={isBusiness ? "/business/dashboard" : "/customer-dashboard"} className={navClassName(isBusiness ? "/business/dashboard" : "/customer-dashboard")} onClick={closeMobileMenu}>
                   <FaHome className="mobile-nav-icon" /> Dashboard
                 </Link>
-                <Link to={isBusiness ? "/business/profile" : "/profile"} className="nav-link" onClick={closeMobileMenu}>
+                <Link to={isBusiness ? "/business/profile" : "/profile"} className={navClassName(isBusiness ? "/business/profile" : "/profile")} onClick={closeMobileMenu}>
                   <FaUserCircle className="mobile-nav-icon" /> View Profile
                 </Link>
                 <Link to={isBusiness ? "/business/inbox" : "/customer-dashboard?tab=reviews"} className="nav-link" onClick={closeMobileMenu}>
@@ -690,8 +730,8 @@ const Header = () => {
               </div>
             ) : (
               <div className="mobile-auth-buttons">
-                <Link to="/login" className="nav-link" onClick={closeMobileMenu}>Log In</Link>
-                <Link to="/signup" className="nav-link" onClick={closeMobileMenu}>Sign Up</Link>
+                <Link to="/login" className={navClassName('/login', 'nav-link', true)} onClick={closeMobileMenu}>Log In</Link>
+                <Link to="/signup" className={navClassName('/signup', 'nav-link', true)} onClick={closeMobileMenu}>Sign Up</Link>
               </div>
             )}
           </div>

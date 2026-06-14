@@ -157,6 +157,17 @@
   transform: translateX(5px);
 }
 
+.footer-links a.active,
+.footer-bottom-links a.active {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.footer-links a.active::before {
+  opacity: 1;
+  left: -20px;
+}
+
 .footer-links a::before {
   content: '→';
   position: absolute;
@@ -448,7 +459,8 @@
   }
   
   .newsletter-input {
-    min-width: 250px;
+    min-width: 0;
+    width: 100%;
   }
   
   .trust-content {
@@ -482,7 +494,8 @@
   }
   
   .newsletter-input {
-    min-width: 200px;
+    min-width: 0;
+    width: 100%;
   }
 }
 

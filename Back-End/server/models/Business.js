@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { normalizePhone, isValidPhone, phoneValidationMessage } = require('../utils/phone');
 
 const businessSchema = new mongoose.Schema({
   owner: {
@@ -33,7 +34,11 @@ const businessSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Phone number is required'],
       trim: true,
-      match: [/^[\+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number']
+      set: normalizePhone,
+      validate: {
+        validator: isValidPhone,
+        message: phoneValidationMessage
+      }
     },
     email: {
       type: String,

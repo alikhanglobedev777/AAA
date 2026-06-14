@@ -1,16 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');
+const { sendMail } = require('../services/emailService');
 const Business = require('../models/Business');
-
-// Create transporter for Gmail SMTP
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'aaaservicesdirectory@gmail.com',
-    pass: 'qggwfeapxfsqtlxo'
-  }
-});
 
 // POST /api/inquiry - Submit inquiry form
 router.post('/', async (req, res) => {
@@ -254,7 +245,7 @@ Sent from AAA Services Directory
       text: textEmail
     };
 
-    await transporter.sendMail(mailOptions);
+    await sendMail(mailOptions);
 
     // Send confirmation email to customer
     const customerMailOptions = {
@@ -296,7 +287,7 @@ Sent from AAA Services Directory
       `
     };
 
-    await transporter.sendMail(customerMailOptions);
+    await sendMail(customerMailOptions);
 
     // Log the inquiry
     console.log(`📧 Inquiry sent from ${customerName} (${customerEmail}) to ${business.businessName} (${businessEmail})`);

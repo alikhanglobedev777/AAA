@@ -91,6 +91,7 @@ function Profile() {
       reader.onloadend = () => {
         setProfilePicture(file);
         setPreviewImage(reader.result);
+        setIsEditing(true);
         setMessage({ type: '', text: '' });
       };
       reader.readAsDataURL(file);
@@ -237,24 +238,24 @@ function Profile() {
             size="large"
             className="avatar-img"
           />
-          {isEditing && (
-            <div className="avatar-edit-container">
-              <button 
-                type="button" 
-                className="avatar-edit-btn"
-                onClick={() => document.getElementById('profilePictureInput').click()}
-              >
-                <FaCamera />
-              </button>
-              <input
-                type="file"
-                id="profilePictureInput"
-                accept="image/*"
-                onChange={handleImageChange}
-                style={{ display: 'none' }}
-              />
-            </div>
-          )}
+          <div className="avatar-edit-container">
+            <button 
+              type="button" 
+              className="avatar-edit-btn"
+              onClick={() => document.getElementById('profilePictureInput').click()}
+              aria-label="Change profile picture"
+              title="Change profile picture"
+            >
+              <FaCamera />
+            </button>
+            <input
+              type="file"
+              id="profilePictureInput"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+          </div>
           
           {/* Show image preview and remove button when editing and image is selected */}
           {isEditing && profilePicture && (
@@ -284,6 +285,13 @@ function Profile() {
           )}
         </div>
         <div className="profile-actions">
+          <button
+            type="button"
+            className="picture-btn"
+            onClick={() => document.getElementById('profilePictureInput').click()}
+          >
+            <FaCamera /> Change Picture
+          </button>
             {!isEditing ? (
               <button onClick={handleEdit} className="edit-btn">
                 <FaEdit /> Edit Profile

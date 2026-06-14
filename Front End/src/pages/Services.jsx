@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { queryKeys } from '../hooks/useApiQueries';
+import { fetchJson } from '../lib/api';
 
 import './Services.css';
-
-const API_BASE = 'http://localhost:5000/api';
 
 const categoryOptions = [
   'All Categories', 'plumbing', 'electrical', 'cleaning', 'food', 'construction', 'transport', 'security'
@@ -23,6 +24,7 @@ const toBusinessType = (label) => {
 
 const Services = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [searchParams, setSearchParams] = useSearchParams();
   
   const urlService = searchParams.get('service') || '';
@@ -41,15 +43,15 @@ const Services = () => {
   const [error, setError] = useState('');
   const [businesses, setBusinesses] = useState([]);
   const [hasSearched, setHasSearched] = useState(false); // Track if we've made a search
-  const [isInitialLoad, setIsInitialLoad] = useState(true); // Track initial page load
   const [isSearching, setIsSearching] = useState(false); // Track search operations
   const searchTimeoutRef = useRef(null);
 
   useEffect(() => {
     if (urlService !== searchTerm) setSearchTerm(urlService);
     if (urlLocation !== locationQuery) setLocationQuery(urlLocation);
-    if (urlCategory !== selectedCategory && urlCategory) {
-      setSelectedCategory(urlCategory);
+    const nextCategory = urlCategory || 'All Categories';
+    if (nextCategory !== selectedCategory) {
+      setSelectedCategory(nextCategory);
     }
     if (urlSort !== sortBy && urlSort) {
       setSortBy(urlSort);
@@ -59,47 +61,14 @@ const Services = () => {
     }
   }, [urlService, urlLocation, urlCategory, urlSort, urlRating, searchTerm, locationQuery, selectedCategory, sortBy, filterRating]);
 
-  // Handle initial page load and test API connection
+  // Handle initial page load
   useEffect(() => {
-    // Force clear any errors on component mount
     setError('');
-    console.log('🔍 Frontend: Component mounted, error state cleared');
-    
-    // If we have URL parameters, mark as searched
+
     if (urlService || urlLocation || urlCategory) {
       setHasSearched(true);
     }
-    
-    // Test API connection on component mount (but don't fail if it doesn't work)
-    const testAPIConnection = async () => {
-      try {
-        const testRes = await fetch(`${API_BASE}/business?limit=1`, {
-          method: 'GET'
-        });
-        console.log('🔍 Frontend: API connection test - Status:', testRes.status);
-        if (testRes.ok) {
-          console.log('✅ Frontend: API connection successful');
-        } else {
-          console.warn('⚠️ Frontend: API connection test failed with status:', testRes.status);
-        }
-      } catch (error) {
-        console.error('❌ Frontend: API connection test failed:', error);
-        // Don't set error state, just log it
-      }
-    };
-    
-    testAPIConnection();
   }, [urlService, urlLocation, urlCategory]);
-
-  // Add a small delay for initial loading to show skeleton for 1 second
-  useEffect(() => {
-    if (isInitialLoad) {
-      const timer = setTimeout(() => {
-        setIsInitialLoad(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isInitialLoad]);
 
   const updateSearchParams = useCallback((service, location, category) => {
     const p = new URLSearchParams();
@@ -108,21 +77,6 @@ const Services = () => {
     if (category && category !== 'All Categories') p.set('category', category);
     setSearchParams(p);
   }, [setSearchParams]);
-
-  // Update search params when URL changes (e.g., from header search)
-  useEffect(() => {
-    // If we have service or location from URL but no category, clear the selected category
-    if ((urlService || urlLocation) && !urlCategory) {
-      setSelectedCategory('All Categories');
-    }
-  }, [urlService, urlLocation, urlCategory]);
-
-  // Update URL when category changes
-  useEffect(() => {
-    if (selectedCategory && selectedCategory !== 'All Categories') {
-      updateSearchParams(searchTerm, locationQuery, selectedCategory);
-    }
-  }, [selectedCategory, searchTerm, locationQuery, updateSearchParams]);
 
   // Handle search input changes with debouncing
   const handleSearchChange = (e) => {
@@ -250,29 +204,12 @@ const Services = () => {
           businessType: bt
         });
         
-        console.log('🔍 Frontend: Fetching from:', `${API_BASE}/business?${params.toString()}`);
-        
-        console.log('🔍 Frontend: Making fetch request to:', `${API_BASE}/business?${params.toString()}`);
-        
-        const res = await fetch(`${API_BASE}/business?${params.toString()}`, { 
-          signal: controller.signal,
-          headers: {
-            'Accept': 'application/json'
-          }
+        const queryParams = Object.fromEntries(params.entries());
+        const data = await queryClient.fetchQuery({
+          queryKey: queryKeys.businesses(queryParams),
+          queryFn: ({ signal }) => fetchJson(`/business?${params.toString()}`, { signal }),
+          staleTime: 5 * 60 * 1000,
         });
-        
-        console.log('🔍 Frontend: Response status:', res.status, res.statusText);
-        
-        if (!res.ok) {
-          const errorText = await res.text();
-          console.error('🔍 Frontend: Error response:', errorText);
-          throw new Error(`HTTP ${res.status}: ${errorText || 'Failed to load services'}`);
-        }
-        
-        const data = await res.json();
-        console.log('🔍 Frontend: API Response:', data);
-        
-        console.log('🔍 Frontend: Raw businesses from API:', data.businesses);
         
         // Process businesses data immediately for instant text display
         const items = (data.businesses || []).map(b => {
@@ -306,12 +243,8 @@ const Services = () => {
         // Set businesses immediately for instant text display
         setBusinesses(items);
         
-        // Keep loading state for a bit to show skeleton
-        setTimeout(() => {
-          setLoading(false);
-          setIsInitialLoad(false);
-          setIsSearching(false);
-        }, 800); // Show skeleton for 800ms
+        setLoading(false);
+        setIsSearching(false);
         
       } catch (e) {
         if (e.name !== 'AbortError') {
@@ -322,12 +255,8 @@ const Services = () => {
             setError(e.message || 'Failed to load services');
           }
         }
-        // Keep loading state for error cases too
-        setTimeout(() => {
-          setLoading(false);
-          setIsInitialLoad(false);
-          setIsSearching(false);
-        }, 800);
+        setLoading(false);
+        setIsSearching(false);
       }
     };
     
@@ -340,7 +269,7 @@ const Services = () => {
         clearTimeout(searchTimeoutRef.current);
       }
     };
-  }, [searchTerm, locationQuery, selectedCategory, urlService, urlLocation, urlCategory, isInitialLoad]);
+  }, [searchTerm, locationQuery, selectedCategory, urlService, urlLocation, urlCategory, queryClient]);
 
   const resultsTitle = useMemo(() => {
     const parts = [];
@@ -396,7 +325,6 @@ const Services = () => {
               console.log('🔍 Frontend: Retry button clicked, current error:', error);
               setError('');
               setLoading(true);
-              setIsInitialLoad(true);
             }} 
             style={{
               background: '#007bff',
@@ -412,7 +340,7 @@ const Services = () => {
             Try Again
           </button>
         </div>
-      ) : loading ? (
+      ) : loading && businesses.length === 0 ? (
         <div className="loading-container">
           <div className="skeleton-grid">
             {[1, 2, 3, 4, 5, 6].map((i) => (

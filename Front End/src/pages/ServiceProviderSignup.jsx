@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import ServiceCategorySelector from '../components/ServiceCategorySelector';
+import { toast } from 'react-toastify';
+import { isValidPhoneInput, normalizePhoneInput, phoneValidationMessage } from '../utils/phone';
 import './Signup.css';
 
 // Service categories are now fetched from the API via ServiceCategorySelector component
@@ -320,6 +322,12 @@ const ServiceProviderSignup = () => {
       }
       if (!formData.phone.trim()) {
         setError('Phone number is required');
+        toast.error('Phone number is required');
+        return false;
+      }
+      if (!isValidPhoneInput(formData.phone)) {
+        setError(phoneValidationMessage);
+        toast.error(phoneValidationMessage);
         return false;
       }
       if (!formData.password) {
@@ -428,7 +436,7 @@ const ServiceProviderSignup = () => {
         email: formData.email.trim().toLowerCase(),
         password: formData.password,
         confirmPassword: formData.confirmPassword,
-        phone: formData.phone.trim(),
+        phone: normalizePhoneInput(formData.phone),
         location: {
           city: (formData.city || '').trim(),
           area: (formData.location || '').trim() || undefined,
@@ -440,7 +448,7 @@ const ServiceProviderSignup = () => {
           ? formData.description.trim()
           : `Professional ${selectedCategory?.name || 'service'} provider in ${formData.city}`,
         businessContact: {
-          phone: formData.phone.trim(),
+          phone: normalizePhoneInput(formData.phone),
           email: formData.email.trim().toLowerCase(),
           website: formData.website.trim() || undefined
         },
@@ -482,11 +490,14 @@ const ServiceProviderSignup = () => {
 
       // Persist success message and redirect to a friendly success screen
       const successMsg = data.message || 'Thank you for registering your business with us! Please check your email to verify your account before you can login.';
+      toast.success(successMsg);
       sessionStorage.setItem('sp_signup_success', successMsg);
       navigate('/signup/success');
     } catch (err) {
       console.error('Registration error:', err);
-      setError(err.message || 'Failed to register. Please check your information and try again.');
+      const message = err.message || 'Failed to register. Please check your information and try again.';
+      setError(message);
+      toast.error(message);
     } finally {
       setIsSubmitting(false);
     }

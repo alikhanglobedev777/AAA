@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { FaUser, FaEnvelope, FaLock, FaMapMarkerAlt, FaPhone, FaGlobe } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { isValidPhoneInput, normalizePhoneInput, phoneValidationMessage } from '../utils/phone';
 import './Signup.css';
 
 function Signup() {
@@ -22,6 +24,11 @@ function Signup() {
   const [success, setSuccess] = useState('');
   const { register } = useContext(AuthContext);
 
+  const showError = (message) => {
+    setError(message);
+    toast.error(message);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -36,35 +43,35 @@ function Signup() {
     switch (currentStep) {
       case 1:
         if (!formData.firstName.trim() || !formData.lastName.trim()) {
-          setError('Please fill in your first and last name');
+          showError('Please fill in your first and last name');
           return false;
         }
         break;
       case 2:
         if (!formData.email || !formData.password || !formData.confirmPassword) {
-          setError('Please fill in all fields');
+          showError('Please fill in all fields');
           return false;
         }
         if (!/\S+@\S+\.\S+/.test(formData.email)) {
-          setError('Please enter a valid email address');
+          showError('Please enter a valid email address');
           return false;
         }
         if (formData.password.length < 6) {
-          setError('Password must be at least 6 characters long');
+          showError('Password must be at least 6 characters long');
           return false;
         }
         if (formData.password !== formData.confirmPassword) {
-          setError('Passwords do not match');
+          showError('Passwords do not match');
           return false;
         }
         break;
       case 3:
         if (!formData.phone.trim() || !formData.address.trim() || !formData.city.trim()) {
-          setError('Please fill in phone number, address, and city');
+          showError('Please fill in phone number, address, and city');
           return false;
         }
-        if (!/^[\+]?[1-9][\d]{0,15}$/.test(formData.phone.replace(/\s/g, ''))) {
-          setError('Please enter a valid phone number');
+        if (!isValidPhoneInput(formData.phone)) {
+          showError(phoneValidationMessage);
           return false;
         }
         break;
@@ -108,22 +115,23 @@ function Signup() {
         email: formData.email.trim(),
         password: formData.password,
         confirmPassword: formData.confirmPassword,
-        phone: formData.phone.trim(),
+        phone: normalizePhoneInput(formData.phone),
         location: locationData
       });
 
       if (result && result.success) {
         setSuccess('Registration successful! Redirecting...');
+        toast.success('Registration successful! Redirecting...');
         setTimeout(() => {
           window.location.href = '/';
         }, 2000);
       } else {
         const errorMessage = result?.message || 'Registration failed';
-        setError(errorMessage);
+        showError(errorMessage);
       }
     } catch (err) {
       console.error('Error during registration:', err);
-      setError('An error occurred during registration. Please try again.');
+      showError('An error occurred during registration. Please try again.');
     }
   };
 
@@ -240,6 +248,8 @@ function Signup() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Enter your phone number"
+                inputMode="tel"
+                autoComplete="tel"
                 required
               />
             </div>

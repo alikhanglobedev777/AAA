@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const { normalizePhone, isValidPhone, phoneValidationMessage } = require('../utils/phone');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -39,7 +40,11 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     trim: true,
-    match: [/^[\+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number']
+    set: normalizePhone,
+    validate: {
+      validator: isValidPhone,
+      message: phoneValidationMessage
+    }
   },
   profilePicture: {
     type: String,

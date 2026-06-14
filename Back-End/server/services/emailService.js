@@ -1,7 +1,17 @@
 const nodemailer = require('nodemailer');
 
+const isEmailConfigured = () =>
+  Boolean(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD);
+
+const getFromAddress = (name = 'AAA Services') =>
+  `"${name}" <${process.env.MAIL_FROM || process.env.GMAIL_USER}>`;
+
 // Create transporter using Google SMTP
 const createTransporter = () => {
+  if (!isEmailConfigured()) {
+    throw new Error('Email is not configured. Set GMAIL_USER and GMAIL_APP_PASSWORD.');
+  }
+
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -11,17 +21,32 @@ const createTransporter = () => {
   });
 };
 
+const sendMail = async (mailOptions) => {
+  const transporter = createTransporter();
+  return transporter.sendMail({
+    ...mailOptions,
+    from: getFromAddress(),
+  });
+};
+
+const verifyEmailTransport = async () => {
+  if (!isEmailConfigured()) {
+    return { configured: false, ready: false, message: 'GMAIL_USER and GMAIL_APP_PASSWORD are required.' };
+  }
+
+  await createTransporter().verify();
+  return { configured: true, ready: true, message: 'Email transport is ready.' };
+};
+
 // Send password reset email
 const sendPasswordResetEmail = async (email, resetUrl, userName, userType = 'customer') => {
   try {
-    const transporter = createTransporter();
-    
     const subject = userType === 'business' 
       ? 'Business Password Reset Request - AAA Services'
       : 'Password Reset Request - AAA Services';
     
     const mailOptions = {
-      from: `"AAA Services" <${process.env.GMAIL_USER}>`,
+      from: getFromAddress(),
       to: email,
       subject: subject,
       html: `
@@ -79,7 +104,7 @@ const sendPasswordResetEmail = async (email, resetUrl, userName, userType = 'cus
       `
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await sendMail(mailOptions);
     console.log('Password reset email sent:', info.messageId);
     return { success: true, messageId: info.messageId };
     
@@ -92,10 +117,8 @@ const sendPasswordResetEmail = async (email, resetUrl, userName, userType = 'cus
 // Send welcome email (optional)
 const sendWelcomeEmail = async (email, userName) => {
   try {
-    const transporter = createTransporter();
-    
     const mailOptions = {
-      from: `"AAA Services" <${process.env.GMAIL_USER}>`,
+      from: getFromAddress(),
       to: email,
       subject: 'Welcome to AAA Services!',
       html: `
@@ -138,7 +161,7 @@ const sendWelcomeEmail = async (email, userName) => {
       `
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await sendMail(mailOptions);
     console.log('Welcome email sent:', info.messageId);
     return { success: true, messageId: info.messageId };
     
@@ -152,14 +175,12 @@ const sendWelcomeEmail = async (email, userName) => {
 // Send email verification email
 const sendEmailVerificationEmail = async (email, verificationUrl, userName, userType = 'business') => {
   try {
-    const transporter = createTransporter();
-    
     const subject = userType === 'business' 
       ? 'Verify Your Business Email - AAA Services'
       : 'Verify Your Email - AAA Services';
     
     const mailOptions = {
-      from: `"AAA Services" <${process.env.GMAIL_USER}>`,
+      from: getFromAddress(),
       to: email,
       subject: subject,
       html: `
@@ -217,7 +238,7 @@ const sendEmailVerificationEmail = async (email, verificationUrl, userName, user
       `
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await sendMail(mailOptions);
     console.log('Email verification email sent:', info.messageId);
     return { success: true, messageId: info.messageId };
     
@@ -230,11 +251,9 @@ const sendEmailVerificationEmail = async (email, verificationUrl, userName, user
 // Send help center contact email to admin
 const sendHelpCenterContactEmail = async (contactData) => {
   try {
-    const transporter = createTransporter();
-    
     const mailOptions = {
-      from: `"AAA Services Help Center" <${process.env.GMAIL_USER}>`,
-      to: 'aaaservicesdirectory@gmail.com',
+      from: getFromAddress('AAA Services Help Center'),
+      to: process.env.ADMIN_EMAIL || process.env.GMAIL_USER,
       subject: `Help Center Contact: ${contactData.subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -276,7 +295,7 @@ const sendHelpCenterContactEmail = async (contactData) => {
       `
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await sendMail(mailOptions);
     console.log('Help center contact email sent to admin:', info.messageId);
     return { success: true, messageId: info.messageId };
     
@@ -289,10 +308,8 @@ const sendHelpCenterContactEmail = async (contactData) => {
 // Send confirmation email to user
 const sendHelpCenterConfirmationEmail = async (contactData) => {
   try {
-    const transporter = createTransporter();
-    
     const mailOptions = {
-      from: `"AAA Services Help Center" <${process.env.GMAIL_USER}>`,
+      from: getFromAddress('AAA Services Help Center'),
       to: contactData.email,
       subject: 'We\'ve received your inquiry - AAA Services',
       html: `
@@ -330,7 +347,7 @@ const sendHelpCenterConfirmationEmail = async (contactData) => {
             
             <ul style="color: #2c3e50; font-size: 16px; line-height: 1.8;">
               <li>Phone: +923224399586 (24/7)</li>
-              <li>Email: aaaservicesdirectory@gmail.com</li>
+              <li>Email: ${process.env.ADMIN_EMAIL || process.env.GMAIL_USER}</li>
             </ul>
             
             <p style="color: #2c3e50; font-size: 16px; line-height: 1.6;">
@@ -346,7 +363,7 @@ const sendHelpCenterConfirmationEmail = async (contactData) => {
       `
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    const info = await sendMail(mailOptions);
     console.log('Help center confirmation email sent to user:', info.messageId);
     return { success: true, messageId: info.messageId };
     
@@ -357,6 +374,11 @@ const sendHelpCenterConfirmationEmail = async (contactData) => {
 };
 
 module.exports = {
+  createTransporter,
+  getFromAddress,
+  isEmailConfigured,
+  sendMail,
+  verifyEmailTransport,
   sendPasswordResetEmail,
   sendWelcomeEmail,
   sendEmailVerificationEmail,

@@ -1,3 +1,5 @@
+@import '../styles/imageStyles.css';
+
 /* Complaint Form Styles */
 .complaint-form-container {
   --primary-color: #4a6cf7;
@@ -244,7 +246,6 @@
 }
 
 /* Import shared image styles */
-@import '../styles/imageStyles.css';
 
 .provider-image1 {
   object-fit: cover;

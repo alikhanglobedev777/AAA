@@ -967,7 +967,7 @@
     font-size: 2rem;
   }
   .hero-image-container{
-    width: 380px;
+    width: min(380px, 100%);
 
   }
 }

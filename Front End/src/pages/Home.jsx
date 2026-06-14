@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import './Home.css';
 import ServicesSection from '../components/ServicesSection';
 import { Link, useNavigate } from 'react-router-dom';
-import { clearCacheOnLoad } from '../utils/clearCache';
+import { useBusinesses } from '../hooks/useApiQueries';
 import { 
   FaSearch, 
   FaStar, 
@@ -23,9 +23,6 @@ import {
 
 const Home = () => {
   const navigate = useNavigate();
-  const [featuredServices, setFeaturedServices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [showVideo, setShowVideo] = useState(false);
 
   // Sample customer reviews data
@@ -67,50 +64,7 @@ const Home = () => {
 
   ];
 
-  // Fetch featured services from localStorage or API
-  useEffect(() => {
-    // Clear any cached business data to ensure fresh data
-    clearCacheOnLoad();
-    
-    const fetchFeaturedServices = async () => {
-      try {
-        setLoading(true);
-        
-        // Fetch only active businesses from API
-        const response = await fetch('http://localhost:5000/api/business?status=active&limit=10');
-        if (response.ok) {
-          const data = await response.json();
-          const activeBusinesses = data.businesses || [];
-          
-          // Get any 3 random active businesses
-          let featured = [];
-          if (activeBusinesses.length > 0) {
-            // Shuffle the businesses array to get random selection
-            const shuffled = [...activeBusinesses].sort(() => 0.5 - Math.random());
-            featured = shuffled.slice(0, 3).map(business => ({
-              ...business,
-              rating: business.rating || 4.0, // Default rating if none exists
-              totalReviews: business.totalReviews || 0, // Default review count
-              name: business.businessName || business.name || 'Unnamed Business',
-              type: business.businessType || business.type || 'Other',
-              description: business.description || 'Professional service provider',
-              address: business.location?.city || business.address || 'Location not specified',
-              phone: business.contact?.phone || business.phone || null,
-              id: business._id || business.id
-            }));
-          }
-          
-          setFeaturedServices(featured);
-          setError('');
-        } else {
-          throw new Error('Failed to fetch businesses');
-        }
-      } catch (err) {
-        console.error('Error fetching featured services:', err);
-        setError('Failed to load featured services');
-        
-        // Fallback to sample data if API fails
-        const fallbackServices = [
+  const fallbackServices = [
           {
             id: 'sample1',
             name: 'Karachi Biryani House',
@@ -144,15 +98,29 @@ const Home = () => {
             phone: '+92-300-3456789',
             image: null
           }
-        ];
-        setFeaturedServices(fallbackServices);
-      } finally {
-        setLoading(false);
-      }
-    };
+  ];
+  const {
+    data: featuredData,
+    isLoading: loading,
+    error: featuredError,
+  } = useBusinesses({ status: 'active', limit: 10 });
+  const error = featuredError ? 'Failed to load featured services' : '';
+  const featuredServices = useMemo(() => {
+    const activeBusinesses = featuredData?.businesses || [];
+    if (!activeBusinesses.length) return featuredError ? fallbackServices : [];
 
-    fetchFeaturedServices();
-  }, []);
+    return activeBusinesses.slice(0, 3).map(business => ({
+      ...business,
+      rating: business.rating || 4.0,
+      totalReviews: business.totalReviews || 0,
+      name: business.businessName || business.name || 'Unnamed Business',
+      type: business.businessType || business.type || 'Other',
+      description: business.description || 'Professional service provider',
+      address: business.location?.city || business.address || 'Location not specified',
+      phone: business.contact?.phone || business.phone || null,
+      id: business._id || business.id
+    }));
+  }, [featuredData, featuredError]);
 
   return (
     <div className="home-page">

@@ -81,9 +81,14 @@ export const AuthProvider = ({ children }) => {
       return { success: true, user: registeredUser };
     } catch (error) {
       console.error('Registration error:', error.response?.data || error.message);
+      const responseData = error.response?.data;
+      const validationMessage = Array.isArray(responseData?.errors)
+        ? responseData.errors.join(' ')
+        : responseData?.error || responseData?.message;
       return {
         success: false,
-        message: error.response?.data?.message || 'Registration failed'
+        message: validationMessage || 'Registration failed',
+        errors: responseData?.errors || []
       };
     }
   };

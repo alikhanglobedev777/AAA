@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useServiceCategories } from '../hooks/useApiQueries';
 import { 
   FaBolt, FaBroom, FaPaintBrush, FaSeedling, 
   FaWrench, FaTruck, FaShieldAlt, FaGraduationCap, FaUtensils,
@@ -8,15 +9,12 @@ import {
   FaLeaf, FaSnowflake, FaFire, FaWater, FaLightbulb, FaSink
 } from 'react-icons/fa';
 import { MdCleaningServices, MdLocalShipping, MdSecurity, MdSchool, MdRestaurant, MdHealthAndSafety, MdConstruction, MdBuild, MdDirectionsCar, MdPets, MdPestControl, MdOtherHouses } from 'react-icons/md';
-import { GiLaurelCrown, GiCarpentry, GiCementMixer, GiCookingPot, GiDeliveryDrone, GiGymBag, GiMedicalPack, GiOfficeChair, GiPencilRuler, GiSewingMachine, GiSofa, GiTruck } from 'react-icons/gi';
-import { BiCar, BiHome, BiBuilding, BiCog, BiWrench, BiPaint, BiClean, BiGarden, BiRepair, BiTransport, BiSecurity, BiEducation, BiFood, BiBeauty, BiHealth, BiConstruction, BiMaintenance } from 'react-icons/bi';
+import { GiLaurelCrown, GiCookingPot, GiDeliveryDrone, GiGymBag, GiMedicalPack, GiOfficeChair, GiPencilRuler, GiSewingMachine, GiSofa, GiTruck } from 'react-icons/gi';
+import { BiCar, BiHome, BiBuilding, BiCog, BiWrench, BiPaint, BiHealth } from 'react-icons/bi';
 import './ServiceCategories.css';
 
 const ServiceCategories = () => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -204,45 +202,19 @@ const ServiceCategories = () => {
     }
   ];
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setLoading(true);
-        setError('');
-        
-        const response = await fetch('http://localhost:5000/api/service-categories');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.categories && Array.isArray(data.categories)) {
-            // Merge API data with our predefined categories
-            const mergedCategories = allCategories.map(cat => {
-              const apiCat = data.categories.find(api => 
-                api.slug === cat.id || api.name.toLowerCase().includes(cat.id)
-              );
-              return {
-                ...cat,
-                businessCount: apiCat?.businessCount || 0,
-                description: apiCat?.description || cat.description,
-                icon: apiCat?.icon ? getIconFromString(apiCat.icon) : cat.icon
-              };
-            });
-            setCategories(mergedCategories);
-          } else {
-            setCategories(allCategories);
-          }
-        } else {
-          setCategories(allCategories);
-        }
-      } catch (err) {
-        console.error('Error fetching categories:', err);
-        setCategories(allCategories);
-      } finally {
-        setLoading(false);
-      }
+  const { data: categoryData, isLoading: loading } = useServiceCategories();
+  const apiCategories = Array.isArray(categoryData) ? categoryData : categoryData?.categories;
+  const categories = allCategories.map(cat => {
+    const apiCat = apiCategories?.find(api =>
+      api.slug === cat.id || api.name.toLowerCase().includes(cat.id)
+    );
+    return {
+      ...cat,
+      businessCount: apiCat?.businessCount || 0,
+      description: apiCat?.description || cat.description,
+      icon: apiCat?.icon ? getIconFromString(apiCat.icon) : cat.icon
     };
-
-    fetchCategories();
-  }, []);
+  });
 
   const getIconFromString = (iconString) => {
     // Map icon strings to actual icon components

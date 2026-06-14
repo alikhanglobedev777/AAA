@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ServiceCategorySelector.css';
+import { useServiceCategories } from '../hooks/useApiQueries';
 
 const ServiceCategorySelector = ({
   selectedCategory,
@@ -11,52 +12,8 @@ const ServiceCategorySelector = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  
   const dropdownRef = useRef(null);
   const searchInputRef = useRef(null);
-
-  const API_BASE = 'http://localhost:5000/api';
-
-  // Fetch categories from API
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setLoading(true);
-        setError('');
-        
-        const response = await fetch(`${API_BASE}/service-categories`);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        if (data.categories && Array.isArray(data.categories)) {
-          setCategories(data.categories);
-        } else if (Array.isArray(data)) {
-          setCategories(data);
-        } else {
-          throw new Error('Invalid data format received');
-        }
-      } catch (err) {
-        console.error('Error fetching categories:', err);
-        if (err.message.includes('Failed to fetch')) {
-          setError('Cannot connect to server. Please check if the backend is running.');
-        } else {
-          setError(`Failed to load categories: ${err.message}`);
-        }
-        // Fallback to static categories if API fails
-        setCategories(getFallbackCategories());
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   // Fallback categories if API fails
   const getFallbackCategories = () => [
@@ -81,6 +38,12 @@ const ServiceCategorySelector = ({
     { id: 19, name: 'Pest Control', slug: 'pest-control' },
     { id: 20, name: 'Other Services', slug: 'other-services' }
   ];
+  const { data, isLoading: loading, error: queryError } = useServiceCategories();
+  const apiCategories = Array.isArray(data) ? data : data?.categories;
+  const categories = Array.isArray(apiCategories) ? apiCategories : getFallbackCategories();
+  const error = queryError
+    ? 'Cannot connect to server. Showing the default categories.'
+    : '';
 
   // Filter categories based on search term
   const filteredCategories = categories.filter(category =>

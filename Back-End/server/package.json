@@ -8,7 +8,9 @@
     "dev": "nodemon server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "db:test": "node -e \"require('./config/db')().then(() => process.exit(0)).catch(() => process.exit(1))\""
+    "db:test": "node -r dotenv/config -e \"require('./config/db')().then(() => process.exit(0)).catch(() => process.exit(1))\"",
+    "email:test": "node scripts/test-email.js",
+    "seed": "node scripts/seed.js"
   },
   "keywords": [
     "nodejs",

@@ -11,14 +11,32 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const businessRoutes = require('./routes/business');
 const reviewRoutes = require('./routes/review');
-const adminRoutes = require('./routes/admin');
 const serviceCategoryRoutes = require('./routes/serviceCategories');
 const inquiryRoutes = require('./routes/inquiry');
 const complaintRoutes = require('./routes/complaints');
 const messagingRoutes = require('./routes/messaging');
 const helpCenterRoutes = require('./routes/helpCenter');
 const connectDB = require('./config/db');
+const { isEmailConfigured } = require('./services/emailService');
 // const redisCache = require('./config/redis'); // Temporarily disabled
+
+let adminRoutes;
+try {
+  adminRoutes = require('./routes/admin');
+} catch (error) {
+  if (error.code !== 'MODULE_NOT_FOUND' || !error.message.includes('./routes/admin')) {
+    throw error;
+  }
+
+  console.warn('Admin routes are unavailable. The rest of the API will continue running.');
+  adminRoutes = express.Router();
+  adminRoutes.use((req, res) => {
+    res.status(503).json({
+      message: 'Admin routes are temporarily unavailable',
+      error: 'The admin route module is missing from the server installation.'
+    });
+  });
+}
 
 // Load environment variables
 dotenv.config();
@@ -32,6 +50,10 @@ if (missingEnvVars.length > 0) {
   console.error('💡 Please create a .env file with the required variables');
   console.error('💡 See .env.example for reference');
   process.exit(1);
+}
+
+if (!isEmailConfigured()) {
+  console.warn('Email delivery is disabled. Set GMAIL_USER and GMAIL_APP_PASSWORD to enable client, provider, and admin emails.');
 }
 
 require('./config/passport');
@@ -88,7 +110,7 @@ app.use('/api/', limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Cache-Control', 'Origin', 'X-Requested-With'],
