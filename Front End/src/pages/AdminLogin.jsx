@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAdmin } from '../context/AdminContext';
 import './AdminLogin.css';
 
@@ -9,6 +9,7 @@ const AdminLogin = () => {
     password: ''
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   
   const { login } = useAdmin();
@@ -46,13 +47,15 @@ const AdminLogin = () => {
     <div className="admin-login-container">
       <div className="admin-login-card">
         <div className="admin-login-header">
-          <h1 className="admin-login-title">Admin Dashboard</h1>
-          <p className="admin-login-subtitle">Access restricted to authorized personnel only</p>
+          <div className="aa-admin-brand" aria-hidden="true">AAA<span>•</span></div>
+          <span className="aa-eyebrow">Secure workspace</span>
+          <h1 className="admin-login-title">Welcome back</h1>
+          <p className="admin-login-subtitle">Sign in to manage your businesses, service providers and requests.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="admin-login-form">
           {error && (
-            <div className="admin-error-message">
+            <div className="admin-error-message" role="alert">
               {error}
             </div>
           )}
@@ -69,6 +72,7 @@ const AdminLogin = () => {
               onChange={handleChange}
               className="admin-form-input"
               placeholder="Enter your username"
+              autoComplete="username"
               required
               disabled={loading}
             />
@@ -78,17 +82,23 @@ const AdminLogin = () => {
             <label htmlFor="password" className="admin-form-label">
               Password
             </label>
+            <div className="aa-admin-password-row">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               className="admin-form-input"
               placeholder="Enter your password"
+              autoComplete="current-password"
               required
               disabled={loading}
             />
+            <button type="button" className="aa-show-password" onClick={() => setShowPassword(value => !value)} aria-label={showPassword ? 'Hide password' : 'Show password'} aria-pressed={showPassword}>
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+            </div>
           </div>
 
           <button
@@ -101,9 +111,8 @@ const AdminLogin = () => {
         </form>
 
         <div className="admin-login-footer">
-          <p className="admin-login-note">
-            This area is restricted to authorized administrators only.
-          </p>
+          <p className="admin-login-note">Authorized administrators only.</p>
+          <Link to="/home" className="aa-admin-back">← Back to AAA Services</Link>
 
         </div>
       </div>

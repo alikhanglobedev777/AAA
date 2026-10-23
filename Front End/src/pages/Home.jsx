@@ -25,80 +25,6 @@ const Home = () => {
   const navigate = useNavigate();
   const [showVideo, setShowVideo] = useState(false);
 
-  // Sample customer reviews data
-  const customerReviews = [
-    {
-      id: 1,
-      name: "Ahmed Khan",
-      location: "Lahore",
-      rating: 5,
-      comment: "Found an excellent plumber through AAA Services. Professional, punctual, and reasonably priced. Highly recommended!",
-      service: "Plumbing",
-      avatar: "https://via.placeholder.com/60x60/006400/ffffff?text=AK"
-    },
-    {
-      id: 2,
-      name: "Fatima Zahra",
-      location: "Karachi",
-      rating: 5,
-      comment: "The electrician I found here was amazing. Fixed all issues quickly and safely. Will definitely use again!",
-      service: "Electrical",
-      avatar: "https://via.placeholder.com/60x60/228B22/ffffff?text=FZ"
-    },
-    {
-      id: 3,
-      name: "Muhammad Ali",
-      location: "Islamabad",
-      rating: 5,
-      comment: "Outstanding cleaning service! The team was thorough and professional. My house looks brand new!",
-      service: "Cleaning",
-      avatar: "https://via.placeholder.com/60x60/32CD32/ffffff?text=MA"
-    }
-  ];
-
-  // Sample statistics data
-  const stats = [
-    { number: "10K+", label: "Happy Customers", icon: FaUsers, color: "#006400" },
-    { number: "4.8", label: "Average Rating", icon: FaStar, color: "#FFD700" },
-    { number: "100%", label: "Verified Providers", icon: FaShieldAlt, color: "#228B22" },
-
-  ];
-
-  const fallbackServices = [
-          {
-            id: 'sample1',
-            name: 'Karachi Biryani House',
-            type: 'Food',
-            description: 'Authentic Pakistani biryani and traditional dishes. Fresh ingredients, home-style cooking, and excellent taste guaranteed.',
-            rating: 4.5,
-            totalReviews: 89,
-            address: 'Karachi, Pakistan',
-            phone: '+92-300-1234567',
-            image: null
-          },
-          {
-            id: 'sample2',
-            name: 'Lahore Plumbing Solutions',
-            type: 'Plumbing',
-            description: 'Professional plumbing services for homes and businesses. 24/7 emergency repairs, installations, and maintenance.',
-            rating: 4.2,
-            totalReviews: 156,
-            address: 'Lahore, Pakistan',
-            phone: '+92-300-2345678',
-            image: null
-          },
-          {
-            id: 'sample3',
-            name: 'Islamabad Electrical Works',
-            type: 'Electrical',
-            description: 'Licensed electricians providing safe and reliable electrical services. Wiring, repairs, and installations.',
-            rating: 4.7,
-            totalReviews: 203,
-            address: 'Islamabad, Pakistan',
-            phone: '+92-300-3456789',
-            image: null
-          }
-  ];
   const {
     data: featuredData,
     isLoading: loading,
@@ -107,12 +33,12 @@ const Home = () => {
   const error = featuredError ? 'Failed to load featured services' : '';
   const featuredServices = useMemo(() => {
     const activeBusinesses = featuredData?.businesses || [];
-    if (!activeBusinesses.length) return featuredError ? fallbackServices : [];
+    if (!activeBusinesses.length) return [];
 
     return activeBusinesses.slice(0, 3).map(business => ({
       ...business,
-      rating: business.rating || 4.0,
-      totalReviews: business.totalReviews || 0,
+      rating: business.tags?.includes('AAA_DEMO_SEED_V2') ? null : business.rating ?? null,
+      totalReviews: business.tags?.includes('AAA_DEMO_SEED_V2') ? 0 : business.totalReviews || 0,
       name: business.businessName || business.name || 'Unnamed Business',
       type: business.businessType || business.type || 'Other',
       description: business.description || 'Professional service provider',
@@ -121,6 +47,13 @@ const Home = () => {
       id: business._id || business.id
     }));
   }, [featuredData, featuredError]);
+
+  const listingCount = featuredData?.pagination?.totalBusinesses;
+  const stats = [
+    { number: listingCount?.toLocaleString() || 'Browse', label: 'Active listings', icon: FaUsers },
+    { number: '15', label: 'Service categories', icon: FaSearch },
+    { number: 'Across PK', label: 'Locations to explore', icon: FaMapMarkerAlt },
+  ];
 
   return (
     <div className="home-page">
@@ -133,20 +66,20 @@ const Home = () => {
           <div className="hero-text">
             <div className="hero-badge">
               <FaStar className="badge-icon" />
-              <span>Pakistan's #1 Service Directory</span>
+              <span>Your local service directory</span>
             </div>
             <h1 className="home-hero-title">
-              Find Trusted Service Providers
-              <span className="hero-highlight"> Near You</span>
+              Find the right service
+              <span className="hero-highlight"> near you</span>
             </h1>
             <p className="hero-subtitle">
-              Connect with verified professionals for all your service needs across Pakistan. 
-              Quality guaranteed, reviews verified, satisfaction assured.
+              Explore local businesses, compare services and choose who to contact.
+              Check each listing’s verification status before booking.
             </p>
             <div className="hero-stats">
               {stats.map((stat, index) => (
                 <div key={index} className="home-stat-item">
-                  <stat.icon className="home-stat-icon" style={{ color: stat.color }} />
+                  <stat.icon className="home-stat-icon" />
                   <div className="home-stat-content">
                     <span className="home-stat-number">{stat.number}</span>
                     <span className="home-stat-label">{stat.label}</span>
@@ -168,24 +101,24 @@ const Home = () => {
             <div className="hero-image-container">
               <div className="floating-card card-1">
                 <FaStar className="card-icon" />
-                <span>5.0 Rating</span>
+                <span>Explore services</span>
               </div>
               <div className="floating-card card-2">
                 <FaUsers className="card-icon" />
-                <span>500+ Reviews</span>
+                <span>Connect locally</span>
               </div>
               <div className="hero-main-image">
                 {!showVideo ? (
-                  <div className="image-placeholder" onClick={() => setShowVideo(true)}>
+                  <button type="button" className="image-placeholder" onClick={() => setShowVideo(true)} aria-label="Play introduction video">
                     <FaPlay className="play-icon" />
-                    <span className="play-text">Watch Video</span>
-                  </div>
+                    <span className="play-text">See how AAA works</span>
+                  </button>
                 ) : (
                   <div className="video-container">
                     <button 
                       className="video-close-btn" 
                       onClick={() => setShowVideo(false)}
-                      title="Close Video"
+                      title="Close video" aria-label="Close introduction video"
                     >
                       ×
                     </button>
@@ -211,30 +144,30 @@ const Home = () => {
         <div className="container">
           <div className="section-header">
             <h2>Why Choose AAA Services?</h2>
-            <p>We're committed to connecting you with the best service providers in Pakistan</p>
+            <p>A simple way to discover and compare services in your area</p>
           </div>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">
                 <FaShieldAlt />
               </div>
-              <h3>Verified Providers</h3>
-              <p>All service providers are thoroughly vetted and verified for your safety and peace of mind.</p>
+              <h3>Know the verification status</h3>
+              <p>See which businesses are verified and which listings still require independent checks.</p>
             </div>
             
             <div className="feature-card">
               <div className="feature-icon">
                 <FaClock />
               </div>
-              <h3>Quick Response</h3>
-              <p>Get connected with service providers within minutes, not hours or days.</p>
+              <h3>Explore at your pace</h3>
+              <p>Compare services, locations and descriptions before contacting a business.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">
                 <FaHandshake />
               </div>
-              <h3>Trusted Network</h3>
-              <p>Join thousands of satisfied customers who trust us for their service needs.</p>
+              <h3>One place for local services</h3>
+              <p>Find different service categories and businesses from a single directory.</p>
             </div>
           </div>
         </div>
@@ -247,8 +180,8 @@ const Home = () => {
       <section className="featured-providers-section">
         <div className="container">
           <div className="section-header">
-            <h2>Featured Services</h2>
-            <p>Top-rated services trusted by thousands of customers</p>
+            <h2>Explore businesses</h2>
+            <p>Recent active directory listings. Always review verification status before booking.</p>
           </div>
           
           {loading ? (
@@ -265,13 +198,13 @@ const Home = () => {
           ) : featuredServices.length === 0 ? (
             <div className="no-results">
               <i className="fas fa-star" style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.5 }}></i>
-              <h3>No featured services available</h3>
-              <p>Check back later for our top-rated service providers.</p>
+              <h3>No listings available yet</h3>
+              <p>Try again later or explore the service categories.</p>
             </div>
           ) : (
             <div className="providers-grid">
               {featuredServices.map(service => (
-                <div key={service.id} className="provider-card" onClick={() => {
+                <div key={service._id || service.id} className="provider-card" role="group" onClick={() => {
                   // Generate slug from business name
                   const generateSlug = (title) => {
                     if (!title) return '';
@@ -333,11 +266,11 @@ const Home = () => {
                   <div className="rating-section">
                     <div className="rating-container">
                       <div className="rating-badge">
-                        {service.rating && typeof service.rating === 'number' ? service.rating.toFixed(1) : 'N/A'}
+                        {service.totalReviews > 0 && typeof service.rating === 'number' ? service.rating.toFixed(1) : '—'}
                       </div>
                       <div>
                         <div className="rating-stars">
-                          {[1, 2, 3, 4, 5].map(s => (
+                          {service.totalReviews > 0 && [1, 2, 3, 4, 5].map(s => (
                             <i key={s} className={`fas fa-star${s <= Math.round(service.rating || 0) ? ' filled' : '-o'}`}></i>
                           ))}
                         </div>
@@ -349,7 +282,7 @@ const Home = () => {
                   </div>
                   
                   <div className="action-buttons">
-                    {service.phone && (
+                    {service.phone && !service.tags?.includes('AAA_DEMO_SEED_V2') && (
                       <a 
                         className="action-button secondary-button" 
                         href={`tel:${service.phone}`} 
@@ -403,37 +336,18 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Customer Reviews Section */}
-      <section className="reviews-section">
+      {/* Helpful guidance rather than fabricated customer testimonials. */}
+      <section className="aa-how-section" aria-labelledby="aa-how-title">
         <div className="container">
           <div className="section-header">
-            <h2>What Our Customers Say</h2>
-            <p>Real reviews from satisfied customers across Pakistan</p>
+            <span className="aa-eyebrow">Getting started</span>
+            <h2 id="aa-how-title">A better way to find local help</h2>
+            <p>Three steps from exploring to connecting.</p>
           </div>
-          <div className="reviews-grid">
-            {customerReviews.map((review) => (
-              <div key={review.id} className="review-card">
-                <div className="review-header">
-                  <img src={review.avatar} alt={review.name} className="reviewer-avatar" />
-                  <div className="reviewer-info">
-                    <h4>{review.name}</h4>
-                    <p className="reviewer-location">
-                      <FaMapMarkerAlt /> {review.location}
-                    </p>
-                    <p className="reviewer-service">{review.service}</p>
-                  </div>
-                  <div className="review-rating">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="star filled" />
-                    ))}
-                  </div>
-                </div>
-                <div className="review-content">
-                  <FaQuoteLeft className="quote-icon" />
-                  <p>{review.comment}</p>
-                </div>
-              </div>
-            ))}
+          <div className="aa-how-grid">
+            <article className="aa-how-card"><span className="aa-step">01</span><h3>Search a category</h3><p>Choose a service and filter by city to narrow the options.</p></article>
+            <article className="aa-how-card"><span className="aa-step">02</span><h3>Review the details</h3><p>Read the business description and check its verification status.</p></article>
+            <article className="aa-how-card"><span className="aa-step">03</span><h3>Get in touch</h3><p>Contact a provider directly when you’re ready to discuss your needs.</p></article>
           </div>
         </div>
       </section>
@@ -443,13 +357,13 @@ const Home = () => {
         <div className="container">
           <div className="cta-content">
             <h2>Ready to Find Your Perfect Service Provider?</h2>
-            <p>Join thousands of satisfied customers who trust AAA Services for their needs</p>
+            <p>Explore local options and find a provider who fits your needs.</p>
             <div className="cta-buttons">
               <Link to="/services" className="cta-btn primary">
                 <FaSearch className="btn-icon" />
                 Start Searching
               </Link>
-              <Link to="/signup" className="cta-btn secondary">
+              <Link to="/service-provider-signup" className="cta-btn secondary">
                 <FaHeart className="btn-icon" />
                 Become a Provider
               </Link>

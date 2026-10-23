@@ -2452,3 +2452,20 @@
   .dashboard-card { padding: 0!important; }
   .stat-card { padding: 1rem !important; }
 }
+
+/* AAA business workspace visual system */
+.business-dashboard { --primary:var(--aa-primary); --primary-50:var(--aa-primary-soft); --primary-600:var(--aa-primary); --muted:var(--aa-muted); --text:var(--aa-ink); --border:var(--aa-border); --card:#fff; background:var(--aa-bg); font-family:Inter,'Segoe UI',system-ui,sans-serif; }
+.business-dashboard .dashboard-sidebar { background:#fff; border-right:1px solid var(--aa-border); box-shadow:2px 0 16px rgba(14,63,50,.035); }
+.business-dashboard .dashboard-main { background:var(--aa-bg); padding:clamp(18px,3vw,38px); }
+.business-dashboard .dashboard-header h1 { color:var(--aa-ink); font-size:clamp(1.5rem,2.3vw,2.15rem); letter-spacing:-.04em; }
+.business-dashboard .dashboard-header .header-subtitle { color:var(--aa-muted); }
+.business-dashboard .dashboard-card, .business-dashboard .stat-card { border:1px solid var(--aa-border); border-radius:18px; box-shadow:var(--aa-shadow-sm); background:#fff; }
+.business-dashboard .dashboard-card:hover, .business-dashboard .stat-card:hover { box-shadow:var(--aa-shadow); }
+.business-dashboard .dashboard-sidebar .nav-item { border-radius:11px; color:var(--aa-text); font-weight:650; }
+.business-dashboard .dashboard-sidebar .nav-item.active, .business-dashboard .dashboard-sidebar .nav-item:hover { background:var(--aa-primary-soft) !important; color:var(--aa-primary) !important; }
+.business-dashboard .btn-primary, .business-dashboard .btn-view-profile { background:var(--aa-primary) !important; border-color:var(--aa-primary) !important; color:#fff; border-radius:11px; box-shadow:0 5px 14px rgba(8,127,105,.14) !important; }
+.business-dashboard .btn-primary:hover, .business-dashboard .btn-view-profile:hover { background:var(--aa-primary-hover) !important; box-shadow:0 8px 18px rgba(8,127,105,.19) !important; }
+.business-dashboard :is(input, select, textarea) { border-radius:10px; }
+.business-dashboard :is(input, select, textarea):focus { border-color:var(--aa-primary); }
+.business-dashboard .stat-icon { color:var(--aa-primary); }
+@media(max-width:768px) { .business-dashboard .dashboard-main { padding:12px !important; } .business-dashboard .dashboard-header { gap:10px; } }

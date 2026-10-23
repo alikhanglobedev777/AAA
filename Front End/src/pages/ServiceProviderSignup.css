@@ -589,3 +589,16 @@
   margin-bottom: 1rem;
   font-style: italic;
 }
+
+/* AAA provider onboarding */
+.service-provider-signup { background:var(--aa-bg); font-family:Inter,'Segoe UI',system-ui,sans-serif; }
+.service-provider-signup .signup-container { background:#fff; border:1px solid var(--aa-border); border-radius:24px; box-shadow:var(--aa-shadow); }
+.service-provider-signup .signup-header h1 { color:var(--aa-ink); letter-spacing:-.04em; }
+.service-provider-signup .form-step { border-color:var(--aa-border); }
+.service-provider-signup .form-group label { color:var(--aa-ink); }
+.service-provider-signup :is(input, textarea, select) { border:1px solid #cbdcd5; border-radius:11px; }
+.service-provider-signup :is(input, textarea, select):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
+.service-provider-signup .step.active .step-number, .service-provider-signup .step.completed .step-number { background:var(--aa-primary); color:#fff; }
+.service-provider-signup .btn-submit { background:var(--aa-primary); border-radius:11px; box-shadow:0 6px 15px rgba(8,127,105,.14); }
+.service-provider-signup .btn-submit:hover { background:var(--aa-primary-hover); }
+.service-provider-signup :is(.additional-service-card, .upload-placeholder) { border-radius:15px; border-color:var(--aa-border); }

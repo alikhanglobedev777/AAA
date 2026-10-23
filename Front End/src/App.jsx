@@ -94,7 +94,7 @@ const AppContent = () => {
   return (
     <div className={`app ${hideHeaderFooter ? 'no-header-footer' : ''}`}>
       {!hideHeaderFooter && <Header />}
-      <main>
+      <main id="main-content">
         <Suspense fallback={<Loading />}>
           <Routes>
           {/* Public Routes */}

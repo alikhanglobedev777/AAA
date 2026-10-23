@@ -723,3 +723,16 @@
 .review-service-item .review-item:last-child {
   margin-bottom: 0;
 }
+
+/* AAA guided registration */
+.signup-container { background:var(--aa-bg); font-family:Inter,'Segoe UI',system-ui,sans-serif; }
+.signup-card { background:#fff; border:1px solid var(--aa-border); border-radius:24px; box-shadow:var(--aa-shadow); }
+.signup-card::before { background:linear-gradient(90deg,var(--aa-primary),var(--aa-accent)); }
+.signup-header h2 { color:var(--aa-ink); background:none; -webkit-text-fill-color:currentColor; letter-spacing:-.04em; }
+.signup-header p { color:var(--aa-muted); }
+.signup-container .form-group label { color:var(--aa-ink); font-weight:750; }
+.signup-container :is(input, select, textarea) { border:1px solid #cbdcd5; border-radius:11px; background:#fff; }
+.signup-container :is(input, select, textarea):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
+.signup-container :is(.submit-button, .nav-button.primary) { background:var(--aa-primary); color:#fff; border-radius:11px; }
+.signup-container .nav-button.secondary { border-radius:11px; }
+.signup-container .progress-step.active .step-number { background:var(--aa-primary); border-color:var(--aa-primary); }

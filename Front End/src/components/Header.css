@@ -877,3 +877,45 @@
   box-shadow: none;
   border-radius: 0;
 }
+
+/* AAA unified navigation */
+.header { z-index:1100; border-bottom:1px solid var(--aa-border); box-shadow: 0 3px 22px rgba(18,61,53,.06); }
+.header .main-header { background:rgba(255,255,255,.97); border-bottom:1px solid #edf1ef; }
+.header .header-container { max-width: 1440px; padding: 12px clamp(16px,3vw,40px); gap: clamp(16px, 2.4vw, 32px); }
+.header .logo-img { height:44px; max-width:170px; }
+.header .search-section { max-width:680px; }
+.header .search-inputs { gap: 3px; padding:4px; border:1px solid var(--aa-border); border-radius:14px; box-shadow:0 2px 10px rgba(13,65,54,.035); }
+.header .search-inputs:focus-within { border-color:#61b89f; box-shadow:0 0 0 3px #d6f2e8; }
+.header .search-input { font-size:.87rem; color:var(--aa-ink); min-height:44px; background:transparent; }
+.header .search-input:focus { background:transparent; }
+.header .search-icon { color:var(--aa-muted); }
+.header .search-button { height:44px; min-width:48px; border-radius:10px; background:var(--aa-primary); box-shadow:none; }
+.header .search-button:hover { background:var(--aa-primary-hover); box-shadow:0 4px 12px rgba(4,105,87,.15); }
+.header .searchbardivider { border-color: var(--aa-border); }
+.header .category-nav { background:#fff; border-bottom:0; }
+.header .category-container { max-width:1440px; padding-inline:clamp(16px,3vw,40px); }
+.header .category-links { gap:8px; align-items:center; min-height:48px; }
+.header .category-link { border-radius:9px; font-size:.83rem; font-weight:650; color:var(--aa-muted); padding:8px 12px; }
+.header .category-link:hover, .header .category-link.active { background:var(--aa-primary-soft); color:var(--aa-primary); }
+.header .category-link::after { display:none; }
+.header .action-link { font-size:.83rem; color:var(--aa-text); font-weight:700; }
+.header .action-link:hover, .header .action-link.active { color:var(--aa-primary); }
+.header .login-btn, .header .signup-btn { display:inline-flex; align-items:center; min-height:42px; border-radius:11px; font-size:.86rem; font-weight:750; text-decoration:none; }
+.header .login-btn { border:1px solid var(--aa-border); color:var(--aa-forest); background:#fff; }
+.header .login-btn:hover { background:var(--aa-primary-soft); }
+.header .signup-btn { background:var(--aa-primary); color:#fff; box-shadow:none; }
+.header .signup-btn:hover { background:var(--aa-primary-hover); }
+.header .profile-btn { border:1px solid var(--aa-border); border-radius:12px; background:#fff; }
+.header .dropdown-menu { border-radius:16px; border:1px solid var(--aa-border); box-shadow:var(--aa-shadow-lg); }
+.header .mobile-nav { background:#fff; }
+.header .mobile-nav-links .nav-link { min-height:44px; border-radius:10px; }
+.header .mobile-search-input { border-radius:10px; }
+.header .mobile-search-button { border-radius:11px; background:var(--aa-primary); }
+@media(max-width:1300px) { .header .header-container { gap:12px; } .header .search-section { min-width:0; } }
+@media(max-width:768px) { .header .header-container { padding:12px 17px; } .header .logo-img { height:40px; } }
+.header .category-link:focus-visible, .header .action-link:focus-visible,
+.header .login-btn:focus-visible, .header .signup-btn:focus-visible,
+.header .profile-btn:focus-visible, .header .hamburger-btn:focus-visible,
+.header .search-button:focus-visible, .header .mobile-nav .nav-link:focus-visible {
+  outline:3px solid #55c0a1; outline-offset:2px; box-shadow:0 0 0 5px #e0f7ec;
+}

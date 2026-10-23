@@ -1,50 +1,48 @@
 import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { FaArrowRight, FaMapMarkerAlt, FaSearch, FaSlidersH, FaStore } from 'react-icons/fa';
 import BusinessAvatar from '../components/BusinessAvatar';
 import { useBusinesses } from '../hooks/useApiQueries';
+import './BusinessDirectory.css';
+
+const BUSINESS_TYPES = [
+  'plumbing', 'electrical', 'cleaning', 'painting', 'gardening', 'repair',
+  'transport', 'security', 'education', 'food', 'beauty', 'health',
+  'construction', 'maintenance', 'other',
+];
+
+const labelize = (value) => value ? value.charAt(0).toUpperCase() + value.slice(1).replace(/-/g, ' ') : 'Other service';
 
 const BusinessCard = ({ business, onOpen }) => {
-  const primaryService = business.services?.[0]?.name || business.businessType;
+  const primaryService = business.services?.[0]?.name || labelize(business.businessType);
   const isDemo = business.tags?.includes('AAA_DEMO_SEED_V2');
+  const verified = Boolean(business.verification?.isVerified) && !isDemo;
+  const statusText = isDemo ? 'Fictional demo listing' : verified ? 'Verified business' : 'Unverified business';
+
   return (
-    <div className="provider-card" onClick={() => onOpen(business)}>
-      <div className="provider-card-content">
-        <div className="provider-card-header">
-          <div className="provider-avatar">
-            <div className="avatar-container">
-              <BusinessAvatar
-                businessName={business.businessName}
-                imageUrl={business.images?.logo}
-                size="medium"
-                className="provider-image"
-              />
-            </div>
-          </div>
-          <div className="provider-info">
-            <h3 className="provider-name" title={business.businessName}>{business.businessName}</h3>
-            <p className="provider-title">{primaryService}</p>
-            <p>{isDemo ? 'Fictional demo listing' : business.verification?.isVerified ? 'Verified business' : 'Unverified business'}</p>
-            <p className="provider-location">
-              <i className="fas fa-map-marker-alt"></i>
-              <span className="location-text">{business.location?.city}</span>
-            </p>
-          </div>
-        </div>
-        <div className="provider-description">
-          {business.description?.slice(0, 140) || 'No description provided.'}
-        </div>
-        <div className="action-buttons">
-          <button className="action-button primary-button" onClick={(e) => { e.stopPropagation(); onOpen(business); }}>
-            <i className="fas fa-user"></i>
-            View Profile
-          </button>
-          <button disabled={isDemo || !business.contact?.email} className="action-button secondary-button" onClick={(e) => { e.stopPropagation(); window.location.href = `mailto:${business.contact?.email}`; }}>
-            <i className="fas fa-envelope"></i>
-            {isDemo ? 'Demo only' : 'Contact'}
-          </button>
-        </div>
+    <article className="aa-directory-card">
+      <div className="aa-directory-card-top">
+        <BusinessAvatar
+          businessName={business.businessName}
+          imageUrl={business.images?.logo}
+          size="medium"
+          className="aa-directory-avatar"
+        />
+        <span className={`aa-status ${isDemo ? 'aa-status--demo' : verified ? 'aa-status--verified' : 'aa-status--unverified'}`}>
+          {statusText}
+        </span>
       </div>
-    </div>
+      <div className="aa-directory-card-body">
+        <p className="aa-directory-category">{labelize(business.businessType)}</p>
+        <h2>{business.businessName || 'Unnamed business'}</h2>
+        <p className="aa-directory-service">{primaryService}</p>
+        <p className="aa-directory-location"><FaMapMarkerAlt aria-hidden="true" /> {business.location?.city || 'City not listed'}</p>
+        <p className="aa-directory-description">{business.description || 'Service details are not available yet.'}</p>
+      </div>
+      <button type="button" className="aa-directory-open" onClick={() => onOpen(business)}>
+        View business details <FaArrowRight aria-hidden="true" />
+      </button>
+    </article>
   );
 };
 
@@ -55,107 +53,99 @@ const BusinessDirectory = () => {
   const type = searchParams.get('type') || '';
   const search = searchParams.get('q') || '';
   const page = Math.max(1, Number.parseInt(searchParams.get('page') || '1', 10) || 1);
-  const {
-    data,
-    isLoading: loading,
-    error: queryError,
-  } = useBusinesses({
-    status: 'active',
-    city,
-    businessType: type,
-    search,
-    limit: 24,
-    page,
+  const { data, isLoading: loading, error: queryError, refetch } = useBusinesses({
+    status: 'active', city, businessType: type, search, limit: 24, page,
   });
   const businesses = data?.businesses || [];
   const total = data?.pagination?.totalBusinesses || 0;
-  const totalPages = data?.pagination?.totalPages || 1;
-  const error = queryError?.message || '';
+  const totalPages = Math.max(1, data?.pagination?.totalPages || 1);
+  const hasFilters = Boolean(search || city || type);
 
+  const setFilter = (key, value) => {
+    setSearchParams(prev => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set(key, value);
+      else next.delete(key);
+      next.delete('page');
+      return next;
+    });
+  };
+  const setPage = (nextPage) => {
+    setSearchParams(prev => {
+      const next = new URLSearchParams(prev);
+      if (nextPage <= 1) next.delete('page');
+      else next.set('page', String(nextPage));
+      return next;
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const onOpenProfile = (business) => {
-    // Generate slug from business name
-    const generateSlug = (title) => {
-      if (!title) return '';
-      return title
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-        .trim('-'); // Remove leading/trailing hyphens
-    };
-    
-    // Try multiple possible fields for category
-    let category = business.businessType || 
-                   business.category || 
-                   business.serviceType || 
-                   (business.services && business.services[0] && business.services[0].name) ||
-                   'other';
-    
-    // Clean up the category
-    category = category.toLowerCase().replace(/[^a-z0-9]/g, '');
-    
-    const slug = generateSlug(business.businessName);
+    const slug = String(business.businessName || '')
+      .toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    const category = String(business.businessType || 'other').toLowerCase().replace(/[^a-z0-9]/g, '');
     navigate(`/business/${category}/${slug}`);
   };
 
   return (
-    <div className="services-page">
-      <div className="services-hero">
-        <h1>Find a Business</h1>
-        <p>Browse active businesses and service providers from our live directory. Some listings are fictional demos or unverified</p>
-      </div>
-
-      <div className="services-filters" style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
-        <input
-          placeholder="Search businesses..."
-          value={search}
-          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('q', e.target.value); else p.delete('q'); p.delete('page'); return p; })}
-          style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', minWidth: 260 }}
-        />
-        <input
-          placeholder="City"
-          value={city}
-          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('city', e.target.value); else p.delete('city'); p.delete('page'); return p; })}
-          style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', minWidth: 180 }}
-        />
-        <select
-          value={type}
-          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('type', e.target.value); else p.delete('type'); p.delete('page'); return p; })}
-          style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd' }}
-        >
-          <option value="">All Types</option>
-          {['plumbing','electrical','cleaning','painting','gardening','repair','transport','security','education','food','beauty','health','construction','maintenance','other'].map(t => (
-            <option key={t} value={t}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>
-          ))}
-        </select>
-      </div>
-
-      {error && (
-        <div className="error-message" style={{ maxWidth: 960, margin: '0 auto 16px' }}>{error}</div>
-      )}
-
-      {!loading && !error && <p style={{ textAlign: 'center' }}>{total} active listing(s) found</p>}
-      {loading ? (
-        <div style={{ textAlign: 'center', padding: 40 }}>Loading businesses...</div>
-      ) : (
-        <div className="providers-grid">
-          {businesses.map(b => (
-            <BusinessCard key={b._id} business={b} onOpen={onOpenProfile} />
-          ))}
-          {businesses.length === 0 && (
-            <div style={{ gridColumn: '1 / -1', textAlign: 'center', color: '#666' }}>No businesses found.</div>
-          )}
+    <div className="aa-directory-page">
+      <section className="aa-directory-hero">
+        <div className="aa-container">
+          <span className="aa-eyebrow">Explore AAA directory</span>
+          <h1>Find the service that fits.</h1>
+          <p>Discover businesses across Pakistan. Compare their services, location and verification status before making a decision.</p>
         </div>
-      )}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12, margin: '24px auto' }}>
-        <button disabled={page <= 1} onClick={() => setSearchParams(prev => { const p = new URLSearchParams(prev); p.set('page', String(page - 1)); return p; })}>Previous</button>
-        <span>Page {page} of {totalPages}</span>
-        <button disabled={page >= totalPages} onClick={() => setSearchParams(prev => { const p = new URLSearchParams(prev); p.set('page', String(page + 1)); return p; })}>Next</button>
+      </section>
+
+      <div className="aa-container aa-directory-layout">
+        <section className="aa-directory-filter-panel" aria-label="Filter businesses">
+          <div className="aa-directory-filter-heading"><FaSlidersH aria-hidden="true" /><h2>Refine your search</h2></div>
+          <div className="aa-directory-fields">
+            <label><span className="aa-field-label">Business or service</span>
+              <span className="aa-directory-search-wrap"><FaSearch aria-hidden="true" />
+                <input className="aa-field" type="search" placeholder="e.g. electrician" value={search} onChange={e => setFilter('q', e.target.value)} />
+              </span>
+            </label>
+            <label><span className="aa-field-label">City</span>
+              <input className="aa-field" type="search" placeholder="e.g. Lahore" value={city} onChange={e => setFilter('city', e.target.value)} />
+            </label>
+            <label><span className="aa-field-label">Category</span>
+              <select className="aa-field" value={type} onChange={e => setFilter('type', e.target.value)}>
+                <option value="">All categories</option>
+                {BUSINESS_TYPES.map(t => <option key={t} value={t}>{labelize(t)}</option>)}
+              </select>
+            </label>
+            {hasFilters && <button type="button" className="aa-directory-clear" onClick={() => setSearchParams({})}>Clear filters</button>}
+          </div>
+        </section>
+
+        <div className="aa-results-bar" aria-live="polite" aria-atomic="true">
+          <div><strong>{loading ? 'Searching…' : `${total.toLocaleString()} active ${total === 1 ? 'listing' : 'listings'}`}</strong><span> · Browse local service businesses</span></div>
+          <span>Demo listings are labeled</span>
+        </div>
+
+        {queryError ? (
+          <div className="aa-empty" role="alert"><h3>We couldn't load the directory</h3><p>{queryError.message || 'Check your connection and try again.'}</p><button className="aa-btn aa-btn--outline" type="button" onClick={() => refetch()}>Try again</button></div>
+        ) : loading ? (
+          <div className="aa-directory-grid" aria-busy="true">
+            {Array.from({ length: 6 }, (_, index) => <div key={index} className="aa-directory-skeleton" aria-hidden="true" />)}
+            <span className="sr-only">Loading businesses</span>
+          </div>
+        ) : businesses.length ? (
+          <div className="aa-directory-grid">{businesses.map(b => <BusinessCard key={b._id} business={b} onOpen={onOpenProfile} />)}</div>
+        ) : (
+          <div className="aa-empty"><FaStore size={28} aria-hidden="true" /><h3>No businesses match your search</h3><p>Try another category, city or search term.</p><button className="aa-btn aa-btn--outline" type="button" onClick={() => setSearchParams({})}>Reset search</button></div>
+        )}
+
+        {!queryError && !loading && totalPages > 1 && (
+          <nav className="aa-pagination" aria-label="Business directory pages">
+            <button type="button" className="aa-btn aa-btn--outline" disabled={page <= 1} onClick={() => setPage(page - 1)}>Previous</button>
+            <span>Page <strong>{page}</strong> of {totalPages}</span>
+            <button type="button" className="aa-btn aa-btn--outline" disabled={page >= totalPages} onClick={() => setPage(page + 1)}>Next</button>
+          </nav>
+        )}
       </div>
     </div>
   );
 };
 
 export default BusinessDirectory;
-
-

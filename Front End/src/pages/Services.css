@@ -1963,3 +1963,18 @@
     height: 32px;
   }
 }
+/* AAA modern listing page */
+.services-page { background:var(--aa-bg); color:var(--aa-text); }
+.services-page .services-hero { max-width:1050px; margin:0 auto clamp(26px,4vw,45px); }
+.services-page .services-hero h1 { color:var(--aa-ink); -webkit-text-fill-color:currentColor; background:none; letter-spacing:-.045em; font-size:clamp(2.1rem,4.5vw,3.8rem); }
+.services-page .services-hero p { color:var(--aa-muted); line-height:1.75; }
+.services-page .providers-grid { max-width:1240px; margin-inline:auto; gap:20px; }
+.services-page .provider-card { border:1px solid var(--aa-border); border-radius:20px; box-shadow:var(--aa-shadow-sm); min-height:0; }
+.services-page .provider-card:hover { box-shadow:var(--aa-shadow); transform:translateY(-3px); }
+.services-page .action-button { border-radius:11px; min-height:44px; }
+.services-page .primary-button { background:var(--aa-primary); }
+.services-page .primary-button:hover { background:var(--aa-primary-hover); }
+.services-page .services-filters { background:#fff; border:1px solid var(--aa-border); border-radius:16px; padding:18px; max-width:1240px; margin-inline:auto; box-shadow:var(--aa-shadow-sm); }
+.services-page input, .services-page select { border:1px solid #cbdcd5; border-radius:11px; min-height:43px; }
+.services-page :is(input,select):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
+.services-page :is(.service-card, .category-card) { border-radius:18px; border-color:var(--aa-border); }

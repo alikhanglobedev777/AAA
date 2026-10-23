@@ -2945,3 +2945,14 @@
     background: rgba(34, 139, 34, 0.5);
   }
 }
+
+/* AAA customer workspace visual system */
+.customer-dashboard { --primary-green:var(--aa-primary); --dark-green:var(--aa-forest); --secondary-green:#4caf93; --light-green:var(--aa-primary-soft); background:var(--aa-bg); color:var(--aa-text); font-family:Inter,'Segoe UI',system-ui,sans-serif; }
+.customer-dashboard .dashboard-main { background:var(--aa-bg); }
+.customer-dashboard .dashboard-sidebar { background:#fff; border-color:var(--aa-border); }
+.customer-dashboard .dashboard-overview :is(.stat-card, .dashboard-card), .customer-dashboard :is(.conversation-item, .message-card, .review-card, .profile-card) { border:1px solid var(--aa-border); border-radius:16px; box-shadow:var(--aa-shadow-sm); }
+.customer-dashboard :is(h1, h2, h3) { letter-spacing:-.025em; }
+.customer-dashboard :is(input, textarea, select) { border-radius:11px; }
+.customer-dashboard .mobile-header { border-bottom:1px solid var(--aa-border) !important; box-shadow:0 3px 18px rgba(14,63,50,.06) !important; }
+.customer-dashboard .nav-item:hover, .customer-dashboard .nav-item.active { background:var(--aa-primary-soft) !important; color:var(--aa-primary) !important; }
+@media(max-width:768px) { .customer-dashboard .dashboard-main { padding-inline:12px; } }

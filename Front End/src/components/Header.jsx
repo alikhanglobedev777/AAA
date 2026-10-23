@@ -278,6 +278,8 @@ const Header = () => {
   }, [isMobileMenuOpen, closeMobileMenu]);
 
   return (
+    <>
+    <a className="aa-skip-link" href="#main-content">Skip to main content</a>
     <header className="header">
       {/* Main Header */}
       <div className="main-header">
@@ -303,6 +305,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="What service do you need?"
+                    aria-label="Search for a service"
                     value={serviceName}
                     onFocus={openServiceSuggestions}
                     onChange={handleServiceInputChange}
@@ -360,6 +363,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="Enter your location"
+                    aria-label="Filter by city or location"
                     value={location}
                     onFocus={handleLocationFocus}
                     onChange={handleLocationInputChange}
@@ -411,7 +415,7 @@ const Header = () => {
                   )}
                 </div>
                 
-                <button type="submit" className="search-button">
+                <button type="submit" className="search-button" aria-label="Search businesses">
                   <FaSearch className="search-btn-icon" />
                 </button>
               </div>
@@ -502,7 +506,8 @@ const Header = () => {
               <button
                 className={`hamburger-btn ${isMobileMenuOpen ? 'active' : ''}` }
                 onClick={toggleMobileMenu}
-                aria-label="Toggle mobile navigation"
+                aria-label={isMobileMenuOpen ? 'Close mobile navigation' : 'Open mobile navigation'}
+                aria-expanded={isMobileMenuOpen}
               >
                 <span className="bar"></span>
                 <span className="bar"></span>
@@ -538,7 +543,7 @@ const Header = () => {
                 <img src="/favicon_transbg.png" alt="AAA Logo" className="logo-img" />
               </Link>
             </div>
-            <button className="close-btn" onClick={closeMobileMenu}>
+            <button type="button" className="close-btn" onClick={closeMobileMenu} aria-label="Close mobile menu">
               ×
             </button>
           </div>
@@ -552,6 +557,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="What service do you need?"
+                    aria-label="Search for a service"
                     value={serviceName}
                     onFocus={openServiceSuggestions}
                     onChange={handleServiceInputChange}
@@ -609,6 +615,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="Enter your location"
+                    aria-label="Filter by city or location"
                     value={location}
                     onFocus={handleLocationFocus}
                     onChange={handleLocationInputChange}
@@ -660,7 +667,7 @@ const Header = () => {
                   )}
                 </div>
                 
-                <button type="submit" className="mobile-search-button">
+                <button type="submit" className="mobile-search-button" aria-label="Search businesses">
                   <FaSearch className="search-btn-icon" />
                   <span>Search</span>
                 </button>
@@ -745,6 +752,7 @@ const Header = () => {
         onClick={closeMobileMenu}
       />
     </header>
+    </>
   );
 };
 

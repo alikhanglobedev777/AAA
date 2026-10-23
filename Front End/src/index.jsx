@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import './index.css';
+import './styles/design-system.css';
 import App from './App';
 import { queryClient, queryPersister } from './lib/queryClient';
 // import reportWebVitals from './reportWebVitals';

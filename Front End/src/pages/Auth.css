@@ -430,3 +430,13 @@ body .auth-button {
   width: 100%;
   margin-top: 10px;
 }
+
+/* AAA password recovery and account auth */
+.auth-form { border:1px solid var(--aa-border); border-radius:22px; box-shadow:var(--aa-shadow); }
+.auth-form::before { background:linear-gradient(90deg,var(--aa-primary),var(--aa-accent)); }
+.auth-header h1, .auth-header h2 { color:var(--aa-ink); letter-spacing:-.035em; }
+.auth-header p { color:var(--aa-muted); }
+.auth-form :is(input,select,textarea) { border-radius:11px; }
+.auth-form :is(input,select,textarea):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
+.auth-form .auth-button { border-radius:11px; background:var(--aa-primary); }
+.auth-form .auth-button:hover:not(:disabled) { background:var(--aa-primary-hover); }

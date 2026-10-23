@@ -510,3 +510,14 @@
     transform: translateY(0);
   }
 }
+
+/* AAA category discovery refresh */
+.service-categories-page { background:var(--aa-bg); }
+.service-categories-page .categories-hero { background:radial-gradient(circle at 85% 20%,rgba(74,167,131,.22),transparent 35%),linear-gradient(115deg,#0b3730,#166450); padding:clamp(56px,7vw,88px) 20px; }
+.service-categories-page .hero-content h1 { font-size:clamp(2.35rem,4.7vw,4rem); letter-spacing:-.045em; text-shadow:none; }
+.service-categories-page .hero-content p { color:#d4e7df; opacity:1; }
+.service-categories-page .category-search-section { background:transparent; box-shadow:none; padding:0 20px; margin-top:-25px; }
+.service-categories-page .service-categories-search-input-wrapper { border:1px solid var(--aa-border); border-radius:15px; box-shadow:var(--aa-shadow); background:#fff; }
+.service-categories-page .service-categories-search-input-wrapper:focus-within { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
+.service-categories-page :is(.category-card, .service-category-card) { border:1px solid var(--aa-border); border-radius:18px; box-shadow:var(--aa-shadow-sm); background:#fff; }
+.service-categories-page :is(.category-card, .service-category-card):hover { box-shadow:var(--aa-shadow); }
