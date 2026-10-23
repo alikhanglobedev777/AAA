@@ -6,3 +6,12 @@ config.bat
 !**/.env.example
 dist
 **/dist
+
+# Local configuration (do not commit credentials or deployment secrets)
+**/.env
+**/.env.*
+!**/.env.example
+
+# Private database export snapshots (may include users, sessions, and tokens)
+**/exports/
+**/exports-complete/

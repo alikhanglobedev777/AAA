@@ -61,19 +61,8 @@ require('./config/passport');
 const app = express();
 app.set('trust proxy', 1);
 
-// Connect to MongoDB
-connectDB();
-
-// Initialize default super admin after database connection
+// Initialize the admin model after the database connection is established.
 const Admin = require('./models/Admin');
-setTimeout(async () => {
-  try {
-    await Admin.initializeDefaultSuperAdmin();
-    console.log('✅ Default super admin initialization completed');
-  } catch (error) {
-    console.error('❌ Error initializing default super admin:', error);
-  }
-}, 2000); // Wait 2 seconds for database connection to be fully established
 
 // Initialize Redis cache
 // redisCache.connect(); // Temporarily disabled
@@ -283,7 +272,20 @@ const io = initializeSocket(server);
 // Store io instance globally for use in other modules
 global.io = io;
 
-server.listen(PORT, () => console.log(`Server on ${PORT}`));
+// Only accept API requests after MongoDB is connected and admin setup is complete.
+async function startServer() {
+  try {
+    await connectDB();
+    await Admin.initializeDefaultSuperAdmin();
+    console.log('✅ Default super admin initialization completed');
+    server.listen(PORT, () => console.log(`Server on ${PORT}`));
+  } catch (error) {
+    console.error('❌ Backend startup failed:', error);
+    process.exit(1);
+  }
+}
+
+startServer();
 
 
 // Graceful shutdown

@@ -206,7 +206,7 @@ const ServiceCategories = () => {
   const apiCategories = Array.isArray(categoryData) ? categoryData : categoryData?.categories;
   const categories = allCategories.map(cat => {
     const apiCat = apiCategories?.find(api =>
-      api.slug === cat.id || api.name.toLowerCase().includes(cat.id)
+      api.slug === cat.id || (typeof api.name === 'string' && api.name.toLowerCase().includes(cat.id))
     );
     return {
       ...cat,
@@ -216,7 +216,7 @@ const ServiceCategories = () => {
     };
   });
 
-  const getIconFromString = (iconString) => {
+  function getIconFromString(iconString) {
     // Map icon strings to actual icon components
     const iconMap = {
       'fas fa-sink': FaSink,
@@ -248,7 +248,7 @@ const ServiceCategories = () => {
       'fas fa-lightbulb': FaLightbulb
     };
     return iconMap[iconString] || FaCog;
-  };
+  }
 
   const filteredCategories = categories.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

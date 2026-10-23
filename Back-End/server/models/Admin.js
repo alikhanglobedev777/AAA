@@ -161,6 +161,7 @@ adminSchema.statics.initializeDefaultSuperAdmin = async function() {
     }
   } catch (error) {
     console.error('Error creating default super admin:', error);
+    throw error;
   }
 };
 
