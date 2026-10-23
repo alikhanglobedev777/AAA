@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { FaUser, FaEnvelope, FaLock, FaMapMarkerAlt, FaPhone, FaGlobe } from 'react-icons/fa';
@@ -308,7 +309,7 @@ function Signup() {
                   <FaGlobe className="input-icon" />
                   Country
                 </label>
-                <select
+                <Combobox
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
@@ -321,7 +322,7 @@ function Signup() {
                   <option value="Germany">Germany</option>
                   <option value="France">France</option>
                   <option value="Other">Other</option>
-                </select>
+                </Combobox>
               </div>
               <div className="form-group">
                 <label>

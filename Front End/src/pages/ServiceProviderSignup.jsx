@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -761,7 +762,7 @@ const ServiceProviderSignup = () => {
                       />
                       
                       <div className="pricing-section">
-                        <select
+                        <Combobox
                           value={service.pricing.type}
                           onChange={(e) => handleAdditionalServiceChange(index, 'pricing', {
                             ...service.pricing,
@@ -772,7 +773,7 @@ const ServiceProviderSignup = () => {
                           <option value="fixed">Fixed Price</option>
                           <option value="hourly">Hourly Rate</option>
                           <option value="negotiable">Negotiable</option>
-                        </select>
+                        </Combobox>
                         
                         {(service.pricing.type === 'fixed' || service.pricing.type === 'hourly') && (
                           <div className="price-input-group">
@@ -789,7 +790,7 @@ const ServiceProviderSignup = () => {
                             />
                             <span className="currency-label">PKR</span>
                             {service.pricing.type === 'hourly' && (
-                              <select
+                              <Combobox
                                 value={service.pricing.unit}
                                 onChange={(e) => handleAdditionalServiceChange(index, 'pricing', {
                                   ...service.pricing,
@@ -800,7 +801,7 @@ const ServiceProviderSignup = () => {
                                 <option value="per hour">per hour</option>
                                 <option value="per day">per day</option>
                                 <option value="per month">per month</option>
-                              </select>
+                              </Combobox>
                             )}
                           </div>
                         )}

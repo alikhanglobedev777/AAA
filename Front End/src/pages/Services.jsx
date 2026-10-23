@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
@@ -434,7 +435,7 @@ const Services = () => {
                 <div className="desktop-controls">
             <div className="sort-controls">
                     <label htmlFor="resultsSortBy">Sort by:</label>
-              <select
+              <Combobox
                       id="resultsSortBy"
                 value={sortBy}
                       onChange={(e) => {
@@ -452,12 +453,12 @@ const Services = () => {
                 <option value="name">Alphabetically</option>
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
-              </select>
+              </Combobox>
             </div>
             
             <div className="filter-controls">
                     <label htmlFor="resultsFilterRating">Min Rating:</label>
-              <select
+              <Combobox
                       id="resultsFilterRating"
                 value={filterRating}
                       onChange={(e) => {
@@ -475,7 +476,7 @@ const Services = () => {
                 <option value="4">4+ Stars</option>
                 <option value="3">3+ Stars</option>
                 <option value="2">2+ Stars</option>
-              </select>
+              </Combobox>
             </div>
           </div>
 

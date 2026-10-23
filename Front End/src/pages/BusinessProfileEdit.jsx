@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaSave, FaCamera, FaTimes } from 'react-icons/fa';
@@ -207,7 +208,7 @@ const BusinessProfileEdit = () => {
           
           <div className="form-group">
             <label htmlFor="categoryName">Category *</label>
-            <select
+            <Combobox
               id="categoryName"
               name="categoryName"
               value={formData.categoryName}
@@ -218,7 +219,7 @@ const BusinessProfileEdit = () => {
               {categories.map((category, index) => (
                 <option key={index} value={category}>{category}</option>
               ))}
-            </select>
+            </Combobox>
           </div>
           
           <div className="form-group">

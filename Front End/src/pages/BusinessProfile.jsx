@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
@@ -938,7 +939,7 @@ const BusinessProfile = () => {
                 
                 <div className="form-group">
                   <label htmlFor="rating">Overall Rating *</label>
-                  <select
+                  <Combobox
                     id="rating"
                     value={reviewForm.rating}
                     onChange={handleReviewInputChange}
@@ -950,7 +951,7 @@ const BusinessProfile = () => {
                     <option value="3">3 - Good</option>
                     <option value="2">2 - Fair</option>
                     <option value="1">1 - Poor</option>
-                  </select>
+                  </Combobox>
                 </div>
 
                 <div className="form-group">
@@ -983,7 +984,7 @@ const BusinessProfile = () => {
 
                 <div className="form-group">
                   <label htmlFor="serviceType">Service Type</label>
-                  <select
+                  <Combobox
                     id="serviceType"
                     name="serviceType"
                     value={reviewForm.serviceType}
@@ -1019,7 +1020,7 @@ const BusinessProfile = () => {
                     {(!business.services || !Array.isArray(business.services) || business.services.length === 0) && (
                       <option value="other">Other (No specific services listed)</option>
                     )}
-                  </select>
+                  </Combobox>
                 </div>
 
                 <div className="form-group">
@@ -1027,7 +1028,7 @@ const BusinessProfile = () => {
                   <div className="detailed-ratings-grid">
                     <div>
                       <label htmlFor="serviceQuality">Service Quality</label>
-                      <select
+                      <Combobox
                         id="serviceQuality"
                         name="serviceQuality"
                         value={reviewForm.serviceQuality}
@@ -1038,11 +1039,11 @@ const BusinessProfile = () => {
                         <option value="3">3 - Good</option>
                         <option value="2">2 - Fair</option>
                         <option value="1">1 - Poor</option>
-                      </select>
+                      </Combobox>
                     </div>
                     <div>
                       <label htmlFor="communication">Communication</label>
-                      <select
+                      <Combobox
                         id="communication"
                         name="communication"
                         value={reviewForm.communication}
@@ -1053,11 +1054,11 @@ const BusinessProfile = () => {
                         <option value="3">3 - Good</option>
                         <option value="2">2 - Fair</option>
                         <option value="1">1 - Poor</option>
-                      </select>
+                      </Combobox>
                     </div>
                     <div>
                       <label htmlFor="valueForMoney">Value for Money</label>
-                      <select
+                      <Combobox
                         id="valueForMoney"
                         name="valueForMoney"
                         value={reviewForm.valueForMoney}
@@ -1068,11 +1069,11 @@ const BusinessProfile = () => {
                         <option value="3">3 - Good</option>
                         <option value="2">2 - Fair</option>
                         <option value="1">1 - Poor</option>
-                      </select>
+                      </Combobox>
                     </div>
                     <div>
                       <label htmlFor="punctuality">Punctuality</label>
-                      <select
+                      <Combobox
                         id="punctuality"
                         name="punctuality"
                         value={reviewForm.punctuality}
@@ -1083,11 +1084,11 @@ const BusinessProfile = () => {
                         <option value="3">3 - Good</option>
                         <option value="2">2 - Fair</option>
                         <option value="1">1 - Poor</option>
-                      </select>
+                      </Combobox>
                     </div>
                     <div>
                       <label htmlFor="professionalism">Professionalism</label>
-                      <select
+                      <Combobox
                         id="professionalism"
                         name="professionalism"
                         value={reviewForm.professionalism}
@@ -1098,7 +1099,7 @@ const BusinessProfile = () => {
                         <option value="3">3 - Good</option>
                         <option value="2">2 - Fair</option>
                         <option value="1">1 - Poor</option>
-                      </select>
+                      </Combobox>
                     </div>
                   </div>
                 </div>

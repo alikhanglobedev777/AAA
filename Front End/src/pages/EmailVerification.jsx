@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
@@ -271,13 +272,13 @@ function EmailVerification() {
               </div>
               <div className="form-group">
                 <label>Account Type</label>
-                <select
+                <Combobox
                   value={resendUserType}
                   onChange={(e) => setResendUserType(e.target.value)}
                 >
                   <option value="business">Business Account</option>
                   <option value="customer">Customer Account</option>
-                </select>
+                </Combobox>
               </div>
               <button type="submit" className="auth-button">
                 Send Verification Email

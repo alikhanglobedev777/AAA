@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React, { useState } from 'react';
 import './HelpCenter.css';
 
@@ -176,7 +177,7 @@ const HelpCenter = () => {
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="category">Category *</label>
-                      <select
+                      <Combobox
                         id="category"
                         name="category"
                         value={formData.category}
@@ -188,7 +189,7 @@ const HelpCenter = () => {
                             {category.title}
                           </option>
                         ))}
-                      </select>
+                      </Combobox>
                     </div>
                     <div className="form-group">
                       <label htmlFor="subject">Subject *</label>

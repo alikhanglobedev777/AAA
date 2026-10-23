@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React, { useState, useEffect } from 'react';
 import './AdminUsersDashboard.css';
 
@@ -181,7 +182,7 @@ const AdminUsersDashboard = ({
         <div className="filter-controls">
           <div className="filter-group">
             <label className="filter-label">User Type</label>
-            <select
+            <Combobox
               value={userTypeFilter}
               onChange={(e) => setUserTypeFilter(e.target.value)}
               className="filter-select"
@@ -190,12 +191,12 @@ const AdminUsersDashboard = ({
               <option value="customer">Customers</option>
               <option value="business">Service Providers</option>
               <option value="admin">Administrators</option>
-            </select>
+            </Combobox>
           </div>
           
           <div className="filter-group">
             <label className="filter-label">Status</label>
-            <select
+            <Combobox
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="filter-select"
@@ -205,7 +206,7 @@ const AdminUsersDashboard = ({
               <option value="inactive">Inactive</option>
               <option value="verified">Verified</option>
               <option value="unverified">Unverified</option>
-            </select>
+            </Combobox>
           </div>
         </div>
       </div>
@@ -616,7 +617,7 @@ const AdminUsersDashboard = ({
                 
                 <div className="form-group">
                   <label htmlFor="userType" className="form-label">User Type</label>
-                  <select
+                  <Combobox
                     id="userType"
                     value={editForm.userType}
                     onChange={(e) => setEditForm({...editForm, userType: e.target.value})}
@@ -625,7 +626,7 @@ const AdminUsersDashboard = ({
                     <option value="customer">Customer</option>
                     <option value="business">Service Provider</option>
                     <option value="admin">Administrator</option>
-                  </select>
+                  </Combobox>
                 </div>
                 
                 <div className="form-group checkbox-group">

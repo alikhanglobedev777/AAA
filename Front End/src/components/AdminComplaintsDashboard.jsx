@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { FaEye, FaEdit, FaCheckCircle, FaTimesCircle, FaClock, FaExclamationTriangle, FaSpinner, FaFilter, FaSearch, FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
@@ -442,7 +443,7 @@ const AdminComplaintsDashboard = ({
         <div className="filter-controls">
           <div className="filter-group">
             <label className="filter-label">Status</label>
-            <select
+            <Combobox
               value={filters.status}
               onChange={(e) => {
                 const newStatus = e.target.value;
@@ -461,12 +462,12 @@ const AdminComplaintsDashboard = ({
               <option value="resolved">Resolved</option>
               <option value="closed">Closed</option>
               <option value="rejected">Rejected</option>
-            </select>
+            </Combobox>
           </div>
 
           <div className="filter-group">
             <label className="filter-label">Priority</label>
-            <select
+            <Combobox
               value={filters.priority}
               onChange={(e) => setFilters(prev => ({ ...prev, priority: e.target.value }))}
               className="filter-select"
@@ -476,12 +477,12 @@ const AdminComplaintsDashboard = ({
               <option value="high">High</option>
               <option value="normal">Normal</option>
               <option value="low">Low</option>
-            </select>
+            </Combobox>
           </div>
 
           <div className="filter-group">
             <label className="filter-label">Severity</label>
-            <select
+            <Combobox
               value={filters.severity}
               onChange={(e) => setFilters(prev => ({ ...prev, severity: e.target.value }))}
               className="filter-select"
@@ -491,12 +492,12 @@ const AdminComplaintsDashboard = ({
               <option value="high">High</option>
               <option value="medium">Medium</option>
               <option value="low">Low</option>
-            </select>
+            </Combobox>
           </div>
 
           <div className="filter-group">
             <label className="filter-label">Category</label>
-            <select
+            <Combobox
               value={filters.serviceCategory}
               onChange={(e) => setFilters(prev => ({ ...prev, serviceCategory: e.target.value }))}
               className="filter-select"
@@ -517,7 +518,7 @@ const AdminComplaintsDashboard = ({
               <option value="construction">Construction</option>
               <option value="maintenance">Maintenance</option>
               <option value="other">Other</option>
-            </select>
+            </Combobox>
           </div>
         </div>
       </div>
@@ -847,7 +848,7 @@ const AdminComplaintsDashboard = ({
                 <div className="status-form">
                   <div className="form-group">
                     <label className="form-label">New Status</label>
-                    <select
+                    <Combobox
                       value={statusForm.status}
                       onChange={(e) => setStatusForm(prev => ({ ...prev, status: e.target.value }))}
                       className="form-select"
@@ -858,7 +859,7 @@ const AdminComplaintsDashboard = ({
                       <option value="resolved">Resolved</option>
                       <option value="closed">Closed</option>
                       <option value="rejected">Rejected</option>
-                    </select>
+                    </Combobox>
                   </div>
                   <div className="form-group">
                     <label className="form-label">Admin Note</label>

@@ -1,0 +1,15 @@
+.aaa-combobox{position:relative;display:block;width:100%;min-width:0;color:#0b1220;font-family:inherit}
+.aaa-combobox__field{position:relative;display:flex;align-items:center;min-height:46px;background:#fff;border:1px solid #bddcf0;border-radius:9px;transition:border-color .18s,box-shadow .18s}
+.aaa-combobox__field:focus-within,.aaa-combobox__field--open{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.16)}
+.aaa-combobox__input,.aaa-combobox__input[class]{display:block;width:100%;min-width:0;min-height:44px;padding:10px 40px 10px 12px!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important;color:#0b1220!important;font:inherit;font-size:14px;appearance:none!important;text-align:left}
+.aaa-combobox__input::placeholder{color:#475569;opacity:1}
+.aaa-combobox__toggle{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;background:transparent!important;border:0!important;border-radius:6px;color:#0b1220!important;cursor:pointer}
+.aaa-combobox__toggle:hover{background:#e0f2fe!important}
+.aaa-combobox__list{position:absolute;top:calc(100% + 5px);left:0;right:0;z-index:12000;max-height:min(300px,45vh);overflow:auto;padding:5px;background:white;border:1px solid #bae6fd;border-radius:9px;box-shadow:0 16px 36px rgba(2,56,88,.16)}
+.aaa-combobox__option{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:40px;padding:10px 11px;text-align:left;background:#fff!important;color:#0b1220!important;border:0!important;border-radius:6px;font:inherit;font-size:14px;line-height:1.4;cursor:pointer}
+.aaa-combobox__option--active,.aaa-combobox__option:hover{background:#e0f2fe!important}
+.aaa-combobox__option[aria-selected=true]{font-weight:700}.aaa-combobox__option:disabled{opacity:.5;cursor:not-allowed}
+.aaa-combobox__check{color:#0284c7}.aaa-combobox__empty{margin:0;padding:12px;font-size:14px}
+.aaa-combobox--disabled{opacity:.6;pointer-events:none}
+@media(max-width:640px){.aaa-combobox__list{max-height:38vh}}
+@media(prefers-reduced-motion:reduce){.aaa-combobox__field{transition:none}}

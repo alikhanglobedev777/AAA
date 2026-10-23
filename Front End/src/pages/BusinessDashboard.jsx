@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -1109,7 +1110,7 @@ const BusinessDashboard = () => {
                       </div>
                       <div className="form-group">
                         <label>Business Type *</label>
-                        <select
+                        <Combobox
                           value={myBusiness.businessType || 'other'}
                           onChange={(e) => setMyBusiness({ ...myBusiness, businessType: e.target.value })}
                           disabled={!isEditing}
@@ -1118,7 +1119,7 @@ const BusinessDashboard = () => {
                           {['plumbing','electrical','cleaning','painting','gardening','repair','transport','security','education','food','beauty','health','construction','maintenance','other'].map(t => (
                             <option key={t} value={t}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>
                           ))}
-                        </select>
+                        </Combobox>
                       </div>
                       <div className="form-group full-width">
                         <label>Description *</label>

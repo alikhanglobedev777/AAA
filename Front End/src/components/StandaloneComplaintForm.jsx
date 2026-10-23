@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -212,7 +213,7 @@ const StandaloneComplaintForm = ({
 
             <div className="form-group">
               <label htmlFor="serviceCategory">Service Category *</label>
-              <select
+              <Combobox
                 id="serviceCategory"
                 name="serviceCategory"
                 value={formData.serviceCategory}
@@ -235,12 +236,12 @@ const StandaloneComplaintForm = ({
                 <option value="construction">Construction</option>
                 <option value="maintenance">Maintenance</option>
                 <option value="other">Other</option>
-              </select>
+              </Combobox>
             </div>
 
             <div className="form-group">
               <label htmlFor="severity">Severity Level</label>
-              <select
+              <Combobox
                 id="severity"
                 name="severity"
                 value={formData.severity}
@@ -250,7 +251,7 @@ const StandaloneComplaintForm = ({
                 <option value="medium">Medium - Moderate issue</option>
                 <option value="high">High - Significant problem</option>
                 <option value="critical">Critical - Urgent issue</option>
-              </select>
+              </Combobox>
             </div>
 
             <div className="form-group">
@@ -295,7 +296,7 @@ const StandaloneComplaintForm = ({
 
             <div className="form-group">
               <label htmlFor="preferredContactMethod">Preferred Contact Method</label>
-              <select
+              <Combobox
                 id="preferredContactMethod"
                 name="contactInfo.preferredContactMethod"
                 value={formData.contactInfo.preferredContactMethod}
@@ -304,7 +305,7 @@ const StandaloneComplaintForm = ({
                 <option value="email">Email</option>
                 <option value="phone">Phone</option>
                 <option value="both">Both</option>
-              </select>
+              </Combobox>
             </div>
 
             <div className="form-actions">

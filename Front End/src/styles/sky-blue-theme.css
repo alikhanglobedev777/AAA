@@ -1,0 +1,80 @@
+/* AAA 2026 — single visual language for public, customer, provider, and admin routes. */
+:root {
+ color-scheme:light;
+ --aa-forest:#075985;--aa-forest-strong:#0b1220;--aa-primary:#0284c7;--aa-primary-hover:#0369a1;
+ --aa-primary-soft:#e0f2fe;--aa-ink:#0b1220;--aa-text:#0b1220;--aa-muted:#334155;
+ --aa-bg:#fff;--aa-surface:#fff;--aa-border:#d7e9f5;--aa-accent:#7dd3fc;
+ --aa-error:#0b1220;--aa-radius-sm:8px;--aa-radius:10px;--aa-radius-lg:14px;
+ --aa-shadow-sm:0 1px 4px rgba(10,60,100,.05);--aa-shadow:0 8px 28px rgba(10,60,100,.06);
+ --aa-shadow-lg:0 18px 44px rgba(10,60,100,.09);
+ --admin-green:#0284c7;--admin-green-light:#7dd3fc;--admin-green-dark:#0369a1;
+ --admin-green-accent:#dff3ff;--admin-white:#fff;--admin-gray:#fff;
+ --admin-gray-dark:#334155;--admin-gray-light:#f0f9ff;
+ --admin-border:#d7e9f5;--admin-primary:#0284c7;
+ --primary-color:#0284c7;--secondary-color:#0b1220;--accent-color:#38bdf8;
+ --green-primary:#0284c7;--green-dark:#0369a1;--green-light:#e0f2fe;
+ --color-primary:#0284c7;--text-primary:#0b1220;--text-secondary:#334155;
+ --background-color:#fff;
+}
+html{background:#fff;scroll-behavior:smooth}
+body,#root,.app,.app main{background:#fff!important;color:#0b1220;font-family:Inter,'Segoe UI',ui-sans-serif,system-ui,-apple-system,sans-serif}
+h1,h2,h3,h4,h5,h6{color:#0b1220;letter-spacing:-.03em;line-height:1.2}
+p,li,dt,dd,label{color:inherit}
+a{color:#0369a1}a:hover{color:#075985}
+:where(button,input,textarea,select){font-family:inherit}
+:where(input,textarea,select):not([type=checkbox]):not([type=radio]){
+ background:#fff;color:#0b1220;border-color:#bddcf0;border-radius:9px}
+:where(input,textarea,select):focus-visible,:where(button,a,[role=combobox]):focus-visible{
+ outline:3px solid #38bdf8!important;outline-offset:2px}
+:where(button,[role=button]){transition:background-color .16s ease,border-color .16s ease,transform .16s ease,box-shadow .16s ease}
+:where(button):active{transform:translateY(1px)}
+::selection{background:#bae6fd;color:#0b1220}
+:where(.btn-primary,.primary-button,.hero-btn.primary,.cta-btn.primary,.admin-login-button,.auth-button,.signup-button,.newsletter-btn,.action-button.primary-button,.view-all-btn,.btn-view-profile,.apply-filters-btn,.save-review-btn,.aa-btn--primary){
+ background:#0284c7!important;background-image:none!important;color:#fff!important;border:1px solid #0284c7!important;
+ border-radius:9px!important;box-shadow:none!important;font-weight:650!important}
+:where(.btn-primary,.primary-button,.hero-btn.primary,.cta-btn.primary,.admin-login-button,.auth-button,.signup-button,.newsletter-btn,.action-button.primary-button,.view-all-btn,.btn-view-profile,.apply-filters-btn,.save-review-btn,.aa-btn--primary):hover{
+ background:#0369a1!important;background-image:none!important;border-color:#0369a1!important;color:#fff!important}
+:where(.btn-secondary,.secondary-button,.hero-btn.secondary,.cta-btn.secondary,.action-button.secondary-button,.filter-reset-btn,.aa-btn--secondary){
+ background:#fff!important;background-image:none!important;border:1px solid #bae6fd!important;color:#0b1220!important;border-radius:9px!important;box-shadow:none!important}
+:where(.btn-secondary,.secondary-button,.hero-btn.secondary,.cta-btn.secondary,.action-button.secondary-button,.filter-reset-btn,.aa-btn--secondary):hover{background:#e0f2fe!important}
+:where(.aa-card,.feature-card,.provider-card,.category-card,.dashboard-card,.review-card,.welcome-card,.stat-card,.stat-card-customer-dashboard,.profile-progress-card,.verify-card,.admin-login-card,.business-card,.contact-card,.faq-item,.footer-newsletter,.aa-directory-card,.aa-how-card,.floating-card,.services-card,.recent-review-card){
+ background:#fff!important;background-image:none!important;color:#0b1220;border:1px solid #d7e9f5!important;border-radius:12px!important;box-shadow:0 5px 21px rgba(10,60,100,.055)!important}
+:where(.hero-section,.categories-hero,.hero-background,.hero-overlay,.cta-section,.trust-banner,.home-page,.services-page,.service-categories-page,.business-directory-page,.admin-dashboard,.business-dashboard,.customer-dashboard,.admin-login-container,.auth-container,.signup-container,.profile-page,.about-page,.contact-page,.faq-page,.help-center-page){
+ background:#fff!important;background-image:none!important;color:#0b1220}
+:where(.hero-section,.categories-hero,.cta-section,.trust-banner,.welcome-card,.dashboard-header,.results-header){
+ border-color:#d7e9f5!important}
+:where(.hero-section .hero-text,.hero-section .hero-text *,.home-hero-content,.home-hero-content *,.categories-hero .hero-content,.categories-hero .hero-content *,.cta-content,.cta-content *){
+ color:#0b1220!important;text-shadow:none!important}
+:where(.hero-section .hero-highlight,.aa-eyebrow,.hero-badge,.section-header .eyebrow,.aa-step){color:#0284c7!important}
+:where(.hero-badge,.aa-status,.service-tag,.verified-badge,.status-badge,.aa-status--demo,.aa-status--verified,.aa-status--unverified){
+ background:#e0f2fe!important;background-image:none!important;color:#0b1220!important;border:1px solid #bae6fd!important}
+:where(.hero-stat-item,.home-stat-number,.stat-value,.stat-number,.admin-stat-number){color:#0b1220!important}
+:where(.feature-icon,.card-icon,.home-stat-icon,.nav-icon,.stat-icon,.trust-icon,.category-icon){
+ color:#0284c7!important;background:#e0f2fe!important;background-image:none!important;border-radius:9px!important}
+:where(.header,.main-header,.header-container,.footer,.footer-main,.footer-bottom,.footer-newsletter,.admin-sidebar,.dashboard-sidebar,.sidebar-header,.sidebar-footer){
+ background:#fff!important;background-image:none!important;color:#0b1220!important;border-color:#d7e9f5!important}
+:where(.header,.main-header){box-shadow:0 2px 16px rgba(10,60,100,.05)!important}
+:where(.footer,.footer *){color:#0b1220}
+:where(.footer a,.footer-links a,.nav-item,.sidebar-nav-item,.header a){color:#0b1220!important}
+:where(.nav-item.active,.sidebar-nav-item.active,.nav-item:hover,.sidebar-nav-item:hover){
+ background:#e0f2fe!important;background-image:none!important;color:#075985!important;border-color:#bae6fd!important}
+:where(.admin-content,.admin-content-section,.dashboard-main,.dashboard-content,.admin-main-content,.admin-table-container,.table-container,.filter-sidebar,.filter-section,.dashboard-overview,.profile-section,.reviews-section){
+ background:#fff!important;background-image:none!important;color:#0b1220}
+:where(table,thead,tbody,tr,th,td){color:#0b1220}
+:where(th){background:#f0f9ff!important;color:#0b1220!important;font-size:.76rem;font-weight:700;letter-spacing:.04em}
+:where(td){background:#fff!important;border-color:#e2edf5!important}
+:where(tr:hover td){background:#f7fcff!important}
+:where(.search-inputs,.filter-group,.filter-controls,.sort-controls,.form-group,.form-section,.form-grid,.business-form,.auth-form){color:#0b1220}
+:where(.filter-option.active,.filter-option:hover){background:#e0f2fe!important;color:#0b1220!important;border-color:#7dd3fc!important}
+:where(.rating-badge,.rating-stars,.star.filled){color:#0b1220!important}
+:where(.loading-spinner,.admin-spinner,.spinner){border-top-color:#0284c7!important}
+:where(.progress-fill,.profile-progress-card .progress-fill){background:#0284c7!important;background-image:none!important}
+:where(.modal,.modal-content,.dialog,.dropdown-menu,.search-suggestions,.dropdown-content){background:#fff!important;color:#0b1220;border-color:#bae6fd}
+:where(.home-page,.services-page,.service-categories-page,.admin-dashboard,.business-dashboard,.customer-dashboard){font-size:15px}
+:where(.admin-dashboard,.business-dashboard,.customer-dashboard) :where(h1,h2,h3){letter-spacing:-.025em}
+:where(.admin-dashboard,.business-dashboard,.customer-dashboard) :where(button,input,textarea,select){border-radius:9px}
+:where(.aa-admin-brand,.admin-login-header,.dashboard-header){background:#fff!important;background-image:none!important}
+:where(.aa-directory-card,.provider-card,.feature-card,.dashboard-card):hover{box-shadow:0 10px 26px rgba(10,60,100,.09)!important;transform:none}
+:where(.aa-combobox){color:#0b1220}
+@media(max-width:768px){.header-container{padding-inline:16px!important}.dashboard-main,.dashboard-content,.admin-content-section{min-width:0}.aa-card,.dashboard-card{border-radius:10px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}

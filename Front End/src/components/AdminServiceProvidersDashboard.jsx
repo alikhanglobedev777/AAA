@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useAdmin } from '../context/AdminContext';
@@ -445,7 +446,7 @@ const AdminServiceProvidersDashboard = ({
         <div className="filter-controls">
           <div className="filter-group">
             <label className="filter-label">Status</label>
-            <select
+            <Combobox
               value={filters.status}
               onChange={(e) => {
                 const newStatus = e.target.value;
@@ -462,12 +463,12 @@ const AdminServiceProvidersDashboard = ({
               <option value="suspended">Suspended</option>
               <option value="rejected">Rejected</option>
               <option value="inactive">Inactive</option>
-            </select>
+            </Combobox>
           </div>
 
           <div className="filter-group">
             <label className="filter-label">Business Type</label>
-            <select
+            <Combobox
               value={filters.businessType}
               onChange={(e) => setFilters(prev => ({ ...prev, businessType: e.target.value }))}
               className="filter-select"
@@ -481,12 +482,12 @@ const AdminServiceProvidersDashboard = ({
               <option value="transport">Transport</option>
               <option value="maintenance">Maintenance</option>
               <option value="other">Other</option>
-            </select>
+            </Combobox>
           </div>
 
           <div className="filter-group">
             <label className="filter-label">Location</label>
-            <select
+            <Combobox
               value={filters.location}
               onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
               className="filter-select"
@@ -497,7 +498,7 @@ const AdminServiceProvidersDashboard = ({
               <option value="Islamabad">Islamabad</option>
               <option value="Faisalabad">Faisalabad</option>
               <option value="Rawalpindi">Rawalpindi</option>
-            </select>
+            </Combobox>
           </div>
           
           <div className="filter-group">
@@ -926,7 +927,7 @@ const AdminServiceProvidersDashboard = ({
                 <div className="status-form">
                   <div className="form-group">
                     <label className="form-label">New Status</label>
-                    <select
+                    <Combobox
                       value={statusForm.status}
                       onChange={(e) => setStatusForm(prev => ({ ...prev, status: e.target.value }))}
                       className="form-select"
@@ -936,7 +937,7 @@ const AdminServiceProvidersDashboard = ({
                       <option value="suspended">Suspended</option>
                       <option value="rejected">Rejected</option>
                       <option value="inactive">Inactive</option>
-                    </select>
+                    </Combobox>
                   </div>
                   <div className="form-group">
                     <label className="form-label">Reason (Optional)</label>

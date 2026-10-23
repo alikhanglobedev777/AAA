@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaArrowRight, FaMapMarkerAlt, FaSearch, FaSlidersH, FaStore } from 'react-icons/fa';
@@ -109,10 +110,10 @@ const BusinessDirectory = () => {
               <input className="aa-field" type="search" placeholder="e.g. Lahore" value={city} onChange={e => setFilter('city', e.target.value)} />
             </label>
             <label><span className="aa-field-label">Category</span>
-              <select className="aa-field" value={type} onChange={e => setFilter('type', e.target.value)}>
+              <Combobox className="aa-field" value={type} onChange={e => setFilter('type', e.target.value)}>
                 <option value="">All categories</option>
                 {BUSINESS_TYPES.map(t => <option key={t} value={t}>{labelize(t)}</option>)}
-              </select>
+              </Combobox>
             </label>
             {hasFilters && <button type="button" className="aa-directory-clear" onClick={() => setSearchParams({})}>Clear filters</button>}
           </div>

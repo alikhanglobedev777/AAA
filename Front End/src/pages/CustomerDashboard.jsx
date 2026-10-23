@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -842,7 +843,7 @@ const ReviewEditForm = ({ review, onSave, onCancel }) => {
     <form onSubmit={handleSubmit} className="review-edit-form">
       <div>
         <label>Rating</label>
-        <select
+        <Combobox
           name="rating"
           value={editData.rating}
           onChange={handleChange}
@@ -853,7 +854,7 @@ const ReviewEditForm = ({ review, onSave, onCancel }) => {
           <option value="3">3 Stars</option>
           <option value="4">4 Stars</option>
           <option value="5">5 Stars</option>
-        </select>
+        </Combobox>
       </div>
       
       <div>

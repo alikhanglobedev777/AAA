@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -460,7 +461,7 @@ function Profile() {
                   <FaMapMarkerAlt className="input-icon" />
                   Country
                 </label>
-                <select
+                <Combobox
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
@@ -475,7 +476,7 @@ function Profile() {
                   <option value="Germany">Germany</option>
                   <option value="France">France</option>
                   <option value="Other">Other</option>
-                </select>
+                </Combobox>
               </div>
               <div className="form-group">
                 <label>

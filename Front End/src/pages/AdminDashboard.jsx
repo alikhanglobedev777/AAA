@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -812,7 +813,7 @@ const AdminDashboard = () => {
           />
         </div>
         <div className="admin-filter-group">
-          <select
+          <Combobox
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="admin-filter-select"
@@ -822,7 +823,7 @@ const AdminDashboard = () => {
             <option value="hidden">Hidden</option>
             <option value="flagged">Flagged</option>
             <option value="deleted">Deleted</option>
-          </select>
+          </Combobox>
         </div>
       </div>
       

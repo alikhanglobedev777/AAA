@@ -1,3 +1,4 @@
+import Combobox from '../components/ui/Combobox';
 import React, { useState, useEffect } from 'react';
 import './AdminUserManagement.css';
 
@@ -242,7 +243,7 @@ const AdminUserManagement = ({
         <div className="filter-controls">
           <div className="filter-group">
             <label className="filter-label">Role</label>
-            <select
+            <Combobox
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="filter-select"
@@ -250,7 +251,7 @@ const AdminUserManagement = ({
               <option value="all">All Roles</option>
               <option value="admin">Admin</option>
               <option value="super_admin">Super Admin</option>
-            </select>
+            </Combobox>
           </div>
           
           <div className="filter-group">
@@ -501,7 +502,7 @@ const AdminUserManagement = ({
 
                   <div className="form-group">
                     <label className="form-label">Role *</label>
-                    <select
+                    <Combobox
                       value={formData.role}
                       onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
                       className="form-select"
@@ -512,7 +513,7 @@ const AdminUserManagement = ({
                           {role.label} - {role.description}
                         </option>
                       ))}
-                    </select>
+                    </Combobox>
                   </div>
 
                   {error && (
