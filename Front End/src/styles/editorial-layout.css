@@ -1,0 +1,144 @@
+/* AAA Editorial workspace layout — structure, hierarchy and interaction. */
+:root{--aaa-max:1240px;--aaa-blue:#0284c7;--aaa-blue-hover:#0369a1;--aaa-blue-soft:#e0f2fe;--aaa-ink:#0b1220;--aaa-soft-text:#475569;--aaa-edge:#dcebf4;--aaa-surface:#fff}
+.aa-workspace{font-family:Inter,'Segoe UI',system-ui,sans-serif!important;color:var(--aaa-ink)!important;background:#fff!important}
+.aa-workspace *{box-sizing:border-box}
+.aa-workspace-brand{display:flex;align-items:center;gap:12px;padding:24px 23px 28px;border-bottom:1px solid #e5eef5}
+.aa-workspace-brand-mark{flex:none;width:37px;height:37px;border-radius:9px;display:grid;place-items:center;background:#0284c7;color:#fff;font-size:23px;font-weight:850;letter-spacing:-.09em}
+.aa-workspace-brand>span:last-child{display:flex;flex-direction:column;align-items:start;gap:2px}
+.aa-workspace-brand strong{font-size:15px;letter-spacing:-.035em;color:#0b1220}
+.aa-workspace-brand small{font-size:11px;letter-spacing:.02em;color:#64748b;font-weight:600}
+.aa-workspace-menu-title{font-weight:800;font-size:10px;letter-spacing:.17em;color:#7890a3!important;padding:24px 23px 10px;margin:0}
+.aa-workspace-location{display:flex;align-items:center;gap:10px;color:#718398;font-size:12px;font-weight:600}
+.aa-workspace-location strong{color:#0b1220;font-weight:750}
+.aa-workspace-intro{padding:28px 34px 0;color:#0b1220}
+.aa-workspace-intro-overline{display:inline-block;color:#0284c7!important;font-size:10px;font-weight:800;letter-spacing:.16em;margin-bottom:7px}
+.aa-workspace-intro p{color:#64748b!important;font-size:13px;line-height:1.6;margin:0}
+.aa-workspace-intro-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.aa-workspace-intro-row h1{font-size:clamp(27px,2.4vw,38px);font-weight:800;line-height:1.16;letter-spacing:-.055em;margin:3px 0 8px}
+.aa-workspace-action{background:#0284c7!important;color:#fff!important;border:1px solid #0284c7!important;border-radius:9px;padding:12px 18px;font-size:13px;font-weight:750;cursor:pointer;white-space:nowrap}
+.aa-workspace-action:hover{background:#0369a1!important}
+/* Admin — sticky real navigation column rather than translucent floating controls. */
+#root .aa-workspace--admin{display:grid!important;grid-template-columns:254px minmax(0,1fr)!important;align-items:start;min-height:100vh}
+#root .aa-workspace--admin .admin-sidebar{grid-column:1;position:sticky!important;top:0!important;left:auto!important;transform:none!important;width:254px!important;min-height:100vh;max-height:100vh;display:flex;flex-direction:column;overflow-y:auto;background:#fff!important;border-right:1px solid #e1edf5!important;box-shadow:none!important;z-index:35}
+#root .aa-workspace--admin .admin-main-content{grid-column:2;min-width:0;width:100%;margin:0!important;padding:0!important;box-shadow:none;background:#fff!important}
+#root .aa-workspace--admin .admin-top-header{position:relative;background:#fff!important;min-height:124px;padding:22px 34px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:15px;box-shadow:none!important;border-bottom:1px solid #e1edf5!important}
+#root .aa-workspace--admin .admin-top-header .header-left{display:flex;align-items:center;gap:18px;width:100%}
+#root .aa-workspace--admin .page-title{margin:0;font-size:clamp(26px,2.7vw,38px);line-height:1.1;letter-spacing:-.055em;font-weight:800;color:#0b1220}
+#root .aa-workspace--admin .admin-content{padding:28px 34px 62px!important;background:#fff!important;min-height:calc(100vh - 124px)}
+#root .aa-workspace--admin .aa-workspace-intro{padding:18px 34px 0}
+#root .aa-workspace--admin .sidebar-user-info{margin:17px 13px 6px;padding:13px;border:1px solid #e1edf5;border-radius:10px;background:#f7fcff!important}
+#root .aa-workspace--admin .user-avatar{background:#e0f2fe!important;color:#0b1220!important;box-shadow:none!important}
+#root .aa-workspace--admin .dasbhoard-sidebar-nav{display:flex!important;flex-direction:column;gap:4px;padding:8px 13px;flex:1}
+#root .aa-workspace--admin .sidebar-nav-item{display:flex;align-items:center;justify-content:start;gap:12px;min-height:44px;margin:0;padding:11px 13px;border:0!important;border-radius:8px!important;background:#fff!important;color:#344556!important;font-size:13px;font-weight:650;text-align:left;box-shadow:none}
+#root .aa-workspace--admin .sidebar-nav-item.active{background:#e0f2fe!important;color:#075985!important;font-weight:800}
+#root .aa-workspace--admin .sidebar-nav-item:hover{background:#f0f9ff!important}
+#root .aa-workspace--admin .sidebar-nav-item svg{width:17px;height:17px;flex:none}
+#root .aa-workspace--admin .sidebar-footer{padding:16px!important;border-top:1px solid #e1edf5}
+#root .aa-workspace--admin .sidebar-footer button{min-height:39px;border-radius:8px!important;box-shadow:none!important}
+#root .aa-workspace--admin .admin-stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 28px}
+#root .aa-workspace--admin .admin-stat-card{min-width:0;min-height:140px;padding:21px!important;border:1px solid #dae8f2!important;border-radius:12px!important;box-shadow:none!important;background:#fff!important;display:flex;flex-direction:column;gap:8px;transition:border-color .2s}
+#root .aa-workspace--admin .admin-stat-card:hover{border-color:#7dd3fc!important;transform:none!important;box-shadow:none!important}
+#root .aa-workspace--admin .admin-stat-number{font-size:clamp(24px,3vw,36px)!important;letter-spacing:-.05em;color:#0b1220!important}
+#root .aa-workspace--admin .admin-stat-label{font-size:12px;color:#475569!important}
+#root .aa-workspace--admin .admin-content-section{background:#fff!important;border:1px solid #e0eaf3;border-radius:12px!important;padding:24px!important;box-shadow:none!important}
+#root .aa-workspace--admin :is(.admin-table-container,.table-container,.card,.admin-card){border:1px solid #e0eaf3!important;border-radius:12px!important;background:#fff!important;box-shadow:none!important;overflow-x:auto}
+#root .aa-workspace--admin :is(.admin-table,.users-table,table) th{background:#f3faff!important;border-color:#e1edf5!important;color:#0b1220!important;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+#root .aa-workspace--admin :is(.admin-table,.users-table,table) td{border-color:#edf3f7!important;padding-top:14px;padding-bottom:14px}
+#root .aa-workspace--admin :is(.admin-input,.admin-select,.filter-select,input,textarea){border-radius:9px}
+/* Business and customer workspaces share a clear navigation rail and content well. */
+#root .aa-workspace--business,#root .aa-workspace--customer{display:grid!important;grid-template-columns:254px minmax(0,1fr)!important;min-height:100vh;height:auto!important;overflow:visible!important}
+#root .aa-workspace--business .dashboard-sidebar,#root .aa-workspace--customer .dashboard-sidebar{grid-column:1;position:sticky!important;top:0!important;left:auto!important;transform:none!important;display:flex!important;flex-direction:column;width:254px!important;min-height:100vh;max-height:100vh;overflow-y:auto;background:#fff!important;border-right:1px solid #e1edf5!important;box-shadow:none!important;z-index:34}
+#root .aa-workspace--business .dashboard-main,#root .aa-workspace--customer .dashboard-main{grid-column:2;min-width:0;width:100%;margin:0!important;padding:0!important;background:#fff!important;max-width:none!important}
+#root .aa-workspace--business .dashboard-sidebar .sidebar-header,#root .aa-workspace--customer .dashboard-sidebar .sidebar-header{padding:18px 20px!important;background:#fff!important;border-color:#e1edf5!important}
+#root .aa-workspace--business .sidebar-nav,#root .aa-workspace--customer .sidebar-nav{display:flex;flex-direction:column;gap:4px;padding:10px 13px;flex:1}
+#root .aa-workspace--business .nav-item,#root .aa-workspace--customer .nav-item{display:flex;align-items:center;gap:12px;min-height:44px;border-radius:8px!important;background:#fff!important;color:#344556!important;border:0!important;padding:11px 12px;text-align:left;box-shadow:none!important;font-size:13px;font-weight:650}
+#root .aa-workspace--business .nav-item.active,#root .aa-workspace--customer .nav-item.active{background:#e0f2fe!important;color:#075985!important;font-weight:800}
+#root .aa-workspace--business .nav-item:hover,#root .aa-workspace--customer .nav-item:hover{background:#f0f9ff!important}
+#root .aa-workspace--business .dashboard-header{padding:28px 36px!important;min-height:116px;background:#fff!important;border-bottom:1px solid #e1edf5!important;border-radius:0!important;box-shadow:none!important;align-items:center;gap:20px}
+#root .aa-workspace--business .dashboard-header h1{font-size:clamp(27px,2.5vw,38px);font-weight:800;letter-spacing:-.05em}
+#root .aa-workspace--business .dashboard-content,#root .aa-workspace--customer .dashboard-content{padding:28px 36px 65px!important;margin:0!important;max-width:none!important;min-width:0;background:#fff!important}
+#root .aa-workspace--business :is(.stat-card,.dashboard-card,.verify-card,.profile-progress-card),#root .aa-workspace--customer :is(.welcome-card,.stat-card-customer-dashboard,.recent-review-card,.review-card,.conversations-panel,.chat-panel,.conversation-item){background:#fff!important;border:1px solid #dceaf3!important;border-radius:12px!important;box-shadow:none!important}
+#root .aa-workspace--business :is(.stat-card,.dashboard-card,.verify-card,.profile-progress-card):hover,#root .aa-workspace--customer :is(.stat-card-customer-dashboard,.review-card):hover{box-shadow:none!important;transform:none!important;border-color:#c7e4f4!important}
+#root .aa-workspace--business .dashboard-stats,#root .aa-workspace--customer .stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#root .aa-workspace--business .stat-card,#root .aa-workspace--customer .stat-card-customer-dashboard{min-height:126px;display:flex;gap:14px;padding:20px!important;align-items:center}
+#root .aa-workspace--business .dashboard-card{padding:24px!important}
+#root .aa-workspace--business .dashboard-sidebar .sidebar-footer,#root .aa-workspace--customer .sidebar-footer{margin-top:auto;border-top:1px solid #e1edf5;padding:18px!important;background:#fff!important}
+#root .aa-workspace--customer .aa-customer-intro{padding:31px 36px 26px;border-bottom:1px solid #e1edf5}
+#root .aa-workspace--customer .welcome-card{padding:26px!important}
+#root .aa-workspace--customer .welcome-card h2{font-size:23px;letter-spacing:-.04em;margin:0 0 9px}
+#root .aa-workspace--customer .mobile-header{display:none!important}
+#root .aa-workspace--customer .conversation-item{padding:15px!important;border-radius:8px!important}
+#root .aa-workspace--customer .chat-panel{min-height:480px}
+#root .aa-workspace--customer :is(.review-card,.recent-review-card){padding:23px!important}
+/* Directory — deliberate left filter rail + right responsive results grid. */
+.aa-directory-page .aa-directory-hero{background:#fff!important;background-image:none!important;border-bottom:1px solid #e1edf5;padding:66px 0 60px}
+.aa-directory-page .aa-directory-hero h1{font-size:clamp(33px,4.3vw,56px);letter-spacing:-.058em;line-height:1.12;max-width:720px;margin:13px 0}
+.aa-directory-page .aa-directory-hero p{max-width:570px;color:#526479;line-height:1.7;font-size:16px}
+.aa-directory-layout--split{display:grid!important;grid-template-columns:258px minmax(0,1fr)!important;gap:35px!important;align-items:start;padding-top:38px!important;padding-bottom:80px!important}
+.aa-directory-layout--split .aa-directory-sidebar{grid-column:1;min-width:0;position:sticky;top:110px}
+.aa-directory-layout--split .aa-directory-results{grid-column:2;min-width:0}
+.aa-directory-layout--split .aa-directory-filter-panel{display:block!important;background:#fff!important;border:1px solid #e1edf5!important;padding:23px!important;border-radius:12px!important;box-shadow:none!important}
+.aa-directory-layout--split .aa-directory-filter-heading{display:flex;align-items:center;gap:11px;padding-bottom:17px;border-bottom:1px solid #edf3f7}
+.aa-directory-layout--split .aa-directory-filter-heading h2{font-size:17px;margin:0}
+.aa-directory-layout--split .aa-directory-fields{display:flex!important;flex-direction:column;gap:20px!important;padding-top:22px}
+.aa-directory-layout--split .aa-directory-fields>label{display:flex;flex-direction:column;gap:7px;width:100%}
+.aa-directory-layout--split .aa-field-label{font-size:12px;font-weight:750;color:#344556}
+.aa-directory-layout--split .aa-field{width:100%;min-height:43px;border:1px solid #cbdde9;border-radius:9px;background:#fff;outline-color:#0284c7;font-size:13px;color:#0b1220}
+.aa-directory-layout--split .aa-directory-search-wrap{display:flex;align-items:center;gap:7px}
+.aa-directory-layout--split .aa-directory-search-wrap svg{color:#0284c7;flex:none}
+.aa-directory-results-heading{padding:6px 0 21px;border-bottom:1px solid #e1edf5}
+.aa-directory-results-eyebrow{font-size:10px;letter-spacing:.15em;font-weight:800;color:#0284c7}
+.aa-directory-results-heading h2{font-size:clamp(23px,2.4vw,33px);margin:6px 0 5px;letter-spacing:-.048em;color:#0b1220}
+.aa-directory-results-heading p{font-size:13px;color:#64748b;margin:0}
+.aa-directory-layout--split .aa-results-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 0;margin:0;font-size:12px;background:#fff}
+.aa-directory-layout--split .aa-directory-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;margin:0}
+.aa-directory-layout--split .aa-directory-card,.aa-directory-layout--split .aa-directory-skeleton{background:#fff!important;border:1px solid #dceaf3!important;border-radius:12px!important;box-shadow:none!important;min-width:0}
+.aa-directory-layout--split .aa-directory-card:hover{border-color:#7dd3fc!important;transform:none!important}
+.aa-directory-layout--split .aa-directory-card h2{font-size:19px!important;letter-spacing:-.035em}
+.aa-directory-layout--split .aa-directory-open{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #e1edf5;padding:17px 22px!important;color:#0369a1!important;font-weight:700;font-size:13px}
+.aa-directory-layout--split .aa-pagination{margin-top:30px;display:flex;justify-content:center;align-items:center;gap:14px}
+/* Admin sign-in — two-pane application entry, not a centered cartoonish card. */
+.aa-admin-login-v2{display:grid!important;grid-template-columns:minmax(330px,.88fr) minmax(400px,1.12fr)!important;align-items:stretch!important;justify-items:stretch!important;min-height:100vh;padding:0!important;background:#fff!important}
+.aa-admin-login-aside{display:flex;flex-direction:column;justify-content:space-between;gap:60px;padding:clamp(36px,5vw,76px);min-height:100vh;background:#f0f9ff!important;border-right:1px solid #dceaf3}
+.aa-admin-login-aside-brand{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:850;letter-spacing:-.03em}
+.aa-admin-login-aside-brand>span{display:grid;place-items:center;width:38px;height:38px;background:#0284c7;color:#fff;border-radius:9px;font-size:22px}
+.aa-admin-login-kicker{font-size:11px;font-weight:850;letter-spacing:.17em;color:#0284c7}
+.aa-admin-login-aside h2{max-width:440px;font-size:clamp(36px,3.4vw,55px);font-weight:820;line-height:1.12;letter-spacing:-.06em;margin:17px 0 18px}
+.aa-admin-login-aside p{max-width:450px;line-height:1.7;font-size:15px;color:#475569}
+.aa-admin-login-aside-points{display:flex;flex-direction:column;gap:13px;margin-top:37px;font-size:13px;font-weight:750;color:#334155}
+.aa-admin-login-aside-points span{padding-left:13px;border-left:2px solid #38bdf8}
+.aa-admin-login-aside-foot{font-size:12px;color:#64748b}
+.aa-admin-login-form-side{display:flex;justify-content:center;align-items:center;padding:30px}
+.aa-admin-login-v2 .admin-login-card{width:100%;max-width:435px;border:0!important;box-shadow:none!important;border-radius:0!important;padding:18px!important;margin:0!important}
+.aa-admin-login-v2 .admin-login-title{font-size:clamp(27px,2.7vw,39px);letter-spacing:-.05em}
+.aa-admin-login-v2 .admin-login-subtitle{font-size:14px;line-height:1.7;color:#64748b}
+.aa-admin-login-v2 .admin-form-input{min-height:48px;border:1px solid #bddcf0;border-radius:9px;background:#fff}
+.aa-admin-login-v2 .admin-login-button{min-height:50px;border-radius:9px;margin-top:12px}
+.aa-admin-login-v2 .admin-login-header{text-align:left!important}
+.aa-admin-login-v2 .admin-form-label{font-weight:700;font-size:13px}
+@media(max-width:1200px){#root .aa-workspace--admin .admin-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1000px){.aa-directory-layout--split{grid-template-columns:220px minmax(0,1fr)!important;gap:20px!important}.aa-directory-layout--split .aa-directory-grid{grid-template-columns:1fr!important}}
+@media(max-width:900px){
+ #root .aa-workspace--admin,#root .aa-workspace--business,#root .aa-workspace--customer{display:block!important}
+ #root .aa-workspace--admin .admin-sidebar,#root .aa-workspace--business .dashboard-sidebar,#root .aa-workspace--customer .dashboard-sidebar{position:fixed!important;top:0!important;left:0!important;max-height:100vh;width:260px!important;z-index:9999!important;transform:translateX(-110%)!important;transition:transform .22s ease!important}
+ #root .aa-workspace--admin .admin-sidebar.open,#root .aa-workspace--business .dashboard-sidebar.mobile-visible,#root .aa-workspace--customer .dashboard-sidebar.mobile-open{transform:translateX(0)!important}
+ #root .aa-workspace--admin .admin-main-content,#root .aa-workspace--business .dashboard-main,#root .aa-workspace--customer .dashboard-main{margin:0!important;width:100%!important;padding:0!important}
+ #root .aa-workspace--customer .mobile-header{display:flex!important}
+ .aa-admin-login-v2{grid-template-columns:1fr!important}
+ .aa-admin-login-v2 .aa-admin-login-aside{min-height:auto;padding:25px!important;gap:20px}
+ .aa-admin-login-v2 .aa-admin-login-aside>div:nth-child(2),.aa-admin-login-aside-foot{display:none}
+ .aa-admin-login-v2 .aa-admin-login-form-side{min-height:calc(100vh - 90px);padding:36px 20px}
+}
+@media(max-width:700px){
+ #root .aa-workspace--admin .admin-top-header{padding:22px 18px 18px;min-height:110px}
+ #root .aa-workspace--admin .aa-workspace-intro{padding:18px 18px 0}
+ #root .aa-workspace--admin .admin-content,#root .aa-workspace--business .dashboard-content,#root .aa-workspace--customer .dashboard-content{padding:22px 16px 45px!important}
+ #root .aa-workspace--business .dashboard-header{padding:23px 18px!important}
+ #root .aa-workspace--customer .aa-customer-intro{padding:25px 16px}
+ #root .aa-workspace--admin .admin-stats-grid,#root .aa-workspace--business .dashboard-stats,#root .aa-workspace--customer .stats-grid{grid-template-columns:1fr!important}
+ .aa-workspace-intro-row{align-items:flex-start;flex-direction:column}
+ .aa-directory-layout--split{display:flex!important;flex-direction:column!important;gap:18px!important;padding-top:22px!important}
+ .aa-directory-layout--split .aa-directory-sidebar,.aa-directory-layout--split .aa-directory-results{width:100%;position:static}
+ .aa-directory-layout--split .aa-directory-grid{grid-template-columns:1fr!important}
+ .aa-directory-page .aa-directory-hero{padding:40px 0}
+}

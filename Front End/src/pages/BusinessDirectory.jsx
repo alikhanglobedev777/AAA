@@ -92,13 +92,13 @@ const BusinessDirectory = () => {
       <section className="aa-directory-hero">
         <div className="aa-container">
           <span className="aa-eyebrow">Explore AAA directory</span>
-          <h1>Find the service that fits.</h1>
+          <h1>Find a business that fits your needs.</h1>
           <p>Discover businesses across Pakistan. Compare their services, location and verification status before making a decision.</p>
         </div>
       </section>
 
-      <div className="aa-container aa-directory-layout">
-        <section className="aa-directory-filter-panel" aria-label="Filter businesses">
+      <div className="aa-container aa-directory-layout aa-directory-layout--split">
+        <aside className="aa-directory-sidebar"><section className="aa-directory-filter-panel" aria-label="Filter businesses">
           <div className="aa-directory-filter-heading"><FaSlidersH aria-hidden="true" /><h2>Refine your search</h2></div>
           <div className="aa-directory-fields">
             <label><span className="aa-field-label">Business or service</span>
@@ -119,6 +119,9 @@ const BusinessDirectory = () => {
           </div>
         </section>
 
+        </aside>
+        <main className="aa-directory-results">
+        <div className="aa-directory-results-heading"><span className="aa-directory-results-eyebrow">THE DIRECTORY</span><h2>Available businesses</h2><p>Filter by category, city or service to narrow your options.</p></div>
         <div className="aa-results-bar" aria-live="polite" aria-atomic="true">
           <div><strong>{loading ? 'Searching…' : `${total.toLocaleString()} active ${total === 1 ? 'listing' : 'listings'}`}</strong><span> · Browse local service businesses</span></div>
           <span>Demo listings are labeled</span>
@@ -144,6 +147,7 @@ const BusinessDirectory = () => {
             <button type="button" className="aa-btn aa-btn--outline" disabled={page >= totalPages} onClick={() => setPage(page + 1)}>Next</button>
           </nav>
         )}
+        </main>
       </div>
     </div>
   );

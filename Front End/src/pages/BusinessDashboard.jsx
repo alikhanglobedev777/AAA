@@ -641,7 +641,7 @@ const BusinessDashboard = () => {
   }, [isMobileMenuOpen]);
 
   return (
-    <div className={`business-dashboard ${isMobileMenuOpen ? 'sidebar-visible' : ''} ${autoCollapseSidebar ? 'sidebar-collapsed' : ''} ${activeTab === 'messages' ? 'messages-view' : ''}`}>
+    <div className={`business-dashboard aa-workspace aa-workspace--business ${isMobileMenuOpen ? 'sidebar-visible' : ''} ${autoCollapseSidebar ? 'sidebar-collapsed' : ''} ${activeTab === 'messages' ? 'messages-view' : ''}`}>
       {/* Mobile Menu Toggle Button */}
       <button 
         className="mobile-menu-button"
@@ -660,6 +660,8 @@ const BusinessDashboard = () => {
         >
           ×
         </button>
+        <div className="aa-workspace-brand"><span className="aa-workspace-brand-mark">A</span><span><strong>AAA Services</strong><small>Business workspace</small></span></div>
+        <p className="aa-workspace-menu-title">YOUR WORKSPACE</p>
         <div className="sidebar-header">
           <h2>{myBusiness?.businessName || 'AAA Service Directory'}</h2>
           <p className="welcome-message">
@@ -710,7 +712,9 @@ const BusinessDashboard = () => {
         </div>
         {activeTab !== 'messages' && (
         <header className="dashboard-header">
+          <div className="aa-workspace-location"><span>Workspace</span><span aria-hidden="true">/</span><strong>Business</strong></div>
           <div className="header-left">
+            <span className="aa-workspace-intro-overline">YOUR BUSINESS AT A GLANCE</span>
             <h1>{activeTab === 'myBusiness' ? 'My Business' : (navItems.find(item => item.id === activeTab)?.label || 'Dashboard')}</h1>
             {activeTab === 'myBusiness' && (
               <p className="header-subtitle">Manage your business profile</p>
@@ -765,7 +769,7 @@ const BusinessDashboard = () => {
             </button>
             <button className="icon-button">
               <FaBell />
-              <span className="notification-badge">3</span>
+              
             </button>
           </div>
         </header>

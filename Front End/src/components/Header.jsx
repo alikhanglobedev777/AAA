@@ -280,7 +280,7 @@ const Header = () => {
   return (
     <>
     <a className="aa-skip-link" href="#main-content">Skip to main content</a>
-    <header className="header">
+    <header className="header aaa-header-v2">
       {/* Main Header */}
       <div className="main-header">
         <div className="header-container">
@@ -293,6 +293,7 @@ const Header = () => {
                 className="logo-img" 
                 loading="eager"
               />
+              <span className="aaa-header-brandtext">AAA <span>Services</span></span>
             </Link>
           </div>
 

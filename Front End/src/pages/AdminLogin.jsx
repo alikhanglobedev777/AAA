@@ -44,8 +44,8 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="admin-login-container">
-      <div className="admin-login-card">
+    <div className="admin-login-container aa-admin-login-v2"><aside className="aa-admin-login-aside"><div className="aa-admin-login-aside-brand"><span>A</span> AAA Services</div><div><span className="aa-admin-login-kicker">AAA ADMINISTRATION</span><h2>Manage everything from one place.</h2><p>A dedicated workspace for directory management, business verification and account administration.</p><div className="aa-admin-login-aside-points"><span>01 &nbsp; Business listings</span><span>02 &nbsp; Verification reviews</span><span>03 &nbsp; User management</span></div></div><span className="aa-admin-login-aside-foot">Authorized administrators only</span></aside>
+      <div className="aa-admin-login-form-side"><div className="admin-login-card">
         <div className="admin-login-header">
           <div className="aa-admin-brand" aria-hidden="true">AAA<span>•</span></div>
           <span className="aa-eyebrow">Secure workspace</span>
@@ -115,6 +115,7 @@ const AdminLogin = () => {
           <Link to="/home" className="aa-admin-back">← Back to AAA Services</Link>
 
         </div>
+      </div>
       </div>
     </div>
   );

@@ -1429,7 +1429,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="admin-dashboard">
+    <div className="admin-dashboard aa-workspace aa-workspace--admin">
       {/* Sidebar Backdrop */}
       {sidebarOpen && (
         <div 
@@ -1452,6 +1452,8 @@ const AdminDashboard = () => {
           </button>
         </div>
         
+        <div className="aa-workspace-brand"><span className="aa-workspace-brand-mark">A</span><span><strong>AAA Services</strong><small>Administration</small></span></div>
+        <p className="aa-workspace-menu-title">WORKSPACE</p>
         <div className="sidebar-user-info">
           <div className="user-avatar">
             {admin?.fullName?.charAt(0) || 'A'}
@@ -1617,6 +1619,7 @@ const AdminDashboard = () => {
       <div className="admin-main-content">
         {/* Top Header */}
         <div className="admin-top-header">
+          <div className="aa-workspace-location"><span>Workspace</span><span aria-hidden="true">/</span><strong>Administration</strong></div>
           <div className="header-left">
             <button 
               className="hamburger-menu"
@@ -1645,6 +1648,7 @@ const AdminDashboard = () => {
 
 
 
+        <div className="aa-workspace-intro"><span className="aa-workspace-intro-overline">AAA / MANAGEMENT</span><p>Manage directory listings, verification requests and customer activity from one workspace.</p></div>
         <div className="admin-content">
           {activeTab === 'overview' && renderOverview()}
           {activeTab === 'service-providers' && (

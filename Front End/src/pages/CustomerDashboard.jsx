@@ -232,7 +232,7 @@ const CustomerDashboard = () => {
   }
 
   return (
-    <div className="customer-dashboard">
+    <div className="customer-dashboard aa-workspace aa-workspace--customer">
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
         <div className="mobile-sidebar-overlay" onClick={closeMobileMenu}></div>
@@ -240,6 +240,8 @@ const CustomerDashboard = () => {
 
       {/* Sidebar */}
       <div className={`dashboard-sidebar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <div className="aa-workspace-brand"><span className="aa-workspace-brand-mark">A</span><span><strong>AAA Services</strong><small>Customer workspace</small></span></div>
+        <p className="aa-workspace-menu-title">YOUR ACCOUNT</p>
         <div className="sidebar-header">
           <div className="user-info">
             <div className="user-avatar">
@@ -304,7 +306,7 @@ const CustomerDashboard = () => {
               <span>Go Back</span>
             </button>
             <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
-            <i class="fa-solid fa-bars"></i>
+            <FaBars aria-hidden="true" />
             </button>
           </div>
         )}
@@ -333,12 +335,13 @@ const CustomerDashboard = () => {
           </div>
         )}
 
+        {!isFullScreenChat && <div className="aa-workspace-intro aa-customer-intro"><span className="aa-workspace-intro-overline">PERSONAL WORKSPACE</span><div className="aa-workspace-intro-row"><div><h1>{navItems.find(item => item.id === activeTab)?.label || 'My Account'}</h1><p>Keep track of your conversations, reviews and account details.</p></div><button type="button" className="aa-workspace-action" onClick={() => navigate('/businesses')}>Explore businesses →</button></div></div>}
         <div className="dashboard-content">
           {/* Dashboard Tab */}
           {activeTab === 'dashboard' && (
             <div className="dashboard-overview">
               <div className="welcome-card">
-                <h2>Welcome back, {user.firstName}! 👋</h2>
+                <h2>Welcome back, {user.firstName || user.name || "there"}</h2>
                 <p>Manage your conversations, reviews, and profile from here.</p>
               </div>
               
