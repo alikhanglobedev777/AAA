@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -30,7 +31,7 @@ function ResetPassword() {
 
   const verifyToken = async () => {
     try {
-      await axios.get(`http://localhost:5000/api/auth/verify-reset-token/${token}`);
+      await axios.get(`${API_ORIGIN}/api/auth/verify-reset-token/${token}`);
       setTokenValid(true);
     } catch (error) {
       setError('The password reset link is invalid or has expired.');
@@ -60,7 +61,7 @@ function ResetPassword() {
     setLoading(true);
     
     try {
-      await axios.post('http://localhost:5000/api/auth/reset-password', {
+      await axios.post(`${API_ORIGIN}/api/auth/reset-password`, {
         token,
         password,
       });

@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -83,7 +84,7 @@ const ServiceProviderLogin = () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
       
-      const response = await fetch('http://localhost:5000/api/auth/business/login', {
+      const response = await fetch(`${API_ORIGIN}/api/auth/business/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

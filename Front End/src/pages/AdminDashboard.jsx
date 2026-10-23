@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdmin } from '../context/AdminContext';
@@ -166,7 +167,7 @@ const AdminDashboard = () => {
   const fetchDashboardStats = async () => {
     try {
       console.log('🔍 AdminDashboard: Fetching dashboard stats...');
-      const response = await fetch('http://localhost:5000/api/admin/dashboard-stats', {
+      const response = await fetch(`${API_ORIGIN}/api/admin/dashboard-stats`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -193,7 +194,7 @@ const AdminDashboard = () => {
       console.log('🔍 AdminDashboard: Service providers request params:', params.toString());
       console.log('🔍 AdminDashboard: Auth headers:', getAuthHeaders());
       
-      const response = await fetch(`http://localhost:5000/api/admin/service-providers?${params}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/service-providers?${params}`, {
         headers: getAuthHeaders()
       });
       
@@ -230,7 +231,7 @@ const AdminDashboard = () => {
       
       console.log('🔍 AdminDashboard: Reviews request params:', params.toString());
       
-      const response = await fetch(`http://localhost:5000/api/admin/reviews?${params}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/reviews?${params}`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -258,7 +259,7 @@ const AdminDashboard = () => {
       console.log('🔍 AdminDashboard: Request params:', params.toString());
       console.log('🔍 AdminDashboard: Auth headers:', getAuthHeaders());
       
-      const response = await fetch(`http://localhost:5000/api/admin/complaints?${params}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/complaints?${params}`, {
         headers: getAuthHeaders()
       });
       
@@ -300,7 +301,7 @@ const AdminDashboard = () => {
       
       console.log('🔍 AdminDashboard: Users request params:', params.toString());
       
-      const response = await fetch(`http://localhost:5000/api/admin/users?${params}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/users?${params}`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -328,7 +329,7 @@ const AdminDashboard = () => {
       
       console.log('🔍 AdminDashboard: Admin users request params:', params.toString());
       
-      const response = await fetch(`http://localhost:5000/api/admin/admin-users?${params}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/admin-users?${params}`, {
         headers: getAuthHeaders()
       });
       const data = await response.json();
@@ -352,7 +353,7 @@ const AdminDashboard = () => {
       console.log('🔍 AdminDashboard: Admin token:', localStorage.getItem('adminToken'));
       setVerificationLoading(true);
       
-      const response = await fetch(`http://localhost:5000/api/business/verification/pending`, {
+      const response = await fetch(`${API_ORIGIN}/api/business/verification/pending`, {
         headers: authHeaders
       });
       
@@ -378,7 +379,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Handling verification decision:', { businessId, decision, note });
       
-      const response = await fetch(`http://localhost:5000/api/business/${businessId}/verification/decision`, {
+      const response = await fetch(`${API_ORIGIN}/api/business/${businessId}/verification/decision`, {
         method: 'POST',
         headers: {
           ...getAuthHeaders(),
@@ -418,7 +419,7 @@ const AdminDashboard = () => {
       const requestBody = { status: newStatus, reason };
       console.log('🔍 AdminDashboard: Request body:', requestBody);
       
-      const response = await fetch(`http://localhost:5000/api/admin/service-providers/${businessId}/status`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/service-providers/${businessId}/status`, {
         method: 'PATCH',
         headers: {
           ...headers,
@@ -460,7 +461,7 @@ const AdminDashboard = () => {
     console.log('🔍 AdminDashboard: Deleting business:', businessId);
     
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/service-providers/${businessId}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/service-providers/${businessId}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
@@ -486,7 +487,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Adding admin user:', adminData);
       
-      const response = await fetch(`http://localhost:5000/api/admin/admin-users`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/admin-users`, {
         method: 'POST',
         headers: {
           ...getAuthHeaders(),
@@ -513,7 +514,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Updating admin user:', { adminId, updateData });
       
-      const response = await fetch(`http://localhost:5000/api/admin/admin-users/${adminId}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/admin-users/${adminId}`, {
         method: 'PATCH',
         headers: {
           ...getAuthHeaders(),
@@ -544,7 +545,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Deleting admin user:', adminId);
       
-      const response = await fetch(`http://localhost:5000/api/admin/admin-users/${adminId}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/admin-users/${adminId}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
@@ -567,7 +568,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Updating review status:', { reviewId, newStatus, reason });
       
-      const response = await fetch(`http://localhost:5000/api/admin/reviews/${reviewId}/status`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/reviews/${reviewId}/status`, {
         method: 'PATCH',
         headers: getAuthHeaders(),
         body: JSON.stringify({ status: newStatus, reason })
@@ -619,7 +620,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Updating user:', userId, updateData);
       
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/users/${userId}`, {
         method: 'PATCH',
         headers: {
           ...getAuthHeaders(),
@@ -648,7 +649,7 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Deleting user:', userId);
       
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/users/${userId}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
@@ -1031,7 +1032,7 @@ const AdminDashboard = () => {
     setSettingsMessage('');
     
     try {
-      const response = await fetch('http://localhost:5000/api/admin/profile', {
+      const response = await fetch(`${API_ORIGIN}/api/admin/profile`, {
         method: 'PUT',
         headers: {
           ...getAuthHeaders(),
@@ -1173,7 +1174,7 @@ const AdminDashboard = () => {
       setSettingsMessage('');
 
       try {
-        const response = await fetch(`http://localhost:5000/api/admin/profile`, {
+        const response = await fetch(`${API_ORIGIN}/api/admin/profile`, {
           method: 'PATCH',
           headers: {
             ...getAuthHeaders(),

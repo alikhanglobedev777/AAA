@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -117,7 +118,7 @@ const CustomerDashboard = () => {
       const token = localStorage.getItem('token');
       console.log('🔍 Fetching conversations with token:', token ? 'Present' : 'Missing');
       
-      const response = await fetch('http://localhost:5000/api/messaging/conversations', {
+      const response = await fetch(`${API_ORIGIN}/api/messaging/conversations`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -147,7 +148,7 @@ const CustomerDashboard = () => {
   const fetchUnreadCount = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/messaging/unread-count', {
+      const response = await fetch(`${API_ORIGIN}/api/messaging/unread-count`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -171,7 +172,7 @@ const CustomerDashboard = () => {
         return;
       }
       
-      const response = await fetch(`http://localhost:5000/api/reviews?reviewer=${user._id}`, {
+      const response = await fetch(`${API_ORIGIN}/api/reviews?reviewer=${user._id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -243,7 +244,7 @@ const CustomerDashboard = () => {
             <div className="user-avatar">
               {user.profilePicture ? (
                 <img 
-                  src={user.profilePicture.startsWith('data:') ? user.profilePicture : `http://localhost:5000/${user.profilePicture}`}
+                  src={user.profilePicture.startsWith('data:') ? user.profilePicture : `${API_ORIGIN}/${user.profilePicture}`}
                   alt="Profile"
                   onError={(e) => {
                     console.log('CustomerDashboard: Profile picture failed to load, showing placeholder');
@@ -636,7 +637,7 @@ const CustomerReviews = () => {
         return;
       }
       
-      const response = await fetch(`http://localhost:5000/api/reviews?reviewer=${user._id}`, {
+      const response = await fetch(`${API_ORIGIN}/api/reviews?reviewer=${user._id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -673,7 +674,7 @@ const CustomerReviews = () => {
   const handleSaveReview = async (reviewId, updatedData) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/reviews/${reviewId}`, {
+      const response = await fetch(`${API_ORIGIN}/api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -701,7 +702,7 @@ const CustomerReviews = () => {
     if (window.confirm('Are you sure you want to delete this review?')) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/reviews/${reviewId}`, {
+        const response = await fetch(`${API_ORIGIN}/api/reviews/${reviewId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

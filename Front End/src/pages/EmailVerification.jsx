@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -32,7 +33,7 @@ function EmailVerification() {
   const verifyEmail = async () => {
     try {
       console.log('🔍 Attempting to verify email with token:', token);
-      const response = await axios.get(`http://localhost:5000/api/auth/verify-email/${token}`);
+      const response = await axios.get(`${API_ORIGIN}/api/auth/verify-email/${token}`);
       
       console.log('🔍 Verification response:', response.data);
       
@@ -102,7 +103,7 @@ function EmailVerification() {
       
       if (!email && token) {
         try {
-          const userInfoResponse = await axios.get(`http://localhost:5000/api/auth/verify-email-info/${token}`);
+          const userInfoResponse = await axios.get(`${API_ORIGIN}/api/auth/verify-email-info/${token}`);
           email = userInfoResponse.data.userEmail;
           userTypeForResend = userInfoResponse.data.userType;
         } catch (userInfoError) {
@@ -117,7 +118,7 @@ function EmailVerification() {
         return;
       }
       
-      const response = await axios.post('http://localhost:5000/api/auth/resend-verification', {
+      const response = await axios.post(`${API_ORIGIN}/api/auth/resend-verification`, {
         email: email,
         userType: userTypeForResend || 'business'
       });
@@ -140,7 +141,7 @@ function EmailVerification() {
   const handleManualResend = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/resend-verification', {
+      const response = await axios.post(`${API_ORIGIN}/api/auth/resend-verification`, {
         email: resendEmail,
         userType: resendUserType
       });

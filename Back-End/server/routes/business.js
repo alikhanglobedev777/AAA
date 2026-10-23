@@ -43,7 +43,7 @@ const authenticateToken = async (req, res, next) => {
       }
 
       req.user = admin;
-      req.user.userType = 'admin'; // Add userType for consistency
+      req.isAuthenticatedAdmin = true; // Only verified Admin-model tokens grant admin privileges
       console.log('🔍 Backend: Admin authenticated:', admin.username);
     } else if (decoded.userId) {
       console.log('🔍 Backend: User token detected');
@@ -242,7 +242,7 @@ const requireOwnerOrAdmin = async (req, res, next) => {
     const business = await Business.findById(businessId);
     if (!business) return res.status(404).json({ message: 'Business not found' });
     const isOwner = String(business.owner) === String(req.user._id);
-    const isAdmin = req.user.userType === 'admin';
+    const isAdmin = req.isAuthenticatedAdmin === true;
     if (!isOwner && !isAdmin) {
       return res.status(403).json({ message: 'Not authorized for this business' });
     }
@@ -292,7 +292,7 @@ router.post('/verification-docs/:id', authenticateToken, requireOwnerOrAdmin, as
     const { license, governmentId, supporting = [] } = req.body;
     const business = await Business.findById(req.params.id);
     if (!business) return res.status(404).json({ message: 'Business not found' });
-    const isOwner = String(business.owner) === String(req.user._id) || req.user.userType === 'admin';
+    const isOwner = String(business.owner) === String(req.user._id) || req.isAuthenticatedAdmin === true;
     if (!isOwner) return res.status(403).json({ message: 'Not authorized for this business' });
 
     if (!license && !governmentId && (!supporting || supporting.length === 0)) {
@@ -333,7 +333,7 @@ router.post('/verification-docs', authenticateToken, async (req, res) => {
       currentDocs: business.verification?.documents?.length || 0 
     });
     
-    const isOwner = String(business.owner) === String(req.user._id) || req.user.userType === 'admin';
+    const isOwner = String(business.owner) === String(req.user._id) || req.isAuthenticatedAdmin === true;
     if (!isOwner) return res.status(403).json({ message: 'Not authorized for this business' });
     
     if (!license && !governmentId && (!supporting || supporting.length === 0)) {
@@ -385,7 +385,7 @@ router.get('/verification/pending', authenticateToken, async (req, res) => {
     console.log('🔍 Backend: User:', req.user);
     console.log('🔍 Backend: User type:', req.user.userType);
     
-    if (req.user.userType !== 'admin') {
+    if (req.isAuthenticatedAdmin !== true) {
       console.log('❌ Backend: User is not admin');
       return res.status(403).json({ message: 'Admin access required' });
     }
@@ -444,7 +444,7 @@ router.get('/verification/pending', authenticateToken, async (req, res) => {
 // POST /api/business/:id/verification/decision — admin approve/reject
 router.post('/:id/verification/decision', authenticateToken, async (req, res) => {
   try {
-    if (req.user.userType !== 'admin') {
+    if (req.isAuthenticatedAdmin !== true) {
       return res.status(403).json({ message: 'Admin access required' });
     }
     const business = await Business.findById(req.params.id);
@@ -669,6 +669,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const business = await Business.findById(req.params.id)
+      .select('-verification.documents')
       .populate('owner', 'firstName lastName email profilePicture phone')
       .populate('verification.verifiedBy', 'firstName lastName');
 
@@ -744,10 +745,8 @@ router.put('/:id', authenticateToken, validateBusinessInput, async (req, res) =>
     delete updateData.verification;
     delete updateData.rating;
 
-    // Allow owners to activate their business (but not set arbitrary statuses)
-    if (updateData.status && updateData.status !== 'active') {
-      delete updateData.status;
-    }
+    // Status changes require the dedicated administrator authorization route.
+    delete updateData.status;
     delete updateData.createdAt;
     delete updateData.updatedAt;
 
@@ -1060,7 +1059,7 @@ router.get('/featured/verified', async (req, res) => {
 router.patch('/:id/status', authenticateToken, async (req, res) => {
   try {
     // Check if user is admin
-    if (req.user.userType !== 'admin') {
+    if (req.isAuthenticatedAdmin !== true) {
       return res.status(403).json({
         message: 'Access denied',
         error: 'Only administrators can update business status'
@@ -1114,7 +1113,7 @@ router.patch('/:id/status', authenticateToken, async (req, res) => {
 // Temporary endpoint to reset all businesses to unverified (for testing)
 router.post('/reset-verification', authenticateToken, async (req, res) => {
   try {
-    if (req.user.userType !== 'admin') {
+    if (req.isAuthenticatedAdmin !== true) {
       return res.status(403).json({ message: 'Admin access required' });
     }
     
@@ -1140,6 +1139,7 @@ router.post('/reset-verification', authenticateToken, async (req, res) => {
 
 // Temporary endpoint to list all businesses (for debugging)
 router.get('/debug/all', async (req, res) => {
+  if (process.env.NODE_ENV === 'production') return res.status(404).json({ message: 'Not found' });
   try {
     const businesses = await Business.find({})
       .select('businessName verification status owner')

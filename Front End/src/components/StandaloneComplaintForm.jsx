@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaExclamationTriangle, FaCheckCircle, FaSpinner, FaRegUser } from 'react-icons/fa';
@@ -109,7 +110,7 @@ const StandaloneComplaintForm = ({
 
       console.log('🔍 Submitting complaint with data:', complaintData);
 
-      const response = await fetch('http://localhost:5000/api/complaints', {
+      const response = await fetch(`${API_ORIGIN}/api/complaints`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

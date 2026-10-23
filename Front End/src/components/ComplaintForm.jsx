@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaExclamationTriangle, FaCheckCircle, FaTimes, FaSpinner, FaRegUser } from 'react-icons/fa';
@@ -110,7 +111,7 @@ const ComplaintForm = ({
       console.log('🔍 ComplaintForm: Submitting complaint with data:', complaintData);
       console.log('🔍 ComplaintForm: User email from context:', user?.email);
 
-      const response = await fetch('http://localhost:5000/api/complaints', {
+      const response = await fetch(`${API_ORIGIN}/api/complaints`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

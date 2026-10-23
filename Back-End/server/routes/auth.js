@@ -122,7 +122,7 @@ router.post('/register', validateRegistrationInput, async (req, res) => {
     }
 
     // Validate user type
-    const validUserTypes = ['customer', 'business', 'admin'];
+    const validUserTypes = ['customer']; // Privileged and provider roles are never publicly self-assigned
     if (!validUserTypes.includes(userType)) {
       return res.status(400).json({
         message: 'Registration failed',
@@ -144,7 +144,7 @@ router.post('/register', validateRegistrationInput, async (req, res) => {
         coordinates: location.coordinates || undefined
       },
       phone: normalizePhone(phone),
-      userType: userType || 'customer', // Ensure customer is default
+      userType: 'customer', // Never trust public role assignments
       tags: ['Customer'] // Explicitly set Customer tag
     });
 
@@ -730,9 +730,10 @@ router.post('/reset-password', async (req, res) => {
       });
     }
 
-    // Find user with valid reset token
+    // Look up the exact hashed token; never select another user's active reset request.
+    const hashedToken = require('crypto').createHash('sha256').update(String(token)).digest('hex');
     const user = await User.findOne({
-      resetToken: { $exists: true },
+      resetToken: hashedToken,
       resetTokenExpiry: { $gt: Date.now() }
     });
 
@@ -775,9 +776,10 @@ router.get('/verify-reset-token/:token', async (req, res) => {
   const { token } = req.params;
 
   try {
-    // Find user with valid reset token
+    // Look up the exact hashed token; never select another user's active reset request.
+    const hashedToken = require('crypto').createHash('sha256').update(String(token)).digest('hex');
     const user = await User.findOne({
-      resetToken: { $exists: true },
+      resetToken: hashedToken,
       resetTokenExpiry: { $gt: Date.now() }
     });
 

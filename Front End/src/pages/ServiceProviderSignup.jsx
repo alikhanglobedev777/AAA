@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -472,7 +473,7 @@ const ServiceProviderSignup = () => {
         }
       };
 
-      const response = await fetch('http://localhost:5000/api/auth/business/register', {
+      const response = await fetch(`${API_ORIGIN}/api/auth/business/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

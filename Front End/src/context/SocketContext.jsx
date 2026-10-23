@@ -1,3 +1,4 @@
+import { SOCKET_ORIGIN } from '../config/endpoints';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useAuth } from './AuthContext';
@@ -32,7 +33,7 @@ export const SocketProvider = ({ children }) => {
     if (!token) return;
 
     // Create socket connection
-    const newSocket = io('http://localhost:5000', {
+    const newSocket = io(SOCKET_ORIGIN, {
       auth: {
         token: token
       },

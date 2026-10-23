@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './InquiryForm.css';
@@ -55,7 +56,7 @@ const InquiryForm = ({ serviceProviderId, serviceId, serviceName, onClose, onSuc
 
   const sendEmailNotification = async (inquiryData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/inquiry', {
+      const response = await fetch(`${API_ORIGIN}/api/inquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

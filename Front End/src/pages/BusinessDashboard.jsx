@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -204,7 +205,7 @@ const BusinessDashboard = () => {
         setBizLoading(true);
         setBizError('');
         setBizSuccess('');
-        const res = await fetch('http://localhost:5000/api/business/owner/my-business', {
+        const res = await fetch(`${API_ORIGIN}/api/business/owner/my-business`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         const data = await res.json();
@@ -228,7 +229,7 @@ const BusinessDashboard = () => {
       if (!myBusiness?._id) return;
       try {
         setReviews(prev => ({ ...prev, loading: true, error: '' }));
-        const res = await fetch(`http://localhost:5000/api/reviews/business/${myBusiness._id}?limit=10`);
+        const res = await fetch(`${API_ORIGIN}/api/reviews/business/${myBusiness._id}?limit=10`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load reviews');
         setReviews({ items: data.reviews || [], loading: false, error: '' });
@@ -323,11 +324,11 @@ const BusinessDashboard = () => {
         }
       }
 
-      console.log('Submitting verification docs to:', `http://localhost:5000/api/business/verification-docs`);
+      console.log('Submitting verification docs to:', `${API_ORIGIN}/api/business/verification-docs`);
       console.log('Payload:', { businessId: myBusiness._id, ...payload });
       
       // Add cache-busting parameter to prevent browser caching issues
-      const res = await fetch(`http://localhost:5000/api/business/verification-docs?t=${Date.now()}`, {
+      const res = await fetch(`${API_ORIGIN}/api/business/verification-docs?t=${Date.now()}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json', 
@@ -1029,7 +1030,7 @@ const BusinessDashboard = () => {
                         }
                       };
                       
-                      const res = await fetch(`http://localhost:5000/api/business/${myBusiness._id}`, {
+                      const res = await fetch(`${API_ORIGIN}/api/business/${myBusiness._id}`, {
                         method: 'PUT',
                         headers: {
                           'Content-Type': 'application/json',
@@ -1272,7 +1273,7 @@ const BusinessDashboard = () => {
                           try {
                             setBizSaving(true);
                             setBizError('');
-                            const res = await fetch(`http://localhost:5000/api/business/${myBusiness._id}`, {
+                            const res = await fetch(`${API_ORIGIN}/api/business/${myBusiness._id}`, {
                               method: 'DELETE',
                               headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                             });

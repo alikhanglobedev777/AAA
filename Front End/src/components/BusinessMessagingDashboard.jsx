@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaEllipsisV, FaPaperPlane, FaTimes, FaUser, FaBuilding, FaEnvelope, FaBell } from 'react-icons/fa';
 import ChatWindow from './ChatWindow';
@@ -37,7 +38,7 @@ const BusinessMessagingDashboard = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/messaging/conversations', {
+      const response = await fetch(`${API_ORIGIN}/api/messaging/conversations`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -61,7 +62,7 @@ const BusinessMessagingDashboard = () => {
   const fetchUnreadCount = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/messaging/unread-count', {
+      const response = await fetch(`${API_ORIGIN}/api/messaging/unread-count`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

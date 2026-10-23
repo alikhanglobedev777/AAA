@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +22,7 @@ function ForgotPassword({ userType = 'customer' }) {
     setResetUrl('');
     
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/forgot-password', { 
+      const response = await axios.post(`${API_ORIGIN}/api/auth/forgot-password`, {
         email, 
         userType 
       });

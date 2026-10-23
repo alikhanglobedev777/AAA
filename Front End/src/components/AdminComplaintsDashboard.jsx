@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { FaEye, FaEdit, FaCheckCircle, FaTimesCircle, FaClock, FaExclamationTriangle, FaSpinner, FaFilter, FaSearch, FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 import { useAdmin } from '../context/AdminContext';
@@ -110,7 +111,7 @@ const AdminComplaintsDashboard = ({
       });
 
       // Use the admin complaints API endpoint with admin headers
-      const response = await fetch(`http://localhost:5000/api/admin/complaints?${queryParams}`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/complaints?${queryParams}`, {
         headers: getAuthHeaders()
       });
 
@@ -137,7 +138,7 @@ const AdminComplaintsDashboard = ({
   const handleStatusUpdate = async () => {
     try {
       setSubmitting(true);
-      const response = await fetch(`http://localhost:5000/api/admin/complaints/${selectedComplaint._id}/status`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/complaints/${selectedComplaint._id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +173,7 @@ const AdminComplaintsDashboard = ({
   const handleResolve = async () => {
     try {
       setSubmitting(true);
-      const response = await fetch(`http://localhost:5000/api/admin/complaints/${selectedComplaint._id}/resolve`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/complaints/${selectedComplaint._id}/resolve`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -207,7 +208,7 @@ const AdminComplaintsDashboard = ({
   const handleAddNote = async () => {
     try {
       setSubmitting(true);
-      const response = await fetch(`http://localhost:5000/api/admin/complaints/${selectedComplaint._id}/notes`, {
+      const response = await fetch(`${API_ORIGIN}/api/admin/complaints/${selectedComplaint._id}/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

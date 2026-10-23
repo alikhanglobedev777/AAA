@@ -1,4 +1,5 @@
-export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+import { API_BASE } from '../config/endpoints';
+export { API_BASE };
 
 export const fetchJson = async (path, { signal, ...options } = {}) => {
   const response = await fetch(`${API_BASE}${path}`, {

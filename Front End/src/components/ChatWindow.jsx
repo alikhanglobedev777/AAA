@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useRef } from 'react';
 import { useSocket } from '../context/SocketContext';
 import { useAuth } from '../context/AuthContext';
@@ -147,7 +148,7 @@ const ChatWindow = ({
       setError('');
       
       const response = await fetch(
-        `http://localhost:5000/api/messaging/conversations/${conversation.conversationId}/messages`,
+        `${API_ORIGIN}/api/messaging/conversations/${conversation.conversationId}/messages`,
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -254,7 +255,7 @@ const ChatWindow = ({
 
   const markMessageAsRead = async (messageId) => {
     try {
-      await fetch('http://localhost:5000/api/messaging/mark-read', {
+      await fetch(`${API_ORIGIN}/api/messaging/mark-read`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

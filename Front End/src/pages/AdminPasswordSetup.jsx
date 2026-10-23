@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaLock, FaEye, FaEyeSlash, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
@@ -31,7 +32,7 @@ const AdminPasswordSetup = () => {
 
   const validateToken = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/admin-users/validate-token/${token}`);
+      const response = await fetch(`${API_ORIGIN}/api/admin/admin-users/validate-token/${token}`);
       const data = await response.json();
 
       if (response.ok) {
@@ -90,7 +91,7 @@ const AdminPasswordSetup = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await fetch('http://localhost:5000/api/admin/admin-users/setup-password', {
+      const response = await fetch(`${API_ORIGIN}/api/admin/admin-users/setup-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

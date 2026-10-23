@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -15,6 +16,16 @@ const authenticateToken = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+    if (decoded.adminId) {
+      const admin = await Admin.findById(decoded.adminId).select('-password');
+      if (!admin || admin.status !== 'active') {
+        return res.status(401).json({ message: 'Invalid admin account' });
+      }
+      req.user = admin;
+      req.isAuthenticatedAdmin = true;
+      return next();
+    }
+    if (!decoded.userId) return res.status(401).json({ message: 'Invalid token' });
     const user = await User.findById(decoded.userId).select('-password');
     
     if (!user) {
@@ -42,6 +53,10 @@ router.post('/register', async (req, res) => {
       userType
     } = req.body;
 
+    if (userType && userType !== 'customer') {
+      return res.status(400).json({ message: 'Use the business registration route for service providers.' });
+    }
+
     // Check if user already exists
     const existingUser = await User.findOne({
       $or: [{ email }, { username }]
@@ -62,8 +77,8 @@ router.post('/register', async (req, res) => {
       lastName,
       phone,
       location,
-      userType: userType || 'customer',
-      tags: userType === 'business' ? ['Service Provider'] : ['Customer'] // Set appropriate tag
+      userType: 'customer',
+      tags: ['Customer']
     });
 
     await user.save();
@@ -362,7 +377,7 @@ router.get('/:id', async (req, res) => {
 router.get('/', authenticateToken, async (req, res) => {
   try {
     // Check if user is admin
-    if (req.user.userType !== 'admin') {
+    if (req.isAuthenticatedAdmin !== true) {
       return res.status(403).json({
         message: 'Access denied. Admin privileges required.'
       });
@@ -410,7 +425,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
     const userId = req.params.id;
 
     // Check if user is admin or deleting their own account
-    if (req.user.userType !== 'admin' && req.user._id.toString() !== userId) {
+    if (req.isAuthenticatedAdmin !== true && req.user._id.toString() !== userId) {
       return res.status(403).json({
         message: 'Access denied. You can only delete your own account.'
       });

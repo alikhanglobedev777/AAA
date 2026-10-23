@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect } from 'react';
 import { useAdmin } from '../context/AdminContext';
 import './AdminServiceProvidersDashboard.css';
@@ -116,7 +117,7 @@ const AdminServiceProvidersDashboard = ({
     try {
       setSubmitting(true);
       
-      const response = await fetch(`http://localhost:5000/api/business/${selectedProvider._id}/verification/decision`, {
+      const response = await fetch(`${API_ORIGIN}/api/business/${selectedProvider._id}/verification/decision`, {
         method: 'POST',
         headers: {
           ...getAuthHeaders(),

@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -27,7 +28,7 @@ const MessageBusinessButton = ({ business, className = '' }) => {
 
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `http://localhost:5000/api/messaging/conversations/${business.id || business._id}/start`,
+        `${API_ORIGIN}/api/messaging/conversations/${business.id || business._id}/start`,
         {
           method: 'POST',
           headers: {

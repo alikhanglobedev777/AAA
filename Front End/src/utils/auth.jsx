@@ -1,8 +1,9 @@
+import { API_ORIGIN } from '../config/endpoints';
 import axios from 'axios';
 
 // Create a pre-configured Axios instance
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend API base
+  baseURL: `${API_ORIGIN}/api`, // Your backend API base
   withCredentials: true, // 👈 THIS allows sending cookies (sessions)
 });
 

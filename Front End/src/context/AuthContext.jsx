@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           console.log('🔐 AuthContext: Fetching user profile...');
-          const response = await axios.get('http://localhost:5000/api/users/profile', {
+          const response = await axios.get(`${API_ORIGIN}/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           const currentUser = response.data.user;
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   // Register user
   const register = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', userData);
+      const response = await axios.post(`${API_ORIGIN}/api/auth/register`, userData);
       
       const { user: registeredUser, token } = response.data;
       
@@ -97,7 +98,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       console.log('🔐 AuthContext: Attempting login for:', email);
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post(`${API_ORIGIN}/api/auth/login`, { email, password });
       
       console.log('🔐 AuthContext: Login response:', response.data);
       const { user: loggedInUser, token } = response.data;
@@ -165,12 +166,12 @@ export const AuthProvider = ({ children }) => {
   // Update user profile
   const updateProfile = async (profileData) => {
     console.log('🔍 Frontend: Calling updateProfile API');
-    console.log('🔍 Frontend: URL:', 'http://localhost:5000/api/users/profile');
+    console.log('🔍 Frontend: URL:', `${API_ORIGIN}/api/users/profile`);
     console.log('🔍 Frontend: Profile data:', profileData);
     console.log('🔍 Frontend: Token present:', !!localStorage.getItem('token'));
     
     try {
-      const response = await axios.put('http://localhost:5000/api/users/profile', profileData, {
+      const response = await axios.put(`${API_ORIGIN}/api/users/profile`, profileData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       
@@ -194,11 +195,11 @@ export const AuthProvider = ({ children }) => {
   // Update user profile picture
   const updateProfilePicture = async (profilePicture) => {
     console.log('🔍 Frontend: Calling updateProfilePicture API');
-    console.log('🔍 Frontend: URL:', 'http://localhost:5000/api/users/profile-picture');
+    console.log('🔍 Frontend: URL:', `${API_ORIGIN}/api/users/profile-picture`);
     console.log('🔍 Frontend: Token present:', !!localStorage.getItem('token'));
     
     try {
-      const response = await axios.put('http://localhost:5000/api/users/profile-picture', 
+      const response = await axios.put(`${API_ORIGIN}/api/users/profile-picture`,
         { profilePicture }, 
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );

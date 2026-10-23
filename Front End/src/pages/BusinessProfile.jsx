@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaStar, FaPhone, FaMapMarkerAlt, FaEnvelope, FaEdit, FaPlus, FaGlobe, FaClock, FaUsers, FaAward, FaCheckCircle, FaRegClock, FaRegUser, FaRegBuilding, FaRegCalendarAlt, FaExclamationTriangle, FaComments } from 'react-icons/fa';
@@ -128,7 +129,7 @@ const BusinessProfile = () => {
         return;
       }
       
-      const response = await fetch('http://localhost:5000/api/reviews', {
+      const response = await fetch(`${API_ORIGIN}/api/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -189,7 +190,7 @@ const BusinessProfile = () => {
     if (!business?.id) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/business/${business.id}`);
+      const response = await fetch(`${API_ORIGIN}/api/business/${business.id}`);
       
       if (response.ok) {
         const businessData = await response.json();
@@ -223,7 +224,7 @@ const BusinessProfile = () => {
     try {
       let reviews = [];
       
-      const url = `http://localhost:5000/api/reviews?businessId=${targetBusinessId}`;
+      const url = `${API_ORIGIN}/api/reviews?businessId=${targetBusinessId}`;
       
       const response = await fetch(url);
       
@@ -247,7 +248,7 @@ const BusinessProfile = () => {
       
       if (reviews.length === 0) {
         try {
-          const allReviewsResponse = await fetch('http://localhost:5000/api/reviews');
+          const allReviewsResponse = await fetch(`${API_ORIGIN}/api/reviews`);
           if (allReviewsResponse.ok) {
             const allReviewsData = await allReviewsResponse.json();
             
@@ -356,7 +357,7 @@ const BusinessProfile = () => {
         setLoading(true);
         
         // First try to find business by slug in the current category
-        const response = await fetch(`http://localhost:5000/api/business/type/${category}`);
+        const response = await fetch(`${API_ORIGIN}/api/business/type/${category}`);
         
         if (response.ok) {
           const data = await response.json();

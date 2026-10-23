@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AdminContext = createContext();
@@ -36,7 +37,7 @@ export const AdminProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:5000/api/admin/login', {
+      const response = await fetch(`${API_ORIGIN}/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ export const AdminProvider = ({ children }) => {
       const adminToken = localStorage.getItem('adminToken');
       
       if (adminToken) {
-        await fetch('http://localhost:5000/api/admin/logout', {
+        await fetch(`${API_ORIGIN}/api/admin/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${adminToken}`,

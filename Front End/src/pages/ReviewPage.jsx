@@ -1,3 +1,4 @@
+import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaStar, FaArrowLeft, FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
@@ -138,7 +139,7 @@ const ReviewPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/reviews', {
+      const response = await fetch(`${API_ORIGIN}/api/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
