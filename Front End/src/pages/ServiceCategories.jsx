@@ -256,7 +256,7 @@ const ServiceCategories = () => {
   );
 
   const handleCategoryClick = (category) => {
-    navigate(`/services?category=${category.id}`);
+    navigate(`/businesses?type=${encodeURIComponent(category.id)}`);
   };
 
   const handleSearch = (e) => {

@@ -10,7 +10,9 @@
     "lint:fix": "eslint . --fix",
     "db:test": "node -r dotenv/config -e \"require('./config/db')().then(() => process.exit(0)).catch(() => process.exit(1))\"",
     "email:test": "node scripts/test-email.js",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed.js",
+    "data:report": "node scripts/data-report.js",
+    "import:registered": "node scripts/import-registered-businesses.js"
   },
   "keywords": [
     "nodejs",

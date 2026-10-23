@@ -192,7 +192,7 @@ const AdminDashboard = () => {
       });
       
       console.log('🔍 AdminDashboard: Service providers request params:', params.toString());
-      console.log('🔍 AdminDashboard: Auth headers:', getAuthHeaders());
+      // Never log Authorization headers
       
       const response = await fetch(`${API_ORIGIN}/api/admin/service-providers?${params}`, {
         headers: getAuthHeaders()
@@ -257,7 +257,7 @@ const AdminDashboard = () => {
       });
       
       console.log('🔍 AdminDashboard: Request params:', params.toString());
-      console.log('🔍 AdminDashboard: Auth headers:', getAuthHeaders());
+      // Never log Authorization headers
       
       const response = await fetch(`${API_ORIGIN}/api/admin/complaints?${params}`, {
         headers: getAuthHeaders()
@@ -348,9 +348,9 @@ const AdminDashboard = () => {
     try {
       console.log('🔍 AdminDashboard: Fetching pending businesses...');
       const authHeaders = getAuthHeaders();
-      console.log('🔍 AdminDashboard: Auth headers:', JSON.stringify(authHeaders, null, 2));
+      // Never log Authorization headers
       console.log('🔍 AdminDashboard: Admin token exists:', !!localStorage.getItem('adminToken'));
-      console.log('🔍 AdminDashboard: Admin token:', localStorage.getItem('adminToken'));
+      // Never log session tokens
       setVerificationLoading(true);
       
       const response = await fetch(`${API_ORIGIN}/api/business/verification/pending`, {
@@ -414,7 +414,7 @@ const AdminDashboard = () => {
     
     try {
       const headers = getAuthHeaders();
-      console.log('🔍 AdminDashboard: Auth headers:', headers);
+      // Never log Authorization headers
       
       const requestBody = { status: newStatus, reason };
       console.log('🔍 AdminDashboard: Request body:', requestBody);
@@ -682,6 +682,22 @@ const AdminDashboard = () => {
         </div>
         
         <div className="admin-stat-card">
+          <div className="admin-stat-icon">🧪</div>
+          <div className="admin-stat-content">
+            <h3 className="admin-stat-number">{stats.demoBusinesses || 0}</h3>
+            <p className="admin-stat-label">Fictional Demo Businesses</p>
+          </div>
+        </div>
+
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">📋</div>
+          <div className="admin-stat-content">
+            <h3 className="admin-stat-number">{stats.nonDemoBusinesses || 0}</h3>
+            <p className="admin-stat-label">Other Business Listings</p>
+          </div>
+        </div>
+
+        <div className="admin-stat-card">
           <div className="admin-stat-icon">⏳</div>
           <div className="admin-stat-content">
             <h3 className="admin-stat-number">{stats.pendingBusinesses || 0}</h3>
@@ -733,7 +749,7 @@ const AdminDashboard = () => {
           <div className="admin-stat-icon">✅</div>
           <div className="admin-stat-content">
             <h3 className="admin-stat-number">{stats.verifiedUsers || 0}</h3>
-            <p className="admin-stat-label">Verified Users</p>
+            <p className="admin-stat-label">Verified Non-Demo Users</p>
           </div>
         </div>
         

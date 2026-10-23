@@ -5,6 +5,7 @@ import { useBusinesses } from '../hooks/useApiQueries';
 
 const BusinessCard = ({ business, onOpen }) => {
   const primaryService = business.services?.[0]?.name || business.businessType;
+  const isDemo = business.tags?.includes('AAA_DEMO_SEED_V2');
   return (
     <div className="provider-card" onClick={() => onOpen(business)}>
       <div className="provider-card-content">
@@ -22,6 +23,7 @@ const BusinessCard = ({ business, onOpen }) => {
           <div className="provider-info">
             <h3 className="provider-name" title={business.businessName}>{business.businessName}</h3>
             <p className="provider-title">{primaryService}</p>
+            <p>{isDemo ? 'Fictional demo listing' : business.verification?.isVerified ? 'Verified business' : 'Unverified business'}</p>
             <p className="provider-location">
               <i className="fas fa-map-marker-alt"></i>
               <span className="location-text">{business.location?.city}</span>
@@ -36,9 +38,9 @@ const BusinessCard = ({ business, onOpen }) => {
             <i className="fas fa-user"></i>
             View Profile
           </button>
-          <button className="action-button secondary-button" onClick={(e) => { e.stopPropagation(); window.location.href = `mailto:${business.contact?.email}`; }}>
+          <button disabled={isDemo || !business.contact?.email} className="action-button secondary-button" onClick={(e) => { e.stopPropagation(); window.location.href = `mailto:${business.contact?.email}`; }}>
             <i className="fas fa-envelope"></i>
-            Contact
+            {isDemo ? 'Demo only' : 'Contact'}
           </button>
         </div>
       </div>
@@ -52,6 +54,7 @@ const BusinessDirectory = () => {
   const city = searchParams.get('city') || '';
   const type = searchParams.get('type') || '';
   const search = searchParams.get('q') || '';
+  const page = Math.max(1, Number.parseInt(searchParams.get('page') || '1', 10) || 1);
   const {
     data,
     isLoading: loading,
@@ -62,8 +65,11 @@ const BusinessDirectory = () => {
     businessType: type,
     search,
     limit: 24,
+    page,
   });
   const businesses = data?.businesses || [];
+  const total = data?.pagination?.totalBusinesses || 0;
+  const totalPages = data?.pagination?.totalPages || 1;
   const error = queryError?.message || '';
 
   const onOpenProfile = (business) => {
@@ -96,25 +102,25 @@ const BusinessDirectory = () => {
     <div className="services-page">
       <div className="services-hero">
         <h1>Find a Business</h1>
-        <p>Browse verified businesses and service providers</p>
+        <p>Browse active businesses and service providers from our live directory. Some listings are fictional demos or unverified</p>
       </div>
 
       <div className="services-filters" style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', marginBottom: 24 }}>
         <input
           placeholder="Search businesses..."
           value={search}
-          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('q', e.target.value); else p.delete('q'); return p; })}
+          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('q', e.target.value); else p.delete('q'); p.delete('page'); return p; })}
           style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', minWidth: 260 }}
         />
         <input
           placeholder="City"
           value={city}
-          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('city', e.target.value); else p.delete('city'); return p; })}
+          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('city', e.target.value); else p.delete('city'); p.delete('page'); return p; })}
           style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', minWidth: 180 }}
         />
         <select
           value={type}
-          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('type', e.target.value); else p.delete('type'); return p; })}
+          onChange={(e) => setSearchParams(prev => { const p = new URLSearchParams(prev); if (e.target.value) p.set('type', e.target.value); else p.delete('type'); p.delete('page'); return p; })}
           style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd' }}
         >
           <option value="">All Types</option>
@@ -128,6 +134,7 @@ const BusinessDirectory = () => {
         <div className="error-message" style={{ maxWidth: 960, margin: '0 auto 16px' }}>{error}</div>
       )}
 
+      {!loading && !error && <p style={{ textAlign: 'center' }}>{total} active listing(s) found</p>}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 40 }}>Loading businesses...</div>
       ) : (
@@ -140,6 +147,11 @@ const BusinessDirectory = () => {
           )}
         </div>
       )}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12, margin: '24px auto' }}>
+        <button disabled={page <= 1} onClick={() => setSearchParams(prev => { const p = new URLSearchParams(prev); p.set('page', String(page - 1)); return p; })}>Previous</button>
+        <span>Page {page} of {totalPages}</span>
+        <button disabled={page >= totalPages} onClick={() => setSearchParams(prev => { const p = new URLSearchParams(prev); p.set('page', String(page + 1)); return p; })}>Next</button>
+      </div>
     </div>
   );
 };

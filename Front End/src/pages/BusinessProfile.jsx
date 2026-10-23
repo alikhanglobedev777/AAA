@@ -70,6 +70,8 @@ const BusinessProfile = () => {
       businessHours: data.businessHours || data.hours || {},
       userId: data.userId || data.ownerId,
       services: data.services || [],
+      tags: data.tags || [],
+      isDemo: (data.tags || []).includes('AAA_DEMO_SEED_V2'),
       verification: data.verification || { isVerified: false, documents: [] }
     };
     
@@ -102,6 +104,10 @@ const BusinessProfile = () => {
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     
+    if (business?.isDemo) {
+      setReviewError('Fictional demo listings cannot receive reviews.');
+      return;
+    }
     if (!isAuthenticated) {
       navigate('/login', { state: { from: location.pathname } });
       return;
@@ -537,7 +543,9 @@ const BusinessProfile = () => {
                 <div className="business-info">
                   <div className="business-header">
                     <h1>{business.businessName || business.name}</h1>
-                    {business.verification?.isVerified ? (
+                    {business.isDemo ? (
+                      <div className="verification-badge unverified"><FaExclamationTriangle /><span>Fictional Demo Listing</span></div>
+                    ) : business.verification?.isVerified ? (
                       <div className="verification-badge verified">
                         <FaCheckCircle />
                         <span>Verified Business</span>
@@ -586,7 +594,9 @@ const BusinessProfile = () => {
               <h3>Contact & Connect</h3>
               <p>Choose how you'd like to interact with this business</p>
             </div>
-            <div className="cta-grid">
+            {business.isDemo ? (
+              <p role="note" style={{ padding: 16 }}>This is a fictional sample listing for interface testing. Contact, messaging, inquiries, complaints and reviews are disabled.</p>
+            ) : <div className="cta-grid">
               <button 
                 className="cta-button cta-call"
                 onClick={() => window.open(`tel:${business.phone}`, '_self')}
@@ -642,7 +652,7 @@ const BusinessProfile = () => {
                   <span className="cta-subtitle">Share your experience</span>
                 </div>
               </button>
-            </div>
+            </div>}
           </div>
 
           {/* Professional Information Cards */}
@@ -657,17 +667,17 @@ const BusinessProfile = () => {
                   <FaPhone className="detail-icon" />
                   <div className="detail-content">
                     <span className="detail-label">Phone</span>
-                    <span className="detail-value">{business.phone || 'Not provided'}</span>
+                    <span className="detail-value">{business.isDemo ? 'Fictional demo contact' : business.phone || 'Not provided'}</span>
                   </div>
                 </div>
                 <div className="detail-item email-item">
                   <FaEnvelope className="detail-icon" />
                   <div className="detail-content">
                     <span className="detail-label">Email</span>
-                    <span className="detail-value">{business.email}</span>
+                    <span className="detail-value">{business.isDemo ? 'Fictional demo contact' : business.email}</span>
                   </div>
                 </div>
-                {business.website && (
+                {!business.isDemo && business.website && (
                   <div className="detail-item website-item">
                     <FaGlobe className="detail-icon" />
                     <div className="detail-content">
