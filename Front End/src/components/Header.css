@@ -919,3 +919,41 @@
 .header .search-button:focus-visible, .header .mobile-nav .nav-link:focus-visible {
   outline:3px solid #55c0a1; outline-offset:2px; box-shadow:0 0 0 5px #e0f7ec;
 }
+
+/* 2026 premium navigation — strong hierarchy, generous spacing and quiet detail. */
+#root .header.aaa-header-v2 { background:#fff!important; border-bottom:1px solid #dbeaf3!important; box-shadow:0 7px 28px rgba(11,45,72,.055)!important; }
+#root .aaa-header-v2 .main-header {background:#fff!important;border-bottom:1px solid #edf3f8!important;}
+#root .aaa-header-v2 .header-container {width:min(1460px,100%);padding:16px clamp(20px,4vw,60px)!important;gap:clamp(20px,3vw,48px);min-height:82px;}
+#root .aaa-header-v2 .logo-img {width:44px!important;height:44px!important;object-fit:contain;}
+#root .aaa-header-v2 .aaa-header-brandtext {font-size:22px;letter-spacing:-.065em;font-weight:850;color:#081827;}
+#root .aaa-header-v2 .aaa-header-brandtext span {color:#087ec3;font-weight:800;}
+#root .aaa-header-v2 .search-section {max-width:530px;}
+#root .aaa-header-v2 .search-inputs {min-height:51px;padding:4px!important;border-radius:14px!important;background:#f5f9fc!important;border:1px solid #dce8f1!important;transition:border-color .16s;}
+#root .aaa-header-v2 .search-inputs:focus-within {border-color:#87cdef!important;box-shadow:0 0 0 4px #e2f4ff!important;}
+#root .aaa-header-v2 .search-input-wrapper {min-width:0;}
+#root .aaa-header-v2 .search-input-wrapper .search-input {min-height:39px;border:0!important;background:transparent!important;box-shadow:none!important;font-size:13px;color:#19344d!important;}
+#root .aaa-header-v2 .search-icon {color:#087ec3;}
+#root .aaa-header-v2 .search-button {width:42px;min-width:42px;min-height:42px;border-radius:11px!important;background:#0b192b!important;border:0!important;box-shadow:none!important;}
+#root .aaa-header-v2 .search-button:hover {background:#087ec3!important;transform:none;}
+#root .aaa-header-v2 .desktop-actions {gap:16px;}
+#root .aaa-header-v2 .action-link {font-size:12px;white-space:nowrap;font-weight:700;color:#415569!important;text-decoration:none;}
+#root .aaa-header-v2 .action-link:hover,#root .aaa-header-v2 .action-link.active{color:#087ec3!important;}
+#root .aaa-header-v2 .login-btn,#root .aaa-header-v2 .signup-btn {min-height:43px!important;padding:11px 18px!important;border-radius:12px!important;font-weight:750!important;}
+#root .aaa-header-v2 .signup-btn {background:#087ec3!important;border-color:#087ec3!important;box-shadow:0 7px 16px rgba(8,126,195,.16)!important;color:#fff!important;}
+#root .aaa-header-v2 .login-btn {background:#fff!important;color:#0b192b!important;border-color:#d7e5ef!important;}
+#root .aaa-header-v2 .category-nav {background:#fff!important;}
+#root .aaa-header-v2 .category-container {max-width:1460px;padding:0 clamp(20px,4vw,60px)!important;}
+#root .aaa-header-v2 .category-links {gap:34px;scrollbar-width:none;}
+#root .aaa-header-v2 .category-links::-webkit-scrollbar {display:none;}
+#root .aaa-header-v2 .category-link {font-size:12px;font-weight:730;color:#65788d!important;padding:14px 0!important;letter-spacing:.01em;}
+#root .aaa-header-v2 .category-link:hover,#root .aaa-header-v2 .category-link.active {color:#087ec3!important;border-bottom-color:#087ec3!important;}
+#root .aaa-header-v2 .profile-btn {padding:6px 11px;border-radius:13px!important;}
+#root .aaa-header-v2 .dropdown-menu {padding:8px!important;border-radius:16px!important;box-shadow:0 22px 50px rgba(8,27,47,.14)!important;}
+#root .aaa-header-v2 .dropdown-item {border-radius:10px!important;font-size:13px;}
+#root .aaa-header-v2 .dropdown-item:hover {background:#e7f6ff!important;}
+#root .aaa-header-v2 .mobile-nav.active {background:#fff!important;}
+#root .aaa-header-v2 .mobile-menu {background:#fff!important;padding-bottom:25px;}
+#root .aaa-header-v2 .hamburger-btn {border-radius:12px!important;}
+@media(max-width:1250px){#root .aaa-header-v2 .header-container {gap:18px;}#root .aaa-header-v2 .desktop-actions{display:none;}}
+@media(max-width:850px){#root .aaa-header-v2 .header-container{min-height:72px;padding:12px 20px!important;}#root .aaa-header-v2 .search-section{display:none;}#root .aaa-header-v2 .category-nav{display:none;}#root .aaa-header-v2 .aaa-header-brandtext{font-size:20px;}}
+@media(max-width:480px){#root .aaa-header-v2 .aaa-header-brandtext{font-size:18px;}#root .aaa-header-v2 .logo-img{width:38px!important;height:38px!important;}#root .aaa-header-v2 .header-container{padding-inline:15px!important;}}

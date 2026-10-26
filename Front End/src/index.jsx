@@ -7,6 +7,7 @@ import './styles/sky-blue-theme.css';
 import './styles/editorial-layout.css';
 import './styles/public-page-layout.css';
 import './styles/site-shell.css';
+import './styles/premium.css';
 import App from './App';
 import { queryClient, queryPersister } from './lib/queryClient';
 // import reportWebVitals from './reportWebVitals';

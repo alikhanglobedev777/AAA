@@ -279,7 +279,6 @@ const Header = () => {
 
   return (
     <>
-    <a className="aa-skip-link" href="#main-content">Skip to main content</a>
     <header className="header aaa-header-v2">
       {/* Main Header */}
       <div className="main-header">

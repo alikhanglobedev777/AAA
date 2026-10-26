@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from 'react';
+import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { AdminProvider } from './context/AdminContext';
@@ -13,17 +14,20 @@ import Loading from './components/Loading';
 import './App.css';
 
 const SignupSuccess = () => {
-  const msg = typeof window !== 'undefined' ? (sessionStorage.getItem('sp_signup_success') || 'Registration successful! Please check your email to verify your account before you can login.') : '';
+  const msg = typeof window !== 'undefined'
+    ? (sessionStorage.getItem('sp_signup_success') || 'Registration successful! Check your email to verify your account before signing in.')
+    : '';
   return (
-    <div style={{ maxWidth: 680, margin: '40px auto', padding: '20px', background: '#fff', borderRadius: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}>
-      <h2 style={{ marginTop: 0, marginBottom: 8, color: '#065f46' }}>Thank you for registering!</h2>
-      <p style={{ color: '#374151' }}>{msg}</p>
-      <p style={{ color: '#6b7280' }}>You can login after verifying your email. If you didn’t receive the email, please check your spam folder.</p>
-      <div style={{ display: 'flex', gap: 10 }}>
-        <a href="/business/login" className="btn btn-primary" style={{ padding: '10px 14px', borderRadius: 10, background: 'linear-gradient(135deg,#16a34a,#15803d)', color: '#fff', textDecoration: 'none' }}>Go to Login</a>
-        <a href="/home" className="btn" style={{ padding: '10px 14px', borderRadius: 10, border: '1px solid #e5e7eb', textDecoration: 'none' }}>Back to Home</a>
+    <section className="aaa-success-screen" aria-labelledby="signup-success-title">
+      <span className="aaa-success-screen__icon" aria-hidden="true">✓</span>
+      <h1 id="signup-success-title">Your next chapter starts here.</h1>
+      <p>{msg}</p>
+      <p>Once verified, you can sign in and complete your business profile. Please also check your spam folder for the verification email.</p>
+      <div className="aaa-success-screen__actions">
+        <Link to="/business/login" className="btn btn-primary">Go to business login</Link>
+        <Link to="/home" className="btn btn-secondary">Return home</Link>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -93,6 +97,7 @@ const AppContent = () => {
   
   return (
     <div className={`app ${hideHeaderFooter ? 'no-header-footer' : ''}`}>
+      <a href="#main-content" className="aaa-skip-link">Skip to main content</a>
       {!hideHeaderFooter && <Header />}
       <main id="main-content">
         <Suspense fallback={<Loading />}>
@@ -233,7 +238,7 @@ const AppContent = () => {
 
 
           {/* 404 Route */}
-          <Route path="*" element={<Home/>} />
+          <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
