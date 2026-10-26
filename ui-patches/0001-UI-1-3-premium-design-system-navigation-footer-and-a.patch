@@ -1,0 +1,308 @@
+From d4885b1ea9fe6f989003b387785a17683ad5b2b0 Mon Sep 17 00:00:00 2001
+From: AAA UI Redesign <redesign@local.invalid>
+Date: Mon, 26 Oct 2026 07:23:21 +0000
+Subject: [PATCH 1/3] UI 1/3: premium design system, navigation, footer and
+ application shell
+
+---
+ Front End/src/App.jsx               |  25 +++---
+ Front End/src/components/Footer.css |  19 ++++
+ Front End/src/components/Header.css |  38 ++++++++
+ Front End/src/components/Header.jsx |   1 -
+ Front End/src/index.jsx             |   1 +
+ Front End/src/styles/premium.css    | 129 ++++++++++++++++++++++++++++
+ 6 files changed, 202 insertions(+), 11 deletions(-)
+ create mode 100644 Front End/src/styles/premium.css
+
+diff --git a/Front End/src/App.jsx b/Front End/src/App.jsx
+index c8726ad..00a95ff 100644
+--- a/Front End/src/App.jsx	
++++ b/Front End/src/App.jsx	
+@@ -1,4 +1,5 @@
+ import React, { Suspense, lazy } from 'react';
++import { Link } from 'react-router-dom';
+ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+ import { AuthProvider, useAuth } from './context/AuthContext';
+ import { AdminProvider } from './context/AdminContext';
+@@ -13,17 +14,20 @@ import Loading from './components/Loading';
+ import './App.css';
+ 
+ const SignupSuccess = () => {
+-  const msg = typeof window !== 'undefined' ? (sessionStorage.getItem('sp_signup_success') || 'Registration successful! Please check your email to verify your account before you can login.') : '';
++  const msg = typeof window !== 'undefined'
++    ? (sessionStorage.getItem('sp_signup_success') || 'Registration successful! Check your email to verify your account before signing in.')
++    : '';
+   return (
+-    <div style={{ maxWidth: 680, margin: '40px auto', padding: '20px', background: '#fff', borderRadius: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}>
+-      <h2 style={{ marginTop: 0, marginBottom: 8, color: '#065f46' }}>Thank you for registering!</h2>
+-      <p style={{ color: '#374151' }}>{msg}</p>
+-      <p style={{ color: '#6b7280' }}>You can login after verifying your email. If you didn’t receive the email, please check your spam folder.</p>
+-      <div style={{ display: 'flex', gap: 10 }}>
+-        <a href="/business/login" className="btn btn-primary" style={{ padding: '10px 14px', borderRadius: 10, background: 'linear-gradient(135deg,#16a34a,#15803d)', color: '#fff', textDecoration: 'none' }}>Go to Login</a>
+-        <a href="/home" className="btn" style={{ padding: '10px 14px', borderRadius: 10, border: '1px solid #e5e7eb', textDecoration: 'none' }}>Back to Home</a>
++    <section className="aaa-success-screen" aria-labelledby="signup-success-title">
++      <span className="aaa-success-screen__icon" aria-hidden="true">✓</span>
++      <h1 id="signup-success-title">Your next chapter starts here.</h1>
++      <p>{msg}</p>
++      <p>Once verified, you can sign in and complete your business profile. Please also check your spam folder for the verification email.</p>
++      <div className="aaa-success-screen__actions">
++        <Link to="/business/login" className="btn btn-primary">Go to business login</Link>
++        <Link to="/home" className="btn btn-secondary">Return home</Link>
+       </div>
+-    </div>
++    </section>
+   );
+ };
+ 
+@@ -93,6 +97,7 @@ const AppContent = () => {
+   
+   return (
+     <div className={`app ${hideHeaderFooter ? 'no-header-footer' : ''}`}>
++      <a href="#main-content" className="aaa-skip-link">Skip to main content</a>
+       {!hideHeaderFooter && <Header />}
+       <main id="main-content">
+         <Suspense fallback={<Loading />}>
+@@ -233,7 +238,7 @@ const AppContent = () => {
+ 
+ 
+           {/* 404 Route */}
+-          <Route path="*" element={<Home/>} />
++          <Route path="*" element={<NotFound />} />
+           </Routes>
+         </Suspense>
+       </main>
+diff --git a/Front End/src/components/Footer.css b/Front End/src/components/Footer.css
+index c455f7f..1794782 100644
+--- a/Front End/src/components/Footer.css	
++++ b/Front End/src/components/Footer.css	
+@@ -552,3 +552,22 @@
+ .footer .social-links a { border-radius:11px; }
+ @media(max-width:1100px) { .footer .footer-content { grid-template-columns:repeat(3,minmax(0,1fr)); } .footer .footer-section.company-info { grid-column:1 / -1; } }
+ @media(max-width:640px) { .footer .footer-content { grid-template-columns:repeat(2,minmax(0,1fr)); gap:25px; } .footer .footer-section.company-info { grid-column:1 / -1; } }
++
++/* Premium conversion-led footer. The navigation groups remain functional. */
++#root .aaa-footer-v2 {background:#081827!important;color:#c6d7e6!important;border-top:4px solid #5cc5ff!important;}
++#root .aaa-footer-v2__main {width:min(1280px,calc(100% - 2 * var(--aaa-gutter)));grid-template-columns:minmax(250px,1fr) minmax(0,1.5fr);gap:clamp(44px,7vw,120px);padding:clamp(58px,7vw,108px) 0 75px;}
++#root .aaa-footer-v2__brand {color:#fff!important;font-weight:850;font-size:22px;}
++#root .aaa-footer-v2__brand>span {background:#087ec3;color:#fff;width:43px;height:43px;border-radius:13px;}
++#root .aaa-footer-v2__intro h2 {color:#fff!important;font-size:clamp(34px,4vw,52px);letter-spacing:-.07em;margin-top:38px;line-height:1.05;}
++#root .aaa-footer-v2__intro p {max-width:370px;color:#afc3d4!important;font-size:14px;line-height:1.9;}
++#root .aaa-footer-v2__cta {display:inline-flex;color:#8fddff!important;font-size:14px;border-bottom:1px solid rgba(143,221,255,.5);padding-bottom:8px;margin-top:28px;}
++#root .aaa-footer-v2__cta:hover {color:#fff!important;}
++#root .aaa-footer-v2__columns {gap:clamp(22px,3vw,44px);}
++#root .aaa-footer-v2__group h3 {color:#fff!important;font-size:11px;letter-spacing:.16em;margin:13px 0 25px;}
++#root .aaa-footer-v2__group ul {gap:16px;}
++#root .aaa-footer-v2__group a {color:#b2c4d4!important;font-size:13px;line-height:1.5;}
++#root .aaa-footer-v2__group a:hover {color:#8fddff!important;}
++#root .aaa-footer-v2__bottom {background:#061421!important;color:#8ea7ba!important;border-top:1px solid #1f3446!important;padding:24px max(var(--aaa-gutter),calc((100vw - 1280px) / 2));font-size:12px;}
++#root .aaa-footer-v2__bottom span {color:#8ea7ba!important;}
++@media(max-width:1100px){#root .aaa-footer-v2__main{grid-template-columns:1fr;gap:45px;}#root .aaa-footer-v2__columns{grid-template-columns:repeat(4,minmax(0,1fr));}}
++@media(max-width:720px){#root .aaa-footer-v2__main{padding:56px 0;}#root .aaa-footer-v2__columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}#root .aaa-footer-v2__bottom{padding:22px var(--aaa-gutter);}}
+diff --git a/Front End/src/components/Header.css b/Front End/src/components/Header.css
+index d12972a..2b43bb5 100644
+--- a/Front End/src/components/Header.css	
++++ b/Front End/src/components/Header.css	
+@@ -919,3 +919,41 @@
+ .header .search-button:focus-visible, .header .mobile-nav .nav-link:focus-visible {
+   outline:3px solid #55c0a1; outline-offset:2px; box-shadow:0 0 0 5px #e0f7ec;
+ }
++
++/* 2026 premium navigation — strong hierarchy, generous spacing and quiet detail. */
++#root .header.aaa-header-v2 { background:#fff!important; border-bottom:1px solid #dbeaf3!important; box-shadow:0 7px 28px rgba(11,45,72,.055)!important; }
++#root .aaa-header-v2 .main-header {background:#fff!important;border-bottom:1px solid #edf3f8!important;}
++#root .aaa-header-v2 .header-container {width:min(1460px,100%);padding:16px clamp(20px,4vw,60px)!important;gap:clamp(20px,3vw,48px);min-height:82px;}
++#root .aaa-header-v2 .logo-img {width:44px!important;height:44px!important;object-fit:contain;}
++#root .aaa-header-v2 .aaa-header-brandtext {font-size:22px;letter-spacing:-.065em;font-weight:850;color:#081827;}
++#root .aaa-header-v2 .aaa-header-brandtext span {color:#087ec3;font-weight:800;}
++#root .aaa-header-v2 .search-section {max-width:530px;}
++#root .aaa-header-v2 .search-inputs {min-height:51px;padding:4px!important;border-radius:14px!important;background:#f5f9fc!important;border:1px solid #dce8f1!important;transition:border-color .16s;}
++#root .aaa-header-v2 .search-inputs:focus-within {border-color:#87cdef!important;box-shadow:0 0 0 4px #e2f4ff!important;}
++#root .aaa-header-v2 .search-input-wrapper {min-width:0;}
++#root .aaa-header-v2 .search-input-wrapper .search-input {min-height:39px;border:0!important;background:transparent!important;box-shadow:none!important;font-size:13px;color:#19344d!important;}
++#root .aaa-header-v2 .search-icon {color:#087ec3;}
++#root .aaa-header-v2 .search-button {width:42px;min-width:42px;min-height:42px;border-radius:11px!important;background:#0b192b!important;border:0!important;box-shadow:none!important;}
++#root .aaa-header-v2 .search-button:hover {background:#087ec3!important;transform:none;}
++#root .aaa-header-v2 .desktop-actions {gap:16px;}
++#root .aaa-header-v2 .action-link {font-size:12px;white-space:nowrap;font-weight:700;color:#415569!important;text-decoration:none;}
++#root .aaa-header-v2 .action-link:hover,#root .aaa-header-v2 .action-link.active{color:#087ec3!important;}
++#root .aaa-header-v2 .login-btn,#root .aaa-header-v2 .signup-btn {min-height:43px!important;padding:11px 18px!important;border-radius:12px!important;font-weight:750!important;}
++#root .aaa-header-v2 .signup-btn {background:#087ec3!important;border-color:#087ec3!important;box-shadow:0 7px 16px rgba(8,126,195,.16)!important;color:#fff!important;}
++#root .aaa-header-v2 .login-btn {background:#fff!important;color:#0b192b!important;border-color:#d7e5ef!important;}
++#root .aaa-header-v2 .category-nav {background:#fff!important;}
++#root .aaa-header-v2 .category-container {max-width:1460px;padding:0 clamp(20px,4vw,60px)!important;}
++#root .aaa-header-v2 .category-links {gap:34px;scrollbar-width:none;}
++#root .aaa-header-v2 .category-links::-webkit-scrollbar {display:none;}
++#root .aaa-header-v2 .category-link {font-size:12px;font-weight:730;color:#65788d!important;padding:14px 0!important;letter-spacing:.01em;}
++#root .aaa-header-v2 .category-link:hover,#root .aaa-header-v2 .category-link.active {color:#087ec3!important;border-bottom-color:#087ec3!important;}
++#root .aaa-header-v2 .profile-btn {padding:6px 11px;border-radius:13px!important;}
++#root .aaa-header-v2 .dropdown-menu {padding:8px!important;border-radius:16px!important;box-shadow:0 22px 50px rgba(8,27,47,.14)!important;}
++#root .aaa-header-v2 .dropdown-item {border-radius:10px!important;font-size:13px;}
++#root .aaa-header-v2 .dropdown-item:hover {background:#e7f6ff!important;}
++#root .aaa-header-v2 .mobile-nav.active {background:#fff!important;}
++#root .aaa-header-v2 .mobile-menu {background:#fff!important;padding-bottom:25px;}
++#root .aaa-header-v2 .hamburger-btn {border-radius:12px!important;}
++@media(max-width:1250px){#root .aaa-header-v2 .header-container {gap:18px;}#root .aaa-header-v2 .desktop-actions{display:none;}}
++@media(max-width:850px){#root .aaa-header-v2 .header-container{min-height:72px;padding:12px 20px!important;}#root .aaa-header-v2 .search-section{display:none;}#root .aaa-header-v2 .category-nav{display:none;}#root .aaa-header-v2 .aaa-header-brandtext{font-size:20px;}}
++@media(max-width:480px){#root .aaa-header-v2 .aaa-header-brandtext{font-size:18px;}#root .aaa-header-v2 .logo-img{width:38px!important;height:38px!important;}#root .aaa-header-v2 .header-container{padding-inline:15px!important;}}
+diff --git a/Front End/src/components/Header.jsx b/Front End/src/components/Header.jsx
+index 02eac26..0dcb1d0 100644
+--- a/Front End/src/components/Header.jsx	
++++ b/Front End/src/components/Header.jsx	
+@@ -279,7 +279,6 @@ const Header = () => {
+ 
+   return (
+     <>
+-    <a className="aa-skip-link" href="#main-content">Skip to main content</a>
+     <header className="header aaa-header-v2">
+       {/* Main Header */}
+       <div className="main-header">
+diff --git a/Front End/src/index.jsx b/Front End/src/index.jsx
+index c6cab35..d8662fe 100644
+--- a/Front End/src/index.jsx	
++++ b/Front End/src/index.jsx	
+@@ -7,6 +7,7 @@ import './styles/sky-blue-theme.css';
+ import './styles/editorial-layout.css';
+ import './styles/public-page-layout.css';
+ import './styles/site-shell.css';
++import './styles/premium.css';
+ import App from './App';
+ import { queryClient, queryPersister } from './lib/queryClient';
+ // import reportWebVitals from './reportWebVitals';
+diff --git a/Front End/src/styles/premium.css b/Front End/src/styles/premium.css
+new file mode 100644
+index 0000000..e6dd1e7
+--- /dev/null
++++ b/Front End/src/styles/premium.css	
+@@ -0,0 +1,129 @@
++/* AAA / Northstar visual system
++   Brand palette: midnight ink, cloud white, and an accessible sky blue.
++   This file comes after the legacy utility sheets. Feature-specific refinements
++   live beside their existing page or component so lazy-loaded routes remain styled.
++*/
++:root {
++  color-scheme: light;
++  --aa-forest: #10243a;
++  --aa-forest-strong: #081827;
++  --aa-primary: #087ec3;
++  --aa-primary-hover: #06669f;
++  --aa-primary-soft: #e7f6ff;
++  --aa-ink: #0b192b;
++  --aa-text: #293d52;
++  --aa-muted: #65788d;
++  --aa-bg: #f4f8fc;
++  --aa-surface: #fff;
++  --aa-border: #dae7f1;
++  --aa-accent: #68caff;
++  --aa-error: #b42336;
++  --aa-radius-sm: 12px;
++  --aa-radius: 18px;
++  --aa-radius-lg: 26px;
++  --aa-shadow-sm: 0 4px 12px rgba(12, 43, 69, .045);
++  --aa-shadow: 0 16px 48px rgba(11, 45, 72, .085);
++  --aa-shadow-lg: 0 28px 80px rgba(8, 27, 47, .14);
++  --aa-ease: cubic-bezier(.22, 1, .36, 1);
++  --aaa-blue: #087ec3;
++  --aaa-blue-hover: #06669f;
++  --aaa-blue-soft: #e7f6ff;
++  --aaa-ink: #0b192b;
++  --aaa-soft-text: #65788d;
++  --aaa-edge: #dae7f1;
++  --aaa-surface: #fff;
++  --admin-green: #087ec3;
++  --admin-green-dark: #06669f;
++  --admin-green-light: #aee2ff;
++  --admin-green-accent: #e7f6ff;
++  --admin-primary: #087ec3;
++  --admin-border: #dae7f1;
++  --primary-color: #087ec3;
++  --secondary-color: #0b192b;
++  --accent-color: #68caff;
++  --green-primary: #087ec3;
++  --green-dark: #06669f;
++  --green-light: #e7f6ff;
++  --color-primary: #087ec3;
++  --text-primary: #0b192b;
++  --text-secondary: #65788d;
++  --background-color: #f4f8fc;
++  --aaa-content: 1240px;
++  --aaa-gutter: clamp(20px, 4.1vw, 64px);
++}
++html { scroll-behavior: smooth; background: #f4f8fc; }
++body, #root, .app, .app main {
++  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
++  color: var(--aa-ink);
++}
++body { background: #f4f8fc!important; letter-spacing: -.008em; }
++#root .app main { background: #f4f8fc!important; }
++#root .app main:has(.aaa-home) { background: #fff!important; }
++::selection { color:#08213a; background:#bdeaff; }
++:where(h1, h2, h3, h4, h5, h6) { color:#0b192b; letter-spacing: -.045em; line-height: 1.14; text-wrap: balance; }
++:where(p, li, small) { line-height: 1.65; }
++:where(a) { text-underline-offset: 3px; }
++:where(a,button,input,select,textarea,[role=button]):focus-visible { outline: 3px solid #38bdf8!important; outline-offset: 3px!important; }
++:where(button, input, textarea, select) { font: inherit; }
++:where(button,[role=button]) { cursor:pointer; transition: transform .2s var(--aa-ease), box-shadow .2s var(--aa-ease), background .2s ease, border-color .2s ease; }
++:where(button):disabled { cursor:not-allowed; opacity:.55; box-shadow:none!important; }
++:where(input, select, textarea):not([type=checkbox]):not([type=radio]) {
++  background: #fff; color: #10243a; border: 1px solid #cbdde9;
++  border-radius: 13px!important; min-height: 46px;
++  transition: border-color .16s ease, box-shadow .16s ease;
++}
++:where(input,select,textarea):not([type=checkbox]):not([type=radio]):focus { border-color: #087ec3!important; box-shadow: 0 0 0 4px rgba(56, 189, 248, .13)!important; }
++:where(input,textarea)::placeholder { color: #8192a4; opacity: 1; }
++:where(.btn-primary,.primary-button,.hero-btn.primary,.cta-btn.primary,.auth-button,.signup-button,.signup-btn,.admin-login-button,.login-button,.nav-button.primary,.submit-btn,.search-button,.action-button.primary-button,.aa-btn--primary,.view-all-btn,.btn-view-profile,.apply-filters-btn,.save-review-btn) {
++  background: #087ec3!important; background-image:none!important; color:#fff!important;
++  border:1px solid #087ec3!important; border-radius: 13px!important;
++  box-shadow:0 8px 20px rgba(8,126,195,.17)!important;
++  font-weight:750!important; letter-spacing:-.01em;
++}
++:where(.btn-primary,.primary-button,.hero-btn.primary,.cta-btn.primary,.auth-button,.signup-button,.signup-btn,.admin-login-button,.login-button,.nav-button.primary,.submit-btn,.search-button,.action-button.primary-button,.aa-btn--primary,.view-all-btn,.btn-view-profile,.apply-filters-btn,.save-review-btn):hover:not(:disabled) {
++  background:#06669f!important; border-color:#06669f!important; color:#fff!important;
++  box-shadow:0 12px 24px rgba(8,126,195,.22)!important; transform: translateY(-2px);
++}
++:where(.btn-secondary,.secondary-button,.hero-btn.secondary,.cta-btn.secondary,.action-button.secondary-button,.filter-reset-btn,.aa-btn--secondary,.aa-btn--outline) {
++  color:#12314c!important;background:#fff!important;background-image:none!important;
++  border:1px solid #cbdde9!important; border-radius:13px!important;box-shadow:none!important;
++}
++:where(.btn-secondary,.secondary-button,.hero-btn.secondary,.cta-btn.secondary,.action-button.secondary-button,.filter-reset-btn,.aa-btn--secondary,.aa-btn--outline):hover { background:#eff9ff!important; border-color:#87cdef!important; }
++:where(.aa-card,.feature-card,.provider-card,.category-card,.dashboard-card,.review-card,.welcome-card,.stat-card,.stat-card-customer-dashboard,.profile-progress-card,.verify-card,.admin-login-card,.business-card,.contact-card,.faq-item,.footer-newsletter,.aa-directory-card,.aa-how-card,.services-card,.recent-review-card,.contact-form-container) {
++  background:#fff!important; background-image:none!important; border:1px solid #dae7f1!important;
++  border-radius:20px!important;box-shadow:0 8px 26px rgba(11,45,72,.045)!important;
++}
++:where(.aa-card,.feature-card,.provider-card,.category-card,.business-card,.contact-card,.aa-directory-card,.dashboard-card):hover { border-color: #a9d8f4!important; box-shadow:0 18px 40px rgba(11,45,72,.095)!important; }
++:where(.aa-eyebrow,.aaa-home__eyebrow,.section-header .eyebrow,.aa-workspace-intro-overline) { color:#087ec3!important;font-size:.76rem;font-weight:850;letter-spacing:.17em;text-transform:uppercase; }
++:where(.aa-status,.service-tag,.status-badge,.verified-badge) { border-radius:999px!important; padding:6px 11px; font-weight:750; }
++:where(table) { width:100%; border-collapse:separate; border-spacing:0; }
++:where(table) th { background: #f1f8fd!important; color:#4c657c!important; font-size:11px; font-weight:850; text-transform:uppercase; letter-spacing:.075em; padding:14px 16px; }
++:where(table) td { padding:15px 16px; border-color:#e7eef5!important; }
++:where(table) tr:hover td { background:#f9fcff!important; }
++:where(.modal,.modal-content,.dialog,.dropdown-menu,.search-suggestions,.dropdown-content) { border:1px solid #dae7f1!important; border-radius:18px!important; background:#fff!important; box-shadow:0 24px 65px rgba(7,26,43,.15)!important; }
++:where(.error-message,[role=alert]) { overflow-wrap:anywhere; }
++:where(.loading-spinner,.admin-spinner,.spinner) { border-top-color:#087ec3!important; }
++:where(.aa-empty,.empty-state,.no-results,.loading-state) { border-radius:20px; }
++#root :where(.aa-directory-card,.aa-card,.provider-card,.category-card,.stat-card) { transition:transform .22s var(--aa-ease),box-shadow .22s ease,border-color .22s ease; }
++#root :where(.aa-directory-card,.provider-card,.category-card):hover { transform:translateY(-4px)!important; }
++#root .aa-container { width:min(var(--aaa-content),calc(100% - 2 * var(--aaa-gutter))); max-width:none; margin-inline:auto; padding-inline:0; }
++#root .aa-pagination { gap:18px; margin-block:26px 0; }
++#root .aa-pagination .aa-btn { min-height:44px; }
++#root .Toastify__toast { border-radius:14px; box-shadow:var(--aa-shadow); font-family:inherit; }
++#root .Toastify__progress-bar--success { background:#087ec3; }
++.aaa-skip-link {position:fixed;left:16px;top:-80px;z-index:100000;background:#0b192b;color:#fff!important;border:2px solid #68caff;padding:12px 20px;border-radius:14px;}
++.aaa-skip-link:focus {top:12px;}
++.aaa-success-screen{width:min(680px,calc(100% - 40px));margin:clamp(48px,7vw,100px) auto;background:#fff;border:1px solid #dae7f1;border-radius:28px;padding:clamp(28px,5vw,58px);box-shadow:var(--aa-shadow);}
++.aaa-success-screen__icon {display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:#dff7eb;color:#0a7a4f;font-size:32px;margin-bottom:24px;}
++.aaa-success-screen h1 {font-size:clamp(29px,4vw,44px);margin-bottom:15px;}
++.aaa-success-screen p {color:#566e81;margin-bottom:14px;}
++.aaa-success-screen__actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;}
++.aaa-success-screen__actions a {display:inline-flex;min-height:46px;align-items:center;justify-content:center;padding:12px 22px;text-decoration:none;}
++.aaa-not-found {min-height:60vh;display:grid;place-items:center;padding:50px 20px;background:radial-gradient(circle at 50% 30%,#e5f6ff,#f4f8fc 65%);}
++.aaa-not-found__card {max-width:600px;text-align:center;padding:clamp(28px,5vw,60px);background:#fff;border:1px solid #d8e9f4;border-radius:26px;box-shadow:var(--aa-shadow);}
++.aaa-not-found__number {font-size:clamp(86px,12vw,160px);line-height:1;font-weight:900;letter-spacing:-.1em;color:#087ec3;}
++.aaa-not-found h1 {font-size:clamp(30px,4vw,42px);margin:12px 0;}
++.aaa-not-found p {color:#607789;margin:0 auto 30px;max-width:38ch;}
++.aaa-not-found a {display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:12px 22px;text-decoration:none;}
++@media(max-width:680px){:root{--aaa-gutter:20px;} #root .aa-pagination{flex-wrap:wrap;} :where(h1,h2,h3){overflow-wrap:normal;} .aaa-success-screen__actions a{flex:1;}}
++@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;} *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
+-- 
+2.47.3
+
