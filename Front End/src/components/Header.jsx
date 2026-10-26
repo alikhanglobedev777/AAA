@@ -285,14 +285,15 @@ const Header = () => {
         <div className="header-container">
           {/* Logo on the left */}
           <div className="logo-container">
-            <Link to="/" className="logo-link" onClick={closeMobileMenu}>
-              <img 
-                src="/favicon_transbg.png" 
-                alt="AAA Logo" 
-                className="logo-img" 
+            <Link to="/" className="logo-link" onClick={closeMobileMenu} aria-label="AAA Service Directory — Home">
+              {/* The supplied brand image already includes “AAA Service Directory”.
+                  Avoid repeating the AAA name beside the original logo. */}
+              <img
+                src="/favicon_transbg.png"
+                alt="AAA Service Directory"
+                className="logo-img"
                 loading="eager"
               />
-              <span className="aaa-header-brandtext">AAA <span>Services</span></span>
             </Link>
           </div>
 
@@ -540,7 +541,7 @@ const Header = () => {
           <div className="mobile-nav-header">
             <div className="logo-container">
               <Link to="/" className="logo-link" onClick={closeMobileMenu}>
-                <img src="/favicon_transbg.png" alt="AAA Logo" className="logo-img" />
+                <img src="/favicon_transbg.png" alt="AAA Service Directory" className="logo-img" />
               </Link>
             </div>
             <button type="button" className="close-btn" onClick={closeMobileMenu} aria-label="Close mobile menu">

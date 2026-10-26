@@ -176,3 +176,75 @@
   #root .header.aaa-header-v2 .auth-buttons { display: none !important; }
   #root .header.aaa-header-v2 .hamburger-menu { display: flex !important; }
 }
+
+
+/* UI 5/5 — One brand logo and clearly separate service/location search fields.
+   Preserve the underlying search form and suggestion handlers unchanged. */
+#root .header.aaa-header-v2 .logo-link {
+  gap: 0 !important;
+  flex-shrink: 0;
+}
+/* This transparent logo already contains the complete AAA Service Directory name. */
+#root .header.aaa-header-v2 .logo-img {
+  display: block;
+  width: 124px !important;
+  height: 56px !important;
+  max-width: none !important;
+  object-fit: contain;
+  object-position: center left;
+}
+#root .header.aaa-header-v2 .search-inputs {
+  /* Individual inputs are bordered, not the shared container. */
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, .95fr) 48px !important;
+  column-gap: 10px !important;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+#root .header.aaa-header-v2 .search-inputs:focus-within {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper,
+#root .header.aaa-header-v2 .search-input-wrapper + .search-input-wrapper {
+  box-sizing: border-box;
+  min-width: 0 !important;
+  height: 50px !important;
+  padding: 0 12px !important;
+  background: #fff !important;
+  border: 1px solid #bfd7e7 !important;
+  border-radius: 13px !important;
+  box-shadow: 0 4px 12px rgba(8, 36, 59, .045) !important;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+#root .header.aaa-header-v2 .search-input-wrapper:focus-within {
+  border-color: #087ec3 !important;
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, .13) !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper .search-input {
+  height: 46px !important;
+  min-height: 46px !important;
+}
+#root .header.aaa-header-v2 .search-button {
+  width: 48px !important;
+  min-width: 48px !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  border-radius: 13px !important;
+}
+/* Compact screens continue to use the existing mobile search drawer. */
+@media (max-width: 1100px) {
+  #root .header.aaa-header-v2 .logo-img {
+    width: 110px !important;
+    height: 50px !important;
+  }
+}
+#root .header.aaa-header-v2 .mobile-nav .logo-img {
+  width: 110px !important;
+  height: 50px !important;
+}
