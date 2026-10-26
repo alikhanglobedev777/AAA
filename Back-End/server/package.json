@@ -4,8 +4,8 @@
   "description": "Node.js + Passport.js Auth Server with MongoDB",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node init && node server.js",
+    "dev": "node init && nodemon server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "db:test": "node -r dotenv/config -e \"require('./config/db')().then(() => process.exit(0)).catch(() => process.exit(1))\"",
