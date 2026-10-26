@@ -715,3 +715,10 @@
   border-color: #cbd5e0;
   transform: translateY(-1px);
 }
+
+/* Premium 2026 — scoped refinement for components/ComplaintForm.css */
+#root .complaint-modal-overlay{backdrop-filter:blur(5px);background:rgba(6,23,39,.68)!important;}
+#root .complaint-modal{background:#fff!important;border:1px solid #d8e7f1!important;border-radius:25px!important;box-shadow:0 30px 95px rgba(0,11,25,.25)!important;max-width:min(690px,calc(100vw - 30px));}
+#root .complaint-modal-header{background:#f1f9ff!important;border-bottom:1px solid #deebf4!important;border-radius:25px 25px 0 0;}
+#root .complaint-modal-content{padding:clamp(19px,3vw,33px)!important;}
+#root .complaint-modal :is(.form-group,.form-actions){gap:12px;}

@@ -464,3 +464,10 @@
     margin: 0 0.5rem;
   }
 }
+/* Premium 2026 — scoped refinement for pages/Contact.css */
+#root .contact-page{background:#f5f9fc!important;padding-bottom:85px;}
+#root .contact-page .contact-hero{padding:clamp(65px,8vw,110px) var(--aaa-gutter)!important;background:radial-gradient(circle at 85% 25%,#d2f0ff,transparent 40%),linear-gradient(120deg,#f0faff,#fff)!important;}
+#root .contact-page .contact-hero h1{font-size:clamp(38px,5vw,64px);font-weight:850;letter-spacing:-.075em;}
+#root .contact-page :is(.contact-card,.team-card,.contact-form-container){border:1px solid #dae7f1!important;background:#fff!important;border-radius:22px!important;box-shadow:0 9px 28px rgba(11,45,72,.05)!important;}
+#root .contact-page :is(.contact-info-section,.team-section,.contact-form-section){padding-block:clamp(45px,5vw,78px);}
+#root .contact-page :is(.contact-icon-page,.team-avatar){border-radius:17px!important;background:#e5f6ff!important;color:#087ec3!important;}

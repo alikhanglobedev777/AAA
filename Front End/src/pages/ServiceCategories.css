@@ -521,3 +521,12 @@
 .service-categories-page .service-categories-search-input-wrapper:focus-within { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
 .service-categories-page :is(.category-card, .service-category-card) { border:1px solid var(--aa-border); border-radius:18px; box-shadow:var(--aa-shadow-sm); background:#fff; }
 .service-categories-page :is(.category-card, .service-category-card):hover { box-shadow:var(--aa-shadow); }
+
+/* Premium 2026 — scoped refinement for pages/ServiceCategories.css */
+#root .service-categories-page{background:#f5f9fc!important;padding-bottom:85px;}
+#root .service-categories-page .categories-hero{background:radial-gradient(circle at 80% 25%,#cbeeff,transparent 39%),linear-gradient(120deg,#f1faff,#fff)!important;padding:clamp(65px,8vw,110px) 0!important;}
+#root .service-categories-page .categories-hero h1{font-size:clamp(37px,4.5vw,61px);font-weight:850;letter-spacing:-.07em;}
+#root .service-categories-page .categories-container{max-width:1280px;}
+#root .service-categories-page .category-search-section{border-radius:20px!important;box-shadow:0 8px 24px rgba(11,45,72,.045)!important;}
+#root .service-categories-page :is(.category-card,.service-category-card){border-radius:21px!important;padding:23px!important;box-shadow:0 8px 28px rgba(11,45,72,.045)!important;}
+#root .service-categories-page :is(.category-card,.service-category-card):hover{transform:translateY(-4px)!important;border-color:#97d5f8!important;}

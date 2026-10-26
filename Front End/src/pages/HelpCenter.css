@@ -617,3 +617,11 @@
     transform: scale(0.98);
   }
 }
+
+/* Premium 2026 — scoped refinement for pages/HelpCenter.css */
+#root .help-center-page{background:#f4f9fd!important;padding-bottom:90px;}
+#root .help-center-page .help-hero{background:radial-gradient(circle at 85% 22%,#d4f1ff,transparent 42%),linear-gradient(110deg,#f0faff,#fff)!important;padding:clamp(65px,8vw,108px) var(--aaa-gutter)!important;}
+#root .help-center-page .help-hero h1{font-size:clamp(35px,5vw,64px);font-weight:850;letter-spacing:-.07em;}
+#root .help-center-page .help-content{background:transparent!important;}
+#root .help-center-page :is(.help-category-card,.contact-form-container,.contact-form-section){border-radius:23px!important;background:#fff!important;border:1px solid #dce9f3!important;box-shadow:0 8px 25px rgba(11,45,72,.05)!important;}
+#root .help-center-page :is(.category-icon,.contact-icon){border-radius:16px!important;background:#e6f6ff!important;color:#087ec3!important;}

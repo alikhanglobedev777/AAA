@@ -102,3 +102,7 @@
   50% { opacity: 0.5; }
   100% { opacity: 1; }
 }
+
+/* Premium 2026 — scoped refinement for components/MessageBusinessButton.css */
+#root .message-business-btn,#root .message-business-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:47px;background:#087ec3!important;color:#fff!important;border:1px solid #087ec3!important;border-radius:12px!important;font-weight:800;box-shadow:0 8px 17px rgba(8,126,195,.14)!important;}
+#root .message-business-btn:hover,#root .message-business-button:hover{background:#06669f!important;transform:translateY(-2px);}

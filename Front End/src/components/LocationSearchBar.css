@@ -86,3 +86,7 @@
     font-size: 14px;
   }
 }
+
+/* Premium 2026 — scoped refinement for components/LocationSearchBar.css */
+#root .location-search-bar{background:#fff!important;border:1px solid #d7e7f2!important;border-radius:15px!important;box-shadow:0 7px 22px rgba(11,45,72,.05)!important;}
+#root .location-search-bar :is(input,button){min-height:44px;border-radius:12px!important;}

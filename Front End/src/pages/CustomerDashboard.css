@@ -2956,3 +2956,21 @@
 .customer-dashboard .mobile-header { border-bottom:1px solid var(--aa-border) !important; box-shadow:0 3px 18px rgba(14,63,50,.06) !important; }
 .customer-dashboard .nav-item:hover, .customer-dashboard .nav-item.active { background:var(--aa-primary-soft) !important; color:var(--aa-primary) !important; }
 @media(max-width:768px) { .customer-dashboard .dashboard-main { padding-inline:12px; } }
+
+/* Premium 2026 — scoped refinement for pages/CustomerDashboard.css */
+#root .aa-workspace--customer{background:#f4f8fc!important;}
+#root .aa-workspace--customer .dashboard-main,#root .aa-workspace--customer .dashboard-content{background:#f4f8fc!important;}
+#root .aa-workspace--customer .dashboard-sidebar{background:#091e32!important;border-color:#1b3b53!important;}
+#root .aa-workspace--customer .dashboard-sidebar :is(.sidebar-header,.sidebar-footer){background:#091e32!important;border-color:#214057!important;}
+#root .aa-workspace--customer .dashboard-sidebar :is(.aa-workspace-brand strong,.user-details h3,.user-name,.sidebar-title){color:#fff!important;}
+#root .aa-workspace--customer .dashboard-sidebar :is(.aa-workspace-brand small,.aa-workspace-menu-title,.user-details p){color:#94b4ca!important;}
+#root .aa-workspace--customer .dashboard-sidebar .nav-item{color:#a9c2d5!important;background:transparent!important;border-radius:12px!important;}
+#root .aa-workspace--customer .dashboard-sidebar .nav-item.active{background:#103e5b!important;color:#83d6ff!important;}
+#root .aa-workspace--customer .dashboard-sidebar .nav-item:hover{background:#15374d!important;color:#fff!important;}
+#root .aa-workspace--customer .aa-customer-intro{background:#fff!important;padding:34px clamp(20px,3vw,44px)!important;}
+#root .aa-workspace--customer .dashboard-content{padding:clamp(22px,3vw,40px)!important;}
+#root .aa-workspace--customer :is(.welcome-card,.stat-card-customer-dashboard,.recent-review-card,.review-card,.conversations-panel,.chat-panel){border-radius:21px!important;border:1px solid #dce8f2!important;box-shadow:0 9px 28px rgba(11,45,72,.045)!important;}
+#root .aa-workspace--customer .stat-card-customer-dashboard{min-height:143px;padding:23px!important;}
+#root .aa-workspace--customer .welcome-card{padding:clamp(24px,3vw,36px)!important;}
+#root .aa-workspace--customer :is(h1,h2,h3){letter-spacing:-.05em;}
+@media(max-width:900px){#root .aa-workspace--customer .dashboard-sidebar{background:#091e32!important;}#root .aa-workspace--customer .aa-customer-intro{padding:25px 22px!important;}}

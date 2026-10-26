@@ -1320,3 +1320,12 @@
     transform: translateX(0); 
   }
 }
+
+/* Premium 2026 — scoped refinement for pages/BusinessProfile.css */
+#root .business-profile{background:#f4f8fc!important;padding-bottom:80px;}
+#root .business-profile .business-hero{background:radial-gradient(circle at 90% 20%,#d9f3ff,transparent 40%),linear-gradient(125deg,#f0faff,#fff)!important;padding:clamp(50px,7vw,92px) 0!important;}
+#root .business-profile .business-hero h1{font-size:clamp(32px,4vw,55px);font-weight:850;letter-spacing:-.06em;}
+#root .business-profile :is(.business-card,.service-card,.review-card,.profile-card,.contact-card){border-radius:22px!important;padding:clamp(19px,3vw,30px)!important;box-shadow:0 9px 25px rgba(11,45,72,.04)!important;}
+#root .business-profile :is(.business-info,.services-section,.reviews-section,.contact-section){min-width:0;}
+#root .business-profile :is(.business-tabs,.tab-navigation){background:#fff!important;border:1px solid #dceaf4;border-radius:17px!important;padding:6px;}
+#root .business-profile :is(.verified-badge,.status-badge){border-radius:999px!important;}

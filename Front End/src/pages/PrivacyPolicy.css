@@ -382,3 +382,12 @@ html {
     color: black !important;
   }
 }
+
+/* Premium 2026 — scoped refinement for pages/PrivacyPolicy.css */
+#root .privacy-page{background:#f4f9fd!important;padding-bottom:90px;}
+#root .privacy-page .privacy-hero{background:linear-gradient(115deg,#eaf7ff,#fff)!important;padding:clamp(60px,7vw,100px) var(--aaa-gutter)!important;}
+#root .privacy-page .privacy-hero h1{font-size:clamp(35px,5vw,60px);font-weight:850;letter-spacing:-.07em;}
+#root .privacy-page .privacy-navigation{position:sticky;top:120px;background:#fff!important;border:1px solid #dae7f1;border-radius:20px!important;padding:20px!important;}
+#root .privacy-page .privacy-main-content{background:#fff!important;border:1px solid #dae7f1;border-radius:23px!important;padding:clamp(22px,4vw,52px)!important;box-shadow:0 8px 25px rgba(11,45,72,.04);}
+#root .privacy-page .privacy-section{padding-bottom:18px;border-color:#e3edf5;}
+@media(max-width:900px){#root .privacy-page .privacy-navigation{position:static;}}

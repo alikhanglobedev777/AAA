@@ -298,3 +298,8 @@
 .category-option:hover .category-icon {
   color: #4CAF50;
 }
+
+/* Premium 2026 — scoped refinement for components/ServiceCategorySelector.css */
+#root .service-category-selector{background:#fff!important;border:1px solid #dae7f1!important;border-radius:19px!important;}
+#root .service-category-selector :is(.category-option,.category-item){border:1px solid #e1ecf4!important;border-radius:13px!important;transition:border-color .2s,background .2s;}
+#root .service-category-selector :is(.category-option,.category-item):hover{background:#ecf8ff!important;border-color:#8bd1f5!important;}

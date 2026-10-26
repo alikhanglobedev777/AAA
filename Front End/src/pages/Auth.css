@@ -440,3 +440,11 @@ body .auth-button {
 .auth-form :is(input,select,textarea):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
 .auth-form .auth-button { border-radius:11px; background:var(--aa-primary); }
 .auth-form .auth-button:hover:not(:disabled) { background:var(--aa-primary-hover); }
+
+/* Premium 2026 — scoped refinement for pages/Auth.css */
+#root .auth-container{background:radial-gradient(circle at 8% 6%,#d6f1ff,transparent 35%),#f4f8fc!important;display:grid;place-items:center;padding:clamp(45px,7vw,95px) 20px!important;min-height:calc(100vh - 170px);}
+#root .auth-container .auth-form{width:min(100%,530px);background:#fff!important;border:1px solid #dce9f2;border-radius:25px!important;padding:clamp(27px,4vw,46px)!important;box-shadow:0 20px 60px rgba(11,45,72,.085)!important;}
+#root .auth-container .auth-header h1,#root .auth-container .auth-header h2{font-size:clamp(28px,3vw,39px);font-weight:850;letter-spacing:-.06em;}
+#root .auth-container :is(.auth-button,.reset-button){min-height:48px;border-radius:12px!important;}
+#root .auth-container :is(.success-icon,.error-icon){border-radius:19px!important;}
+#root .auth-container :is(.form-group,.auth-footer){margin-block:17px;}

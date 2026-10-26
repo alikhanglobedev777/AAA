@@ -287,3 +287,8 @@
 .loading-container.secondary .spinner-ring:nth-child(3) {
   border-bottom-color: #d97706;
 }
+
+/* Premium 2026 — scoped refinement for components/Loading.css */
+#root .loading-container{background:transparent!important;color:#536b7f;min-height:240px;}
+#root .loading-container :is(.loading-spinner,.spinner){border-top-color:#087ec3!important;}
+#root .loading-container :is(h2,h3,p){color:#607b90!important;}

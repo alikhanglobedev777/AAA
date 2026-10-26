@@ -478,3 +478,12 @@
 .login-container .form-group label { color:var(--aa-ink); }
 .login-container input { border-radius:11px; }
 .login-container :is(button[type="submit"],.login-button,.btn-primary) { border-radius:12px; background:var(--aa-primary); }
+
+/* Premium 2026 — scoped refinement for pages/Login.css */
+#root .login-container{background:radial-gradient(circle at 14% 10%,#dbf3ff,transparent 28%),radial-gradient(circle at 90% 86%,#e8f6ff,transparent 31%),#f4f8fc!important;min-height:calc(100vh - 150px);padding-block:clamp(45px,7vw,95px)!important;}
+#root .login-container .login-card{border:1px solid #dceaf4!important;background:#fff!important;border-radius:26px!important;padding:clamp(28px,4vw,50px)!important;box-shadow:0 22px 65px rgba(11,45,72,.095)!important;}
+#root .login-container .login-header h1,#root .login-container .login-header h2{font-size:clamp(30px,3vw,41px);font-weight:850;letter-spacing:-.065em;}
+#root .login-container :is(.login-form,.form-group){min-width:0;}
+#root .login-container .form-input{min-height:49px!important;border-radius:13px!important;}
+#root .login-container .login-button{min-height:50px;border-radius:13px!important;}
+#root .login-container :is(.login-header,.login-footer){text-align:center;}

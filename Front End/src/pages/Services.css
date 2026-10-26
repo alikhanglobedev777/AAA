@@ -1978,3 +1978,15 @@
 .services-page input, .services-page select { border:1px solid #cbdcd5; border-radius:11px; min-height:43px; }
 .services-page :is(input,select):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
 .services-page :is(.service-card, .category-card) { border-radius:18px; border-color:var(--aa-border); }
+
+/* Premium 2026 — scoped refinement for pages/Services.css */
+#root .services-page{background:#f4f8fc!important;min-height:75vh;padding-bottom:85px;}
+#root .services-page :is(.services-hero,.page-header,.hero-section){background:linear-gradient(115deg,#f0faff,#fff)!important;border-bottom:1px solid #dcecf6!important;}
+#root .services-page :is(.services-hero h1,.page-header h1,.hero-section h1){font-size:clamp(34px,4.6vw,60px);font-weight:850;letter-spacing:-.07em;}
+#root .services-page :is(.search-section,.filter-sidebar,.filters-container,.search-filters){border-color:#dae7f1!important;border-radius:20px!important;box-shadow:0 9px 25px rgba(11,45,72,.045)!important;}
+#root .services-page .provider-card{padding:28px!important;border-radius:21px!important;box-shadow:0 9px 28px rgba(11,45,72,.04)!important;}
+#root .services-page .provider-card:hover{transform:translateY(-4px)!important;box-shadow:0 18px 40px rgba(11,45,72,.09)!important;}
+#root .services-page .results-header{padding:24px 0!important;border-color:#dceaf4!important;}
+#root .services-page .trust-banner{background:#eaf7ff!important;border-radius:22px!important;padding:clamp(25px,4vw,45px)!important;}
+#root .services-page :is(.service-card,.search-bar,.filter-group){border-radius:17px;}
+@media(max-width:768px){#root .services-page .provider-card{padding:22px!important;}#root .services-page :is(.services-content,.services-layout){gap:20px;}}

@@ -1239,3 +1239,11 @@
     font-size: 11px !important;
   }
 }
+
+/* Premium 2026 — scoped refinement for pages/Profile.css */
+#root .profile-container{background:radial-gradient(circle at 83% 5%,#dbf3ff,transparent 32%),#f4f8fc!important;padding:clamp(40px,5vw,80px) var(--aaa-gutter) 100px!important;min-height:76vh;}
+#root .profile-container .profile-card{border-radius:26px!important;border:1px solid #dae8f3!important;box-shadow:0 18px 56px rgba(11,45,72,.07)!important;padding:clamp(23px,4vw,46px)!important;}
+#root .profile-container .profile-header{background:#fff!important;border-bottom:1px solid #e4edf5!important;padding-bottom:26px;gap:24px;}
+#root .profile-container .profile-avatar{border:5px solid #e7f6ff;border-radius:25px!important;}
+#root .profile-container :is(h1,h2,h3){font-weight:840;letter-spacing:-.045em;}
+#root .profile-container :is(.profile-section,.profile-info,.form-section){border-radius:17px!important;}

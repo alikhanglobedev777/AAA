@@ -602,3 +602,9 @@
 .service-provider-signup .btn-submit { background:var(--aa-primary); border-radius:11px; box-shadow:0 6px 15px rgba(8,127,105,.14); }
 .service-provider-signup .btn-submit:hover { background:var(--aa-primary-hover); }
 .service-provider-signup :is(.additional-service-card, .upload-placeholder) { border-radius:15px; border-color:var(--aa-border); }
+
+/* Premium 2026 — scoped refinement for pages/ServiceProviderSignup.css */
+#root .signup-container .signup-card:has(.form-step){box-shadow:0 25px 65px rgba(11,45,72,.09)!important;}
+#root .signup-container :is(.step-number,.progress-step.active){background:#087ec3!important;color:#fff!important;}
+#root .signup-container :is(.form-navigation,.form-actions){flex-wrap:wrap;gap:13px;}
+#root .signup-container :is(.upload-area,.image-upload-container,.file-upload){border:2px dashed #abd8f1!important;background:#f4fbff!important;border-radius:17px!important;}

@@ -860,3 +860,12 @@
     padding: 2rem 1.5rem;
   }
 }
+/* Premium 2026 — scoped refinement for pages/About.css */
+#root .about-page{background:#f5f9fc!important;}
+#root .about-page .about-hero{min-height:auto!important;padding:clamp(70px,8vw,112px) var(--aaa-gutter)!important;background:radial-gradient(circle at 80% 20%,#d1efff,transparent 40%),linear-gradient(110deg,#eff9ff,#fff)!important;}
+#root .about-page .about-hero h1{font-size:clamp(38px,5vw,68px);font-weight:850;letter-spacing:-.075em;color:#0b192b!important;}
+#root .about-page .about-hero p{color:#5e788d!important;font-size:16px;max-width:700px;}
+#root .about-page :is(.about-navigation,.tabs-container,.mission-highlights,.vision-goals,.values-grid,.about-stats-section){gap:20px;}
+#root .about-page :is(.value-card,.goal-item,.highlight-item,.team-card,.tab-content){border-radius:22px!important;border:1px solid #dae7f1!important;box-shadow:0 9px 27px rgba(11,45,72,.05)!important;background:#fff!important;}
+#root .about-page :is(.tab-button,.about-tab){border-radius:12px!important;}
+#root .about-page :is(.tab-button.active,.about-tab.active){background:#e7f6ff!important;color:#075d91!important;border-color:#b3e2ff!important;}

@@ -395,3 +395,9 @@
   padding-left: 2rem;
 }
 
+
+/* Premium 2026 — scoped refinement for components/BusinessDropdown.css */
+#root .business-dropdown-menu{background:#fff!important;border:1px solid #dae7f1!important;border-radius:17px!important;box-shadow:0 24px 52px rgba(7,26,43,.14)!important;padding:8px;}
+#root .business-dropdown-item{border-radius:11px!important;font-weight:700;color:#1c3348!important;}
+#root .business-dropdown-item:hover{background:#e7f6ff!important;color:#075d91!important;}
+#root .mobile-business-toggle{border-radius:12px!important;}

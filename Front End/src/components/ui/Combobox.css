@@ -13,3 +13,8 @@
 .aaa-combobox--disabled{opacity:.6;pointer-events:none}
 @media(max-width:640px){.aaa-combobox__list{max-height:38vh}}
 @media(prefers-reduced-motion:reduce){.aaa-combobox__field{transition:none}}
+
+/* Premium 2026 — scoped refinement for components/ui/Combobox.css */
+#root .aa-combobox{background:#fff!important;color:#0b192b!important;border-radius:13px!important;border-color:#cbdde9!important;}
+#root .aa-combobox:focus-within{border-color:#087ec3!important;box-shadow:0 0 0 4px rgba(56,189,248,.13)!important;}
+#root .aa-combobox :is(.combobox-option,[role=option]):hover{background:#e7f6ff!important;}

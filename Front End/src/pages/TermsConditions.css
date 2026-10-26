@@ -366,3 +366,12 @@ html {
     color: black !important;
   }
 }
+
+/* Premium 2026 — scoped refinement for pages/TermsConditions.css */
+#root .terms-page{background:#f4f9fd!important;padding-bottom:90px;}
+#root .terms-page .terms-hero{background:linear-gradient(115deg,#eaf7ff,#fff)!important;padding:clamp(60px,7vw,100px) var(--aaa-gutter)!important;}
+#root .terms-page .terms-hero h1{font-size:clamp(35px,5vw,60px);font-weight:850;letter-spacing:-.07em;}
+#root .terms-page .terms-navigation{position:sticky;top:120px;background:#fff!important;border:1px solid #dae7f1;border-radius:20px!important;padding:20px!important;}
+#root .terms-page .terms-main-content{background:#fff!important;border:1px solid #dae7f1;border-radius:23px!important;padding:clamp(22px,4vw,52px)!important;box-shadow:0 8px 25px rgba(11,45,72,.04);}
+#root .terms-page .terms-section{padding-bottom:18px;border-color:#e3edf5;}
+@media(max-width:900px){#root .terms-page .terms-navigation{position:static;}}

@@ -38,3 +38,19 @@
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 @media (max-width:1020px) { .aa-directory-fields { grid-template-columns: repeat(3,minmax(0,1fr)); } .aa-directory-clear { grid-column:1 / -1; } .aa-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:650px) { .aa-directory-fields { grid-template-columns:1fr; } .aa-directory-clear { grid-column:auto; } .aa-directory-grid { grid-template-columns:1fr; } .aa-directory-results span { display:none; } .aa-directory-hero { padding-bottom:82px; } .aa-directory-layout { margin-top:-34px; } .aa-directory-card-top .aa-status { max-width:70%; font-size:.67rem; } }
+
+/* Premium 2026 — scoped refinement for pages/BusinessDirectory.css */
+#root .aa-directory-page{background:#f4f9fd!important;min-height:75vh;}
+#root .aa-directory-page .aa-directory-hero{padding:clamp(58px,7vw,105px) 0 78px;background:radial-gradient(circle at 86% 20%,#c8efff,transparent 34%),linear-gradient(115deg,#f1faff,#fff)!important;border-color:#daeaf4;}
+#root .aa-directory-hero h1{font-size:clamp(39px,4.9vw,68px);font-weight:850;letter-spacing:-.075em;max-width:800px;}
+#root .aa-directory-hero p{font-size:16px;max-width:630px;color:#60788d;}
+#root .aa-directory-layout--split{gap:32px!important;padding-block:40px 100px!important;}
+#root .aa-directory-layout--split .aa-directory-filter-panel{border-radius:22px!important;padding:25px!important;box-shadow:0 10px 32px rgba(10,54,86,.04)!important;}
+#root .aa-directory-layout--split .aa-directory-card{border-radius:22px!important;padding:27px!important;box-shadow:0 8px 24px rgba(11,45,72,.045)!important;}
+#root .aa-directory-layout--split .aa-directory-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(11,45,72,.09)!important;}
+#root .aa-directory-results-heading{padding:6px 0 26px;}
+#root .aa-directory-results-heading h2{font-size:clamp(29px,3vw,42px);font-weight:850;}
+#root .aa-directory-card h2{font-weight:840;letter-spacing:-.045em;}
+#root .aa-directory-open{border-radius:12px!important;}
+@media(max-width:920px){#root .aa-directory-layout--split{display:flex!important;flex-direction:column;gap:25px!important;}#root .aa-directory-layout--split .aa-directory-sidebar{position:static;width:100%;}#root .aa-directory-layout--split .aa-directory-results{width:100%;}}
+@media(max-width:620px){#root .aa-directory-layout--split .aa-directory-grid{grid-template-columns:1fr!important;}#root .aa-directory-hero{padding:55px 0!important;}}

@@ -243,3 +243,13 @@
     padding: 1rem;
   }
 }
+
+/* Premium 2026 — scoped refinement for pages/ServiceProviders.css */
+#root .service-providers-container{min-height:75vh;padding:clamp(45px,6vw,90px) var(--aaa-gutter) 100px!important;max-width:1300px;margin:auto;}
+#root .service-providers-container>h1{font-size:clamp(34px,4.5vw,58px);font-weight:850;letter-spacing:-.065em;margin-bottom:15px;}
+#root .service-providers-container>p{max-width:680px;color:#688095;font-size:15px;}
+#root .service-providers-container>.providers-grid{gap:22px;margin-block:28px;}
+#root .service-providers-container .provider-card{border:1px solid #dae8f1;border-radius:21px!important;background:#fff!important;box-shadow:0 8px 26px rgba(11,45,72,.04)!important;padding:27px!important;}
+#root .service-providers-container .provider-card h3{font-size:21px;font-weight:850;letter-spacing:-.045em;}
+#root .service-providers-container .view-profile-btn{border-radius:12px!important;background:#087ec3!important;color:#fff!important;box-shadow:none!important;}
+#root .service-providers-container button{min-height:42px;border:1px solid #d4e4ef;border-radius:12px;padding:10px 18px;background:#fff;color:#0b192b;}

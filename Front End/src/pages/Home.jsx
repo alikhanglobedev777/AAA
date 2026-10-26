@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaArrowRight, FaExternalLinkAlt, FaSearch, FaMapMarkerAlt, FaCheckCircle, FaRegCompass, FaBolt, FaWrench, FaBroom, FaPaintRoller, FaTruck, FaTools, FaHome } from 'react-icons/fa';
+import { FaArrowRight, FaExternalLinkAlt, FaSearch, FaMapMarkerAlt, FaCheckCircle, FaRegCompass, FaBolt, FaWrench, FaBroom, FaPaintRoller, FaTruck, FaTools, FaHome, FaRegStar, FaRegListAlt } from 'react-icons/fa';
 import { useBusinesses } from '../hooks/useApiQueries';
 import BusinessAvatar from '../components/BusinessAvatar';
 import './Home.css';
@@ -71,6 +71,13 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="aaa-home__promise" aria-label="Your directory experience">
+        <div className="aaa-home__shell aaa-home__promise-inner">
+          <span className="aaa-home__promise-item"><FaSearch aria-hidden="true" /> Search local services</span>
+          <span className="aaa-home__promise-item"><FaRegListAlt aria-hidden="true" /> Compare business details</span>
+          <span className="aaa-home__promise-item"><FaRegStar aria-hidden="true" /> Make an informed choice</span>
+        </div>
+      </div>
       <section className="aaa-home__section aaa-home__shell" aria-labelledby="aaa-categories-title">
         <div className="aaa-home__section-heading">
           <div><span className="aaa-home__eyebrow">Find your service</span><h2 id="aaa-categories-title">Browse by category</h2><p>Direct access to the services you need most.</p></div>
@@ -86,7 +93,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="aaa-home__section aaa-home__shell" aria-labelledby="aaa-listings-title">
+      <section className="aaa-home__section aaa-home__section--tinted" aria-labelledby="aaa-listings-title">
+        <div className="aaa-home__shell">
         <div className="aaa-home__section-heading">
           <div><span className="aaa-home__eyebrow">From the directory</span><h2 id="aaa-listings-title">Explore service businesses</h2><p>Current listings from the directory. Verification status is shown separately.</p></div>
           <Link className="aaa-home__text-link" to="/businesses">View directory <FaArrowRight aria-hidden="true"/></Link>
@@ -107,8 +115,18 @@ export default function Home() {
             </article>;
           })}
         </div>:<div className="aaa-home__state">No listings available yet. <Link to="/service-categories">Explore categories</Link></div>}
+        </div>
       </section>
-
+      <section className="aaa-home__section aaa-home__shell" aria-labelledby="aaa-process-title">
+        <div className="aaa-home__section-heading">
+          <div><span className="aaa-home__eyebrow">The simpler way</span><h2 id="aaa-process-title">Three steps. Better decisions.</h2><p>Everything you need to find the right fit, in one place.</p></div>
+        </div>
+        <div className="aaa-home__steps">
+          <article className="aaa-home__step"><span className="aaa-home__step-number">01</span><h3>Tell us what you need.</h3><p>Search for a service and filter results by the location that works for you.</p></article>
+          <article className="aaa-home__step"><span className="aaa-home__step-number">02</span><h3>Explore your options.</h3><p>Review profiles, service details, business information and verification status.</p></article>
+          <article className="aaa-home__step"><span className="aaa-home__step-number">03</span><h3>Reach out with confidence.</h3><p>Contact the business you choose and discuss the details directly.</p></article>
+        </div>
+      </section>
       <section className="aaa-home__section aaa-home__bottom">
         <div className="aaa-home__shell aaa-home__bottom-grid">
           <div><span className="aaa-home__eyebrow">For business owners</span><h2>Put your services in front of the right people.</h2><p>Create a business profile, describe your services, and manage customer inquiries from one place.</p></div>

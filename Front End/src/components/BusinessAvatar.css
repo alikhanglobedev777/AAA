@@ -168,3 +168,7 @@
     font-size: 32px;
   }
 }
+
+/* Premium 2026 — scoped refinement for components/BusinessAvatar.css */
+#root .business-avatar{flex:none;border-radius:17px!important;box-shadow:0 3px 12px rgba(13,75,118,.08);overflow:hidden;}
+#root .business-avatar__initial{background:linear-gradient(140deg,#087ec3,#0b192b)!important;color:#fff!important;letter-spacing:-.06em;font-weight:850;}
