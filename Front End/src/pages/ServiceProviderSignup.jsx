@@ -1,7 +1,7 @@
 import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
 import React, { useState, useContext, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import ServiceCategorySelector from '../components/ServiceCategorySelector';
 import { toast } from 'react-toastify';
@@ -1041,7 +1041,7 @@ const ServiceProviderSignup = () => {
         </form>
         <div className="signup-footer">
           <p>
-            Already have a business account? <a className="login-link" href="/service-provider-login">Login</a>
+            Already have a business account? <Link className="login-link" to="/service-provider/login">Login</Link>
           </p>
         </div>
       </div>
