@@ -144,6 +144,8 @@ const AppContent = () => {
               <ClientLogin />
             </GuestRoute>
           } />
+          {/* Preserve older links that used a hyphen instead of a slash. */}
+          <Route path="/service-provider-login" element={<Navigate to="/service-provider/login" replace />} />
           <Route path="/service-provider/login" element={
             <GuestRoute>
               <ServiceProviderLogin />
