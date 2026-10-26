@@ -49,3 +49,130 @@
 @media(max-width:1150px){.aaa-header-v2 .desktop-actions{display:none}.aaa-footer-v2__main{grid-template-columns:1fr}.aaa-footer-v2__columns{gap:25px}}
 @media(max-width:770px){.aaa-header-v2 .header-container{padding:11px 16px!important}.aaa-header-brandtext{font-size:17px}.aaa-header-v2 .search-section{display:none}.aaa-header-v2 .category-nav{display:none}.aaa-footer-v2__columns{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:38px}.aaa-footer-v2__main{padding:49px 0}}
 @media(max-width:400px){.aaa-footer-v2__main{width:calc(100% - 32px)}.aaa-footer-v2__bottom{padding:17px 16px}}
+
+
+/* UI 4/4 — Header layout refinement (desktop + compact laptop).
+   The earlier header constrained search with 110px action links and a 220px
+   business toggle. Give the search the remaining width instead of clipping it. */
+#root .header.aaa-header-v2 .header-container {
+  max-width: 1600px;
+  padding: 12px clamp(18px, 2.4vw, 38px) !important;
+  gap: clamp(12px, 1.25vw, 20px) !important;
+}
+#root .header.aaa-header-v2 .logo-link { gap: 9px; }
+#root .header.aaa-header-v2 .search-section {
+  display: block;
+  flex: 1 1 470px !important;
+  min-width: 0 !important;
+  max-width: 640px !important;
+  margin: 0 !important;
+}
+#root .header.aaa-header-v2 .search-form { width: 100%; min-width: 0; }
+#root .header.aaa-header-v2 .search-inputs {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr) 46px !important;
+  align-items: center;
+  min-height: 54px;
+  padding: 4px !important;
+  background: #fff !important;
+  border: 1px solid #bfd7e7 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 5px 18px rgba(8, 24, 39, .065) !important;
+}
+#root .header.aaa-header-v2 .search-inputs:focus-within {
+  border-color: #087ec3 !important;
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, .11) !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper {
+  box-sizing: border-box;
+  display: flex !important;
+  flex: none !important;
+  position: relative !important;
+  min-width: 0 !important;
+  width: 100%;
+  height: 44px !important;
+  padding: 0 10px !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper + .search-input-wrapper {
+  border-left: 1px solid #dceaf3 !important;
+  padding-left: 12px !important;
+}
+#root .header.aaa-header-v2 .search-icon {
+  position: absolute !important;
+  left: 12px !important;
+  color: #087ec3 !important;
+  font-size: 15px;
+}
+#root .header.aaa-header-v2 .search-input-wrapper .search-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 42px !important;
+  height: 42px !important;
+  padding: 0 6px 0 29px !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper .search-input:focus {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper .search-input::placeholder {
+  color: #75899a;
+  opacity: 1;
+}
+#root .header.aaa-header-v2 .search-button {
+  width: 46px !important;
+  min-width: 46px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  padding: 0 !important;
+  border-radius: 11px !important;
+  background: #081827 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+#root .header.aaa-header-v2 .search-button:hover { background: #087ec3 !important; }
+#root .header.aaa-header-v2 .header-right { gap: 12px !important; }
+#root .header.aaa-header-v2 .desktop-actions { gap: 14px !important; }
+#root .header.aaa-header-v2 .action-link {
+  display: inline-flex;
+  align-items: center;
+  width: auto !important;
+  min-width: 0;
+  white-space: nowrap;
+  font-size: 13px !important;
+  font-weight: 700;
+}
+#root .header.aaa-header-v2 .auth-buttons { gap: 8px !important; }
+#root .header.aaa-header-v2 .login-btn,
+#root .header.aaa-header-v2 .signup-btn {
+  white-space: nowrap;
+  padding: 10px 13px !important;
+}
+/* Avoid the legacy 1300px breakpoint hiding desktop search prematurely.
+   On compact laptops, use the available room for search and account actions;
+   review and complaint links remain available via site navigation. */
+@media (min-width: 1101px) and (max-width: 1300px) {
+  #root .header.aaa-header-v2 .search-section { display: block !important; }
+  #root .header.aaa-header-v2 .desktop-actions,
+  #root .header.aaa-header-v2 .auth-buttons { display: flex !important; }
+  #root .header.aaa-header-v2 .desktop-actions .action-link { display: none !important; }
+  #root .header.aaa-header-v2 .hamburger-menu { display: none !important; }
+  #root .header.aaa-header-v2 .category-links { display: flex !important; }
+}
+/* Under 1100px preserve the original drawer with its own full-width search. */
+@media (max-width: 1100px) {
+  #root .header.aaa-header-v2 .search-section { display: none !important; }
+  #root .header.aaa-header-v2 .desktop-actions,
+  #root .header.aaa-header-v2 .auth-buttons { display: none !important; }
+  #root .header.aaa-header-v2 .hamburger-menu { display: flex !important; }
+}
