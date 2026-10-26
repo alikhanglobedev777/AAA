@@ -504,7 +504,7 @@ const BusinessProfile = () => {
               position: 'fixed',
               top: '20px',
               right: '20px',
-              background: '#4CAF50',
+              background: '#128ac7',
               color: 'white',
               padding: '15px 20px',
               borderRadius: '8px',

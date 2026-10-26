@@ -1,12 +1,12 @@
 /* Help Center Page Styles */
 .help-center-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #f4f8fc 0%, #edf3f8 100%);
 }
 
 /* Help Hero Section */
 .help-hero {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 50%, #90EE90 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 50%, #aee2ff 100%);
   color: white;
   padding: 6rem 2rem;
   text-align: center;
@@ -65,14 +65,14 @@
 
 /* Help Categories Section */
 .help-categories-section h2 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 2.2rem;
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .help-categories-section > p {
-  color: #6c757d;
+  color: #65788d;
   font-size: 1.1rem;
   margin-bottom: 2rem;
   line-height: 1.6;
@@ -89,7 +89,7 @@
   padding: 1.5rem;
   border-radius: 16px;
   text-align: center;
-  border: 2px solid #e9ecef;
+  border: 2px solid #edf3f8;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -102,7 +102,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #228B22, #32CD32);
+  background: linear-gradient(90deg, #087ec3, #59c2f8);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -112,27 +112,27 @@
 }
 
 .help-category-card:hover {
-  border-color: #228B22;
+  border-color: #087ec3;
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(34, 139, 34, 0.2);
+  box-shadow: 0 12px 30px rgba(8, 126, 195, 0.2);
 }
 
 .category-icon {
   font-size: 2.5rem;
-  color: #228B22;
+  color: #087ec3;
   margin-bottom: 1rem;
   opacity: 0.9;
 }
 
 .help-category-card h3 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
   font-weight: 600;
 }
 
 .help-category-card p {
-  color: #6c757d;
+  color: #65788d;
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
@@ -148,14 +148,14 @@
 }
 
 .contact-form-container h2 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .contact-form-container > p {
-  color: #6c757d;
+  color: #65788d;
   font-size: 1rem;
   margin-bottom: 2rem;
   line-height: 1.6;
@@ -179,7 +179,7 @@
 }
 
 .form-group label {
-  color: #2c3e50;
+  color: #0b192b;
   font-weight: 600;
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
@@ -189,20 +189,20 @@
 .form-group select,
 .form-group textarea {
   padding: 0.8rem 1rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #edf3f8;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: #f8f9fa;
+  background: #f4f8fc;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #228B22;
+  border-color: #087ec3;
   background: white;
-  box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
 }
 
 .form-group textarea {
@@ -211,7 +211,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -229,7 +229,7 @@
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 8px 25px rgba(8, 126, 195, 0.3);
 }
 
 .submit-btn:disabled {
@@ -253,9 +253,9 @@
 }
 
 .success-message {
-  background: #d4edda;
+  background: #e7f6ff;
   color: #155724;
-  border: 1px solid #c3e6cb;
+  border: 1px solid #d1edfc;
 }
 
 .error-message {
@@ -284,7 +284,7 @@
 }
 
 .faq-section h2 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 2.2rem;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -292,7 +292,7 @@
 }
 
 .faq-section > p {
-  color: #6c757d;
+  color: #65788d;
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   text-align: center;
@@ -305,26 +305,26 @@
 
 .faq-item {
   padding: 2rem;
-  background: #f8f9fa;
+  background: #f4f8fc;
   border-radius: 12px;
-  border-left: 4px solid #228B22;
+  border-left: 4px solid #087ec3;
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
   transform: translateX(5px);
-  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.15);
+  box-shadow: 0 8px 25px rgba(8, 126, 195, 0.15);
 }
 
 .faq-item h3 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.3rem;
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 .faq-item p {
-  color: #495057;
+  color: #365269;
   line-height: 1.6;
   margin: 0;
 }
@@ -338,7 +338,7 @@
 }
 
 .contact-info-section h2 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 2.2rem;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -357,9 +357,9 @@
   align-items: center;
   gap: 1.5rem;
   padding: 2rem;
-  background: #f8f9fa;
+  background: #f4f8fc;
   border-radius: 16px;
-  border: 2px solid #e9ecef;
+  border: 2px solid #edf3f8;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -372,7 +372,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #228B22, #32CD32);
+  background: linear-gradient(90deg, #087ec3, #59c2f8);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -382,34 +382,34 @@
 }
 
 .contact-method:hover {
-  border-color: #228B22;
+  border-color: #087ec3;
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(34, 139, 34, 0.2);
+  box-shadow: 0 12px 30px rgba(8, 126, 195, 0.2);
 }
 
 .method-icon {
   font-size: 2.5rem;
-  color: #228B22;
+  color: #087ec3;
   opacity: 0.9;
   flex-shrink: 0;
 }
 
 .method-content h3 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .method-content p {
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1.1rem;
   margin-bottom: 0.3rem;
   font-weight: 600;
 }
 
 .method-content span {
-  color: #6c757d;
+  color: #65788d;
   font-size: 0.9rem;
   font-style: italic;
 }
@@ -595,7 +595,7 @@
 .form-group select:focus,
 .form-group textarea:focus,
 .submit-btn:focus {
-  outline: 2px solid #228B22;
+  outline: 2px solid #087ec3;
   outline-offset: 2px;
 }
 

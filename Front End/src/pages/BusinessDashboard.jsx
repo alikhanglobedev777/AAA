@@ -590,7 +590,7 @@ const BusinessDashboard = () => {
               />
               <div className="upload-hint">
                 {imageProcessing ? (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#4361ee' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#087ec3' }}>
                     <div className="spinner-small"></div>
                     Processing image...
                   </div>

@@ -16,19 +16,19 @@ const BusinessAvatar = ({
 
   // Generate a consistent color based on the business name
   const getAvatarColor = (name) => {
-    if (!name) return '#228B22';
+    if (!name) return '#087ec3';
     
     const colors = [
-      '#228B22', // Forest Green
-      '#32CD32', // Lime Green
-      '#006400', // Dark Green
-      '#90EE90', // Light Green
-      '#228B22', // Forest Green
-      '#32CD32', // Lime Green
-      '#006400', // Dark Green
-      '#90EE90', // Light Green
-      '#228B22', // Forest Green
-      '#32CD32'  // Lime Green
+      '#087ec3', // Forest Green
+      '#59c2f8', // Lime Green
+      '#06669f', // Dark Green
+      '#aee2ff', // Light Green
+      '#087ec3', // Forest Green
+      '#59c2f8', // Lime Green
+      '#06669f', // Dark Green
+      '#aee2ff', // Light Green
+      '#087ec3', // Forest Green
+      '#59c2f8'  // Lime Green
     ];
     
     // Simple hash function to get consistent color for same name

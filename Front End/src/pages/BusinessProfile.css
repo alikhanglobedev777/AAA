@@ -1,18 +1,18 @@
 /* Pakistani Green Color Scheme */
 :root {
-  --pakistani-green: #228B22;
-  --pakistani-green-light: #32CD32;
-  --pakistani-green-dark: #006400;
-  --pakistani-green-accent: #90EE90;
+  --pakistani-green: #087ec3;
+  --pakistani-green-light: #59c2f8;
+  --pakistani-green-dark: #06669f;
+  --pakistani-green-accent: #aee2ff;
   --pakistani-gold: #FFD700;
   --pakistani-gold-dark: #DAA520;
   --white: #ffffff;
-  --light-gray: #f8f9fa;
-  --dark-gray: #2c3e50;
+  --light-gray: #f4f8fc;
+  --dark-gray: #0b192b;
   --text-dark: #1a1a1a;
-  --border-light: #e1e5e9;
-  --shadow: 0 2px 8px rgba(34, 139, 34, 0.1);
-  --shadow-hover: 0 4px 16px rgba(34, 139, 34, 0.15);
+  --border-light: #dbe7f1;
+  --shadow: 0 2px 8px rgba(8, 126, 195, 0.1);
+  --shadow-hover: 0 4px 16px rgba(8, 126, 195, 0.15);
   --gradient-primary: linear-gradient(135deg, var(--pakistani-green) 0%, var(--pakistani-green-dark) 100%);
   --gradient-gold: linear-gradient(135deg, var(--pakistani-gold) 0%, var(--pakistani-gold-dark) 100%);
 }
@@ -1050,7 +1050,7 @@
 .form-group textarea:focus {
   outline: none;
   border-color: var(--pakistani-green);
-  box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
 }
 
 .form-group textarea {

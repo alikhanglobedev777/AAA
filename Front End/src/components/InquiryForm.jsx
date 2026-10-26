@@ -140,7 +140,7 @@ const InquiryForm = ({ serviceProviderId, serviceId, serviceName, onClose, onSuc
             background: 'none',
             border: 'none',
             fontSize: '2rem',
-            color: '#228B22',
+            color: '#087ec3',
             cursor: 'pointer',
             width: '40px',
             height: '40px',

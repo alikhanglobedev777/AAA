@@ -12,7 +12,7 @@
 
 /* Hero Section */
 .contact-hero {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   padding: 4rem 2rem;
   text-align: center;
   color: white;
@@ -69,7 +69,7 @@
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 8px 30px rgba(8, 126, 195, 0.1);
   border: 2px solid transparent;
   transition: all 0.3s ease;
   position: relative;
@@ -83,7 +83,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -94,14 +94,14 @@
 
 .contact-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(34, 139, 34, 0.2);
-  border-color: rgba(34, 139, 34, 0.2);
+  box-shadow: 0 20px 40px rgba(8, 126, 195, 0.2);
+  border-color: rgba(8, 126, 195, 0.2);
 }
 
 .contact-icon-page {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -109,7 +109,7 @@
   margin: 0 auto 1.5rem;
   font-size: 2rem;
   color: white;
-  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 8px 25px rgba(8, 126, 195, 0.3);
 }
 
 .contact-card h3 {
@@ -126,7 +126,7 @@
 }
 
 .contact-link {
-  color: #228B22;
+  color: #087ec3;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
@@ -134,11 +134,11 @@
 }
 
 .contact-link:hover {
-  color: #32CD32;
+  color: #59c2f8;
 }
 
 .contact-text {
-  color: #228B22;
+  color: #087ec3;
   font-weight: 600;
   font-size: 1.1rem;
 }
@@ -157,7 +157,7 @@
 .section-header h2 {
   font-size: 2.8rem;
   font-weight: 700;
-  color: #228B22;
+  color: #087ec3;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -170,7 +170,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   border-radius: 2px;
 }
 
@@ -199,8 +199,8 @@
 
 .team-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(34, 139, 34, 0.2);
-  border-color: rgba(34, 139, 34, 0.2);
+  box-shadow: 0 20px 40px rgba(8, 126, 195, 0.2);
+  border-color: rgba(8, 126, 195, 0.2);
 }
 
 .member-image {
@@ -226,7 +226,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(34, 139, 34, 0.9) 0%, rgba(50, 205, 50, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(8, 126, 195, 0.9) 0%, rgba(89, 194, 248, 0.9) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -251,14 +251,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #228B22;
+  color: #087ec3;
   text-decoration: none;
   font-size: 1.2rem;
   transition: all 0.3s ease;
 }
 
 .social-link:hover {
-  background: #228B22;
+  background: #087ec3;
   color: white;
   transform: scale(1.1);
 }
@@ -275,7 +275,7 @@
 }
 
 .member-position {
-  color: #228B22;
+  color: #087ec3;
   font-weight: 500;
   margin-bottom: 1rem;
   font-size: 1rem;
@@ -321,13 +321,13 @@
 }
 
 .expertise-tag {
-  background: linear-gradient(135deg, #E8F5E9 0%, #A5D6A7 100%);
-  color: #228B22;
+  background: linear-gradient(135deg, #edf8ff 0%, #a9daf5 100%);
+  color: #087ec3;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid rgba(34, 139, 34, 0.2);
+  border: 1px solid rgba(8, 126, 195, 0.2);
 }
 
 .member-contact {
@@ -352,30 +352,30 @@
 }
 
 .contact-btn.email {
-  background: #f8f9fa;
-  color: #228B22;
-  border: 2px solid #e9ecef;
+  background: #f4f8fc;
+  color: #087ec3;
+  border: 2px solid #edf3f8;
 }
 
 .contact-btn.email:hover {
-  background: #e9ecef;
-  border-color: #228B22;
+  background: #edf3f8;
+  border-color: #087ec3;
 }
 
 .contact-btn.phone {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   color: white;
 }
 
 .contact-btn.phone:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 4px 15px rgba(8, 126, 195, 0.3);
 }
 
 /* Stats Section */
 .stats-section {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   color: white;
 }
 

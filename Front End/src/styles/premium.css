@@ -3,7 +3,7 @@
    This file comes after the legacy utility sheets. Feature-specific refinements
    live beside their existing page or component so lazy-loaded routes remain styled.
 */
-:root {
+:root:root {
   color-scheme: light;
   --aa-forest: #10243a;
   --aa-forest-strong: #081827;

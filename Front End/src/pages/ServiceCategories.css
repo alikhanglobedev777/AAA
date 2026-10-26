@@ -1,12 +1,12 @@
 /* Service Categories Page Styles */
 .service-categories-page {
   min-height: 100vh;
-  background: #f8f9fa;
+  background: #f4f8fc;
 }
 
 /* Hero Section */
 .categories-hero {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   color: white;
   padding: 80px 20px;
   text-align: center;
@@ -75,8 +75,8 @@
 }
 
 .service-categories-search-input-wrapper:focus-within {
-  border-color: #228B22;
-  box-shadow: 0 4px 25px rgba(34, 139, 34, 0.3);
+  border-color: #087ec3;
+  box-shadow: 0 4px 25px rgba(8, 126, 195, 0.3);
   transform: translateY(-2px);
 }
 
@@ -247,7 +247,7 @@
 }
 
 .service-categories-page .view-services {
-  color: #228B22;
+  color: #087ec3;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.2s ease;
@@ -272,7 +272,7 @@
   width: 50px;
   height: 50px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #228B22;
+  border-top: 4px solid #087ec3;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 20px;
@@ -308,7 +308,7 @@
 
 /* Call to Action Section */
 .cta-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #f4f8fc 0%, #edf3f8 100%);
   padding: 80px 20px;
   text-align: center;
   border-top: 1px solid #e0e0e0;
@@ -353,24 +353,24 @@
 }
 
 .cta-btn.primary {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   color: white;
-  box-shadow: 0 4px 15px rgba(34, 139, 34, 0.4);
+  box-shadow: 0 4px 15px rgba(8, 126, 195, 0.4);
 }
 
 .cta-btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.5);
+  box-shadow: 0 8px 25px rgba(8, 126, 195, 0.5);
 }
 
 .cta-btn.secondary {
   background: white;
-  color: #228B22;
-  border: 2px solid #228B22;
+  color: #087ec3;
+  border: 2px solid #087ec3;
 }
 
 .cta-btn.secondary:hover {
-  background: #228B22;
+  background: #087ec3;
   color: white;
   transform: translateY(-2px);
 }

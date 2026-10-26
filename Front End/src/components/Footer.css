@@ -35,7 +35,7 @@
 .logo-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #006400, #228B22);
+  background: linear-gradient(135deg, #06669f, #087ec3);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@
   font-weight: 800;
   color: white;
   margin: 0;
-  background: linear-gradient(135deg, #006400, #228B22);
+  background: linear-gradient(135deg, #06669f, #087ec3);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -128,7 +128,7 @@
   left: 0;
   width: 40px;
   height: 3px;
-  background: linear-gradient(90deg, #006400, #228B22);
+  background: linear-gradient(90deg, #06669f, #087ec3);
   border-radius: 2px;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .footer-links a:hover {
-  color: #006400;
+  color: #06669f;
   transform: translateX(5px);
 }
 
@@ -174,7 +174,7 @@
   left: -15px;
   opacity: 0;
   transition: all 0.3s ease;
-  color: #006400;
+  color: #06669f;
 }
 
 .footer-links a:hover::before {
@@ -196,7 +196,7 @@
 }
 
 .contact-icon {
-  color: #006400;
+  color: #06669f;
   font-size: 18px;
   margin-top: 2px;
   flex-shrink: 0;
@@ -223,7 +223,7 @@
 
 /* Newsletter Section */
 .footer-newsletter {
-  background: linear-gradient(135deg, #006400 0%, #228B22 100%);
+  background: linear-gradient(135deg, #06669f 0%, #087ec3 100%);
   padding: 3rem 0;
 }
 
@@ -279,7 +279,7 @@
 
 .newsletter-btn {
   background: #FFD700;
-  color: #006400;
+  color: #06669f;
   border: none;
   padding: 1rem 1.5rem;
   border-radius: 8px;
@@ -328,7 +328,7 @@
 }
 
 .trust-icon {
-  color: #006400;
+  color: #06669f;
   font-size: 24px;
   flex-shrink: 0;
 }
@@ -389,7 +389,7 @@
 }
 
 .footer-bottom-links a:hover {
-  color: #006400;
+  color: #06669f;
 }
 
 .separator {
@@ -535,7 +535,7 @@
 .newsletter-input:focus,
 .newsletter-btn:focus,
 .social-link:focus {
-  outline: 2px solid #006400;
+  outline: 2px solid #06669f;
   outline-offset: 2px;
 }
 

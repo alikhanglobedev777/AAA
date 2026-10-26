@@ -43,7 +43,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: #e2e8f0;
+  background: #dbeaf4;
   transform: translateY(-50%);
   z-index: 1;
 }
@@ -65,7 +65,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #e2e8f0;
+  background: #dbeaf4;
   color: #718096;
   display: flex;
   align-items: center;
@@ -124,7 +124,7 @@
 .form-group select {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -158,7 +158,7 @@
 }
 
 .btn-prev {
-  background: #e2e8f0;
+  background: #dbeaf4;
   color: #4a5568;
 }
 
@@ -263,7 +263,7 @@
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
 }
 
 .change-image-btn {
@@ -401,7 +401,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #dbeaf4;
 }
 
 .day-row:last-child {
@@ -435,7 +435,7 @@
 
 .time-input {
   padding: 0.5rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 4px;
   font-size: 0.875rem;
   background: white;
@@ -458,7 +458,7 @@
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
 }
 
 .service-header {
@@ -501,7 +501,7 @@
 .service-input,
 .service-textarea {
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 4px;
   font-size: 0.875rem;
   background: white;
@@ -523,7 +523,7 @@
 
 .pricing-type-select {
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 4px;
   font-size: 0.875rem;
   background: white;
@@ -539,7 +539,7 @@
 
 .price-input {
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 4px;
   font-size: 0.875rem;
   background: white;
@@ -554,7 +554,7 @@
 
 .unit-select {
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 4px;
   font-size: 0.875rem;
   background: white;
@@ -599,7 +599,7 @@
 .service-provider-signup :is(input, textarea, select) { border:1px solid #cbdcd5; border-radius:11px; }
 .service-provider-signup :is(input, textarea, select):focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #d6f2e8; }
 .service-provider-signup .step.active .step-number, .service-provider-signup .step.completed .step-number { background:var(--aa-primary); color:#fff; }
-.service-provider-signup .btn-submit { background:var(--aa-primary); border-radius:11px; box-shadow:0 6px 15px rgba(8,127,105,.14); }
+.service-provider-signup .btn-submit { background:var(--aa-primary); border-radius:11px; box-shadow:0 6px 15px rgba(8, 126, 195,.14); }
 .service-provider-signup .btn-submit:hover { background:var(--aa-primary-hover); }
 .service-provider-signup :is(.additional-service-card, .upload-placeholder) { border-radius:15px; border-color:var(--aa-border); }
 

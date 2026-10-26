@@ -16,9 +16,9 @@ const ServicesSection = () => {
             name: 'Plumbing', 
             icon: 'fas fa-sink',
             image: 'images/plumbing.jpg',
-            bgColor: '#E8F5E9',
-            gradient: 'linear-gradient(135deg, #E8F5E9 0%, #A5D6A7 100%)',
-            iconColor: '#228B22',
+            bgColor: '#edf8ff',
+            gradient: 'linear-gradient(135deg, #edf8ff 0%, #a9daf5 100%)',
+            iconColor: '#087ec3',
             link: '/services?category=plumbing'
         },
         { 

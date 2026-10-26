@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: linear-gradient(135deg, #f8fafc 0%, #e8f5e8 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #eaf7ff 100%);
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -390,7 +390,7 @@
   
   .message.received .message-content {
     background: #334155;
-    color: #e2e8f0;
+    color: #dbeaf4;
     border-color: rgba(34, 197, 94, 0.2);
   }
   
@@ -405,10 +405,21 @@
   }
   
   .input-container input {
-    color: #e2e8f0;
+    color: #dbeaf4;
   }
   
   .input-container input::placeholder {
     color: #64748b;
   }
 }
+
+/* Premium 2026 — scoped workspace refinement for components/ChatWindow.css */
+#root .chat-window{background:#fff!important;border:1px solid #dae8f2!important;border-radius:22px!important;box-shadow:0 8px 27px rgba(11,45,72,.045)!important;overflow:hidden;min-width:0;}
+#root .chat-window .chat-header{background:#fff!important;border-bottom:1px solid #e1ecf4!important;padding:18px 23px;}
+#root .chat-window .chat-messages{background:#f5f9fc!important;padding:clamp(15px,2vw,26px)!important;}
+#root .chat-window :is(.message-bubble,.message-content,.chat-bubble){border-radius:17px!important;max-width:min(80%,540px);}
+#root .chat-window :is(.message.sent,.message.own,.outgoing-message) :is(.message-bubble,.message-content,.chat-bubble){background:#087ec3!important;color:#fff!important;}
+#root .chat-window :is(.message.received,.incoming-message) :is(.message-bubble,.message-content,.chat-bubble){background:#fff!important;color:#0b192b!important;border:1px solid #dbe9f2;}
+#root .chat-window :is(.chat-input-container,.chat-input-area,.message-input-container){background:#fff!important;padding:16px!important;border-top:1px solid #e2edf4;}
+#root .chat-window :is(input,textarea){border-radius:14px!important;}
+#root .chat-window :is(.send-btn,.send-button){background:#087ec3!important;color:#fff!important;border-radius:13px!important;}

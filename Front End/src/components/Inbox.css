@@ -27,7 +27,7 @@
 .inbox-header h2 {
   margin: 0 0 15px 0;
   font-size: 1.5rem;
-  color: #2c3e50;
+  color: #0b192b;
 }
 
 .search-bar {
@@ -106,7 +106,7 @@
 .inquiry-header h4 {
   margin: 0;
   font-size: 0.95rem;
-  color: #2c3e50;
+  color: #0b192b;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -181,7 +181,7 @@
 }
 
 .status-badge.replied {
-  background-color: #e8f5e9;
+  background-color: #edf8ff;
   color: #28a745;
 }
 
@@ -209,7 +209,7 @@
 
 .empty-state h3 {
   margin: 10px 0 5px;
-  color: #2c3e50;
+  color: #0b192b;
 }
 
 .empty-state p {
@@ -244,7 +244,7 @@
 
 .detail-header h2 {
   margin: 0 0 5px 0;
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1.5rem;
 }
 
@@ -268,7 +268,7 @@
 .inquiry-content h4 {
   margin-top: 0;
   margin-bottom: 10px;
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1.1rem;
 }
 
@@ -289,7 +289,7 @@
 
 .reply-header h4 {
   margin: 0;
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1rem;
 }
 
@@ -308,7 +308,7 @@
 .reply-form h4 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1.1rem;
 }
 
@@ -451,3 +451,11 @@
     justify-content: center;
   }
 }
+
+/* Premium 2026 — scoped workspace refinement for components/Inbox.css */
+#root .inbox-container,#root .inbox-page{background:#f4f8fc!important;min-height:100vh;padding:clamp(24px,4vw,55px) var(--aaa-gutter)!important;}
+#root :is(.inbox-container,.inbox-page) :is(.inbox-sidebar,.inbox-content,.conversation-list,.chat-area,.inbox-header){background:#fff!important;border:1px solid #dae7f1!important;border-radius:22px!important;box-shadow:0 8px 28px rgba(11,45,72,.045)!important;}
+#root :is(.inbox-container,.inbox-page) :is(.conversation-item,.message-item){border-radius:12px!important;}
+#root :is(.inbox-container,.inbox-page) :is(.conversation-item.active,.message-item.active){background:#e7f6ff!important;border-color:#b5e2fa!important;}
+#root :is(.inbox-container,.inbox-page) :is(h1,h2,h3){letter-spacing:-.05em;font-weight:850;}
+#root :is(.inbox-container,.inbox-page) :is(button,input,textarea){border-radius:12px!important;}

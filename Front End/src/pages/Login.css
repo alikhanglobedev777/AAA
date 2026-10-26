@@ -1,7 +1,7 @@
 /* Login Container */
 .login-container {
   /* min-height: 100vh; */
-  background: linear-gradient(135deg, #01411c 0%, #ffffff 50%, #01411c 100%);
+  background: linear-gradient(135deg, #0b192b 0%, #ffffff 50%, #0b192b 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +28,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #01411c 0%, #ffffff 50%, #01411c 100%);
+  background: linear-gradient(90deg, #0b192b 0%, #ffffff 50%, #0b192b 100%);
 }
 
 /* Login Header */
@@ -38,11 +38,11 @@
 }
 
 .login-header h2 {
-  color: #01411c;
+  color: #0b192b;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, #01411c, #1a5f2a);
+  background: linear-gradient(135deg, #0b192b, #155b86);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -70,7 +70,7 @@
 }
 
 .input-icon {
-  color: #01411c;
+  color: #0b192b;
   font-size: 1rem;
 }
 
@@ -86,9 +86,9 @@
 
 .form-input:focus {
   outline: none;
-  border-color: #01411c;
+  border-color: #0b192b;
   background: white;
-  box-shadow: 0 0 0 3px rgba(1, 65, 28, 0.1);
+  box-shadow: 0 0 0 3px rgba(11, 25, 43, 0.1);
 }
 
 .form-input:disabled {
@@ -133,8 +133,8 @@
 }
 
 .checkbox-container input[type="checkbox"]:checked + .checkmark {
-  background: #01411c;
-  border-color: #01411c;
+  background: #0b192b;
+  border-color: #0b192b;
 }
 
 .checkbox-container input[type="checkbox"]:checked + .checkmark::after {
@@ -149,7 +149,7 @@
 }
 
 .forgot-password-link {
-  color: #01411c;
+  color: #0b192b;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -157,7 +157,7 @@
 }
 
 .forgot-password-link:hover {
-  color: #1a5f2a;
+  color: #155b86;
   text-decoration: underline;
 }
 
@@ -165,7 +165,7 @@
 .login-button {
   width: 100%;
   padding: 18px 30px;
-  background: linear-gradient(135deg, #01411c, #1a5f2a);
+  background: linear-gradient(135deg, #0b192b, #155b86);
   color: white;
   border: none;
   border-radius: 12px;
@@ -178,7 +178,7 @@
 
 .login-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(1, 65, 28, 0.4);
+  box-shadow: 0 8px 25px rgba(11, 25, 43, 0.4);
 }
 
 .login-button:disabled {
@@ -200,14 +200,14 @@
 }
 
 .signup-link-text {
-  color: #01411c;
+  color: #0b192b;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .signup-link-text:hover {
-  color: #1a5f2a;
+  color: #155b86;
   text-decoration: underline;
 }
 
@@ -239,13 +239,13 @@
 }
 
 .switch-login-btn.business:hover {
-  border-color: #01411c;
-  color: #01411c;
+  border-color: #0b192b;
+  color: #0b192b;
 }
 
 .switch-login-btn.provider:hover {
-  border-color: #1a5f2a;
-  color: #1a5f2a;
+  border-color: #155b86;
+  color: #155b86;
 }
 
 .switch-icon {
@@ -272,7 +272,7 @@
 
 .redirect-btn {
   display: inline-block;
-  background: #01411c;
+  background: #0b192b;
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -284,9 +284,9 @@
 }
 
 .redirect-btn:hover {
-  background: #1a5f2a;
+  background: #155b86;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 65, 28, 0.3);
+  box-shadow: 0 4px 12px rgba(11, 25, 43, 0.3);
 }
 
 /* Password Input Wrapper */
@@ -455,7 +455,7 @@
 
 /* Hover effects for inputs */
 .form-input:hover {
-  border-color: #1a5f2a;
+  border-color: #155b86;
   background: white;
 }
 

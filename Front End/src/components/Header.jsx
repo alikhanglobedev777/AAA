@@ -343,10 +343,10 @@ const Header = () => {
                                 cursor: 'pointer',
                                 borderBottom: '1px solid #f0f0f0'
                               }}
-                              onMouseEnter={(e) => { e.currentTarget.style.background = '#f8f9fa'; }}
+                              onMouseEnter={(e) => { e.currentTarget.style.background = '#f4f8fc'; }}
                               onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                             >
-                              <Icon style={{ color: '#006400' }} />
+                              <Icon style={{ color: '#06669f' }} />
                               <span style={{ color: '#333', fontSize: 14, fontWeight: 500 }}>{item.label}</span>
                             </div>
                           );
@@ -401,10 +401,10 @@ const Header = () => {
                               cursor: 'pointer',
                               borderBottom: '1px solid #f0f0f0'
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.background = '#f8f9fa'; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = '#f4f8fc'; }}
                             onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                           >
-                            <FaMapMarkerAlt style={{ color: '#006400' }} />
+                            <FaMapMarkerAlt style={{ color: '#06669f' }} />
                             <span style={{ color: '#333', fontSize: 14, fontWeight: 500 }}>{c}</span>
                           </div>
                         ))
@@ -595,10 +595,10 @@ const Header = () => {
                                 cursor: 'pointer',
                                 borderBottom: '1px solid #f0f0f0'
                               }}
-                              onMouseEnter={(e) => { e.currentTarget.style.background = '#f8f9fa'; }}
+                              onMouseEnter={(e) => { e.currentTarget.style.background = '#f4f8fc'; }}
                               onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                             >
-                              <Icon style={{ color: '#006400' }} />
+                              <Icon style={{ color: '#06669f' }} />
                               <span style={{ color: '#333', fontSize: 16, fontWeight: 500 }}>{item.label}</span>
                             </div>
                           );
@@ -653,10 +653,10 @@ const Header = () => {
                               cursor: 'pointer',
                               borderBottom: '1px solid #f0f0f0'
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.background = '#f8f9fa'; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = '#f4f8fc'; }}
                             onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                           >
-                            <FaMapMarkerAlt style={{ color: '#006400' }} />
+                            <FaMapMarkerAlt style={{ color: '#06669f' }} />
                             <span style={{ color: '#333', fontSize: 16, fontWeight: 500 }}>{c}</span>
                           </div>
                         ))

@@ -3,7 +3,7 @@ import './Loading.css';
 
 const Loading = () => {
   return (
-    <div className="loading-container">
+    <div className="loading-container" role="status" aria-live="polite">
       <div className="loading-content">
         <div className="loading-spinner">
           <div className="spinner-ring"></div>
@@ -11,8 +11,8 @@ const Loading = () => {
           <div className="spinner-ring"></div>
         </div>
         <div className="loading-text">
-          <h3>Loading Amazing Services...</h3>
-          <p>Please wait while we prepare everything for you</p>
+          <h3>Getting things ready</h3>
+          <p>Preparing your experience</p>
         </div>
         <div className="loading-dots">
           <span className="dot"></span>

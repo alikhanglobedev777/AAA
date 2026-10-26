@@ -108,7 +108,7 @@
 .form-group textarea:focus {
   border-color: var(--primary);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.15);
 }
 
 .form-group textarea {
@@ -266,3 +266,12 @@
     height: 120px;
   }
 }
+
+/* Premium 2026 — scoped workspace refinement for pages/BusinessProfileEdit.css */
+#root .business-profile-edit{min-height:100vh;background:radial-gradient(circle at 92% 0%,#d9f2ff,transparent 30%),#f4f8fc!important;padding:clamp(30px,4vw,70px) var(--aaa-gutter) 85px!important;}
+#root .business-profile-edit .edit-header{max-width:1080px;margin-inline:auto;padding-bottom:26px;border-bottom:1px solid #d8e8f2;}
+#root .business-profile-edit :is(.edit-header h1,.edit-header h2){font-size:clamp(29px,3vw,44px);font-weight:850;letter-spacing:-.065em;}
+#root .business-profile-edit .edit-form{max-width:1080px;margin:28px auto;background:#fff!important;border:1px solid #dce8f2;border-radius:26px!important;padding:clamp(20px,4vw,45px)!important;box-shadow:0 22px 65px rgba(11,45,72,.075)!important;}
+#root .business-profile-edit .form-section{background:#fff!important;border:1px solid #e0edf5!important;border-radius:19px!important;padding:clamp(18px,3vw,30px)!important;margin-bottom:24px;}
+#root .business-profile-edit :is(.image-upload-container,.upload-placeholder){background:#f2faff!important;border:2px dashed #addbf5!important;border-radius:17px!important;}
+#root .business-profile-edit :is(.back-button,.save-button,.cancel-button){border-radius:12px!important;min-height:44px;}

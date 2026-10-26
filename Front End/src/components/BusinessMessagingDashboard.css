@@ -1,7 +1,7 @@
 /* WhatsApp-style Business Messaging Dashboard */
 .messaging-dashboard {
   height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e8f5e8 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #eaf7ff 100%);
   overflow: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
@@ -593,7 +593,7 @@
   }
   
   .conversation-header h4 {
-    color: #e2e8f0;
+    color: #dbeaf4;
   }
   
   .last-message {
@@ -601,10 +601,22 @@
   }
   
   .no-chat-selected h3 {
-    color: #e2e8f0;
+    color: #dbeaf4;
   }
   
   .no-chat-selected p {
     color: #9ca3af;
   }
 }
+
+/* Premium 2026 — scoped workspace refinement for components/BusinessMessagingDashboard.css */
+#root .messaging-dashboard{background:#f4f8fc!important;min-height:600px;min-width:0;}
+#root .messaging-dashboard .dashboard-content{background:#f4f8fc!important;display:grid;grid-template-columns:minmax(255px,.85fr) minmax(0,1.7fr);gap:19px;padding:0!important;}
+#root .messaging-dashboard :is(.conversations-panel,.chat-panel){background:#fff!important;border:1px solid #dae8f2!important;border-radius:22px!important;box-shadow:0 8px 29px rgba(11,45,72,.05)!important;min-width:0;overflow:hidden;}
+#root .messaging-dashboard .conversations-header{padding:22px!important;border-bottom:1px solid #e5eef5!important;}
+#root .messaging-dashboard :is(.conversation-item,.conversation-card){padding:15px!important;border-bottom:1px solid #eef2f6;transition:background .16s;}
+#root .messaging-dashboard :is(.conversation-item,.conversation-card):hover{background:#eef8fe!important;}
+#root .messaging-dashboard :is(.conversation-item.active,.conversation-card.active){background:#e4f6ff!important;border-left:3px solid #087ec3;}
+#root .messaging-dashboard :is(.bm-search-wrap,.search-input-wrapper){border-radius:13px!important;}
+#root .messaging-dashboard .no-chat-selected{color:#688196!important;}
+@media(max-width:820px){#root .messaging-dashboard .dashboard-content{grid-template-columns:1fr;}}

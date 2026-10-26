@@ -1,7 +1,7 @@
 /* Common styles for authentication pages - Professional AAA Services Style */
 body .auth-container {
   min-height: 100vh !important;
-  background: linear-gradient(135deg, #01411c 0%, #ffffff 50%, #01411c 100%) !important;
+  background: linear-gradient(135deg, #0b192b 0%, #ffffff 50%, #0b192b 100%) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -27,7 +27,7 @@ body .auth-form {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #01411c 0%, #ffffff 50%, #01411c 100%);
+  background: linear-gradient(90deg, #0b192b 0%, #ffffff 50%, #0b192b 100%);
 }
 
 /* Auth Header */
@@ -37,11 +37,11 @@ body .auth-header {
 }
 
 body .auth-header h2 {
-  color: #01411c !important;
+  color: #0b192b !important;
   font-size: 2.5rem !important;
   font-weight: 700 !important;
   margin-bottom: 10px !important;
-  background: linear-gradient(135deg, #01411c, #1a5f2a) !important;
+  background: linear-gradient(135deg, #0b192b, #155b86) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -59,7 +59,7 @@ body .back-button {
   position: static !important;
   background: none !important;
   border: none !important;
-  color: #01411c !important;
+  color: #0b192b !important;
   cursor: pointer !important;
   padding: 8px 12px !important;
   border-radius: 8px !important;
@@ -76,8 +76,8 @@ body .back-button {
 }
 
 body .back-button:hover {
-  background-color: rgba(1, 65, 28, 0.1) !important;
-  color: #1a5f2a !important;
+  background-color: rgba(11, 25, 43, 0.1) !important;
+  color: #155b86 !important;
 }
 
 /* Form Groups */
@@ -96,7 +96,7 @@ body .form-group label {
 }
 
 body .input-icon {
-  color: #01411c !important;
+  color: #0b192b !important;
   font-size: 1rem !important;
 }
 
@@ -112,9 +112,9 @@ body .form-input {
 
 .form-input:focus {
   outline: none;
-  border-color: #01411c;
+  border-color: #0b192b;
   background: white;
-  box-shadow: 0 0 0 3px rgba(1, 65, 28, 0.1);
+  box-shadow: 0 0 0 3px rgba(11, 25, 43, 0.1);
 }
 
 .form-input:disabled {
@@ -142,7 +142,7 @@ body .form-input {
   right: 15px;
   background: none;
   border: none;
-  color: #01411c;
+  color: #0b192b;
   cursor: pointer;
   padding: 8px;
   border-radius: 6px;
@@ -151,8 +151,8 @@ body .form-input {
 }
 
 .password-toggle:hover {
-  background-color: rgba(1, 65, 28, 0.1);
-  color: #1a5f2a;
+  background-color: rgba(11, 25, 43, 0.1);
+  color: #155b86;
 }
 
 .password-hint {
@@ -166,7 +166,7 @@ body .form-input {
 body .auth-button {
   width: 100% !important;
   padding: 18px 30px !important;
-  background: linear-gradient(135deg, #01411c, #1a5f2a) !important;
+  background: linear-gradient(135deg, #0b192b, #155b86) !important;
   color: white !important;
   border: none !important;
   border-radius: 12px !important;
@@ -179,7 +179,7 @@ body .auth-button {
 
 .auth-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(1, 65, 28, 0.4);
+  box-shadow: 0 8px 25px rgba(11, 25, 43, 0.4);
 }
 
 .auth-button:disabled {
@@ -203,14 +203,14 @@ body .auth-button {
 }
 
 .auth-link {
-  color: #01411c;
+  color: #0b192b;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .auth-link:hover {
-  color: #1a5f2a;
+  color: #155b86;
   text-decoration: underline;
 }
 
@@ -228,7 +228,7 @@ body .auth-button {
 
 .message.success {
   background: #f0f9ff;
-  color: #01411c;
+  color: #0b192b;
   border: 1px solid #bae6fd;
 }
 
@@ -240,7 +240,7 @@ body .auth-button {
 
 .message.info {
   background: #f0f9ff;
-  color: #01411c;
+  color: #0b192b;
   border: 1px solid #bae6fd;
 }
 
@@ -295,7 +295,7 @@ body .auth-button {
 .loading-state h2,
 .success-state h2 {
   margin-bottom: 15px;
-  color: #01411c;
+  color: #0b192b;
   font-size: 2rem;
   font-weight: 600;
 }
@@ -365,7 +365,7 @@ body .auth-button {
     justify-content: center;
     width: 100%;
     padding: 12px;
-    background: rgba(1, 65, 28, 0.1);
+    background: rgba(11, 25, 43, 0.1);
     border-radius: 8px;
   }
   

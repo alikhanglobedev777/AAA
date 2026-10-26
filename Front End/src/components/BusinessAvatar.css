@@ -1,10 +1,10 @@
 /* Pakistani Green Color Variables */
 :root {
-  --pakistani-green-primary: #228B22;
-  --pakistani-green-light: #32CD32;
-  --pakistani-green-dark: #006400;
-  --pakistani-green-accent: #90EE90;
-  --pakistani-green-glow: rgba(34, 139, 34, 0.25);
+  --pakistani-green-primary: #087ec3;
+  --pakistani-green-light: #59c2f8;
+  --pakistani-green-dark: #06669f;
+  --pakistani-green-accent: #aee2ff;
+  --pakistani-green-glow: rgba(8, 126, 195, 0.25);
 }
 
 .business-avatar {
@@ -51,12 +51,12 @@
   text-align: center;
   font-family: 'Arial', sans-serif;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 50%, #90EE90 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 50%, #aee2ff 100%);
   position: relative;
   overflow: hidden;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
-  border: 3px solid #228B22;
+  box-shadow: 0 2px 8px rgba(8, 126, 195, 0.3);
+  border: 3px solid #087ec3;
 }
 
 /* Add a subtle inner glow effect */
@@ -79,7 +79,7 @@
 .business-avatar--fallback:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px var(--pakistani-green-glow);
-  background: linear-gradient(135deg, #32CD32 0%, #228B22 50%, #006400 100%);
+  background: linear-gradient(135deg, #59c2f8 0%, #087ec3 50%, #06669f 100%);
 }
 
 /* Add a subtle border glow on hover */
@@ -90,7 +90,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #228B22, #32CD32, #90EE90, #228B22);
+  background: linear-gradient(45deg, #087ec3, #59c2f8, #aee2ff, #087ec3);
   border-radius: 50%;
   z-index: -1;
   animation: borderGlow 2s ease-in-out infinite alternate;

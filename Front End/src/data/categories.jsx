@@ -31,9 +31,9 @@ const categories = [
         name: 'Painting', 
         icon: 'fas fa-paint-roller',
         image: 'images/painting.jpg',
-        bgColor: '#E8F5E9',
-        gradient: 'linear-gradient(135deg, #E8F5E9 0%, #A5D6A7 100%)',
-        iconColor: '#388E3C'
+        bgColor: '#edf8ff',
+        gradient: 'linear-gradient(135deg, #edf8ff 0%, #a9daf5 100%)',
+        iconColor: '#127dac'
     },
     { 
         id: 5, 

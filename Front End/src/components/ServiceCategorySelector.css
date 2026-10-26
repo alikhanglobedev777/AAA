@@ -36,16 +36,16 @@
 }
 
 .selector-input:hover {
-  border-color: #4CAF50;
+  border-color: #128ac7;
 }
 
 .selector-input.open {
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  border-color: #128ac7;
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
 }
 
 .selector-input.disabled {
-  background: #f8f9fa;
+  background: #f4f8fc;
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -62,7 +62,7 @@
 }
 
 .selector-input i {
-  color: #4CAF50;
+  color: #128ac7;
   transition: transform 0.2s ease;
 }
 
@@ -77,10 +77,10 @@
   left: 0;
   right: 0;
   background: #fff;
-  border: 2px solid #4CAF50;
+  border: 2px solid #128ac7;
   border-top: none;
   border-radius: 0 0 8px 8px;
-  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+  box-shadow: 0 8px 25px rgba(8, 126, 195, 0.15);
   z-index: 1000;
   /* max-height: 400px; */
   overflow: hidden;
@@ -91,7 +91,7 @@
   position: relative;
   padding: 16px;
   border-bottom: 1px solid #e1e8ed;
-  background: #f1f8e9;
+  background: #f4faff;
 }
 
 .search-input {
@@ -105,8 +105,8 @@
 }
 
 .search-input:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+  border-color: #128ac7;
+  box-shadow: 0 0 0 2px rgba(8, 126, 195, 0.1);
 }
 
 .search-icon {
@@ -114,7 +114,7 @@
   left: 24px;
   top: 50%;
   transform: translateY(-50%);
-  color: #4CAF50;
+  color: #128ac7;
   font-size: 14px;
 }
 
@@ -136,12 +136,12 @@
 }
 
 .category-option:hover {
-  background-color: #f1f8e9;
+  background-color: #f4faff;
 }
 
 .category-option.selected {
-  background-color: #e8f5e9;
-  border-left: 3px solid #4CAF50;
+  background-color: #edf8ff;
+  border-left: 3px solid #128ac7;
 }
 
 .category-info {
@@ -153,7 +153,7 @@
 .category-icon {
   width: 20px;
   margin-right: 12px;
-  color: #4CAF50;
+  color: #128ac7;
   font-size: 16px;
 }
 
@@ -177,8 +177,8 @@
 
 .business-count {
   font-size: 11px;
-  color: #4CAF50;
-  background: #e8f5e9;
+  color: #128ac7;
+  background: #edf8ff;
   padding: 2px 6px;
   border-radius: 10px;
   white-space: nowrap;
@@ -225,11 +225,11 @@
 }
 
 .categories-list::-webkit-scrollbar-track {
-  background: #f1f8e9;
+  background: #f4faff;
 }
 
 .categories-list::-webkit-scrollbar-thumb {
-  background: #4CAF50;
+  background: #128ac7;
   border-radius: 3px;
 }
 
@@ -281,22 +281,22 @@
 
 /* Focus states for accessibility */
 .selector-input:focus-within {
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  border-color: #128ac7;
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
 }
 
 .search-input:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+  border-color: #128ac7;
+  box-shadow: 0 0 0 2px rgba(8, 126, 195, 0.1);
 }
 
 /* Hover effects */
 .category-option:hover .category-name {
-  color: #4CAF50;
+  color: #128ac7;
 }
 
 .category-option:hover .category-icon {
-  color: #4CAF50;
+  color: #128ac7;
 }
 
 /* Premium 2026 — scoped refinement for components/ServiceCategorySelector.css */

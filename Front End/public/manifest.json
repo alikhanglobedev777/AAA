@@ -1,7 +1,7 @@
 {
   "short_name": "AAA",
-  "name": "Auto Assist App",
-  "description": "Your one-stop solution for automotive services",
+  "name": "AAA Services Directory",
+  "description": "Browse local service businesses and compare your options",
   "icons": [
     {
       "src": "favicon_darkbg.png",
@@ -24,7 +24,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#3498db",
-  "background_color": "#ffffff",
+  "theme_color": "#081827",
+  "background_color": "#f4f8fc",
   "orientation": "portrait-primary"
 }

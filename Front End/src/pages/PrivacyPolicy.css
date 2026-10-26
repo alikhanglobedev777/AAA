@@ -1,12 +1,12 @@
 /* Privacy Policy Page Styles */
 .privacy-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #f4f8fc 0%, #edf3f8 100%);
 }
 
 /* Privacy Hero Section */
 .privacy-hero {
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 50%, #90EE90 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 50%, #aee2ff 100%);
   color: white;
   padding: 6rem 2rem;
   text-align: center;
@@ -93,7 +93,7 @@
 }
 
 .privacy-navigation h3 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -113,7 +113,7 @@
 .privacy-navigation a {
   display: block;
   padding: 0.8rem 1rem;
-  color: #2c3e50;
+  color: #0b192b;
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -123,7 +123,7 @@
 
 .privacy-navigation a:hover {
   background: #f0f8f0;
-  color: #228B22;
+  color: #087ec3;
   transform: translateX(5px);
 }
 
@@ -145,30 +145,30 @@
 }
 
 .privacy-section h2 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
-  border-bottom: 3px solid #e9ecef;
+  border-bottom: 3px solid #edf3f8;
   padding-bottom: 0.8rem;
 }
 
 .privacy-section h3 {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.3rem;
   margin: 1.5rem 0 1rem 0;
   font-weight: 600;
 }
 
 .privacy-section p {
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1rem;
 }
 
 .privacy-section ul {
-  color: #2c3e50;
+  color: #0b192b;
   font-size: 1rem;
   line-height: 1.7;
   margin: 1rem 0;
@@ -180,7 +180,7 @@
 }
 
 .privacy-section strong {
-  color: #228B22;
+  color: #087ec3;
   font-weight: 600;
 }
 
@@ -196,20 +196,20 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f8f9fa;
+  background: #f4f8fc;
   border-radius: 8px;
-  border-left: 4px solid #228B22;
+  border-left: 4px solid #087ec3;
 }
 
 .contact-item i {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.2rem;
   width: 20px;
   text-align: center;
 }
 
 .contact-item span {
-  color: #2c3e50;
+  color: #0b192b;
   font-weight: 500;
 }
 
@@ -220,12 +220,12 @@
   border-radius: 16px;
   text-align: center;
   margin-top: 3rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #edf3f8;
 }
 
 .privacy-footer p {
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: #0b192b;
 }
 
 .privacy-footer p:last-child {
@@ -233,7 +233,7 @@
 }
 
 .privacy-footer strong {
-  color: #228B22;
+  color: #087ec3;
   font-size: 1.1rem;
 }
 
@@ -353,7 +353,7 @@ html {
 
 /* Focus states for accessibility */
 .privacy-navigation a:focus {
-  outline: 2px solid #228B22;
+  outline: 2px solid #087ec3;
   outline-offset: 2px;
 }
 

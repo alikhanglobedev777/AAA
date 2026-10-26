@@ -25,8 +25,8 @@ const ServiceCategories = () => {
       name: 'Plumbing Services',
       description: 'Professional plumbing installation, repair, and maintenance services',
       icon: FaSink,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E9 0%, #A5D6A7 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #edf8ff 0%, #a9daf5 100%)',
       businessCount: 0
     },
     {
@@ -43,8 +43,8 @@ const ServiceCategories = () => {
       name: 'Cleaning Services',
       description: 'Professional cleaning for homes, offices, and commercial spaces',
       icon: FaBroom,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -52,8 +52,8 @@ const ServiceCategories = () => {
       name: 'Painting Services',
       description: 'Interior and exterior painting, wall treatments, and finishes',
       icon: FaPaintBrush,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #F1F8E9 0%, #AED581 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #f4faff 0%, #83cff5 100%)',
       businessCount: 0
     },
     {
@@ -61,8 +61,8 @@ const ServiceCategories = () => {
       name: 'Gardening & Landscaping',
       description: 'Landscape design, garden maintenance, and outdoor beautification',
       icon: FaSeedling,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #F1F8E9 0%, #AED581 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #f4faff 0%, #83cff5 100%)',
       businessCount: 0
     },
     {
@@ -70,8 +70,8 @@ const ServiceCategories = () => {
       name: 'Repair & Maintenance',
       description: 'General repair services for homes and appliances',
       icon: FaWrench,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -79,8 +79,8 @@ const ServiceCategories = () => {
       name: 'Transport Services',
       description: 'Moving, delivery, and transportation solutions',
       icon: FaTruck,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -88,8 +88,8 @@ const ServiceCategories = () => {
       name: 'Security Services',
       description: 'Security systems, guards, and safety solutions',
       icon: FaShieldAlt,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -97,8 +97,8 @@ const ServiceCategories = () => {
       name: 'Education & Training',
       description: 'Tutoring, courses, and professional development',
       icon: FaGraduationCap,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -106,8 +106,8 @@ const ServiceCategories = () => {
       name: 'Food & Catering',
       description: 'Restaurant services, catering, and food delivery',
       icon: FaUtensils,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -115,8 +115,8 @@ const ServiceCategories = () => {
       name: 'Beauty & Personal Care',
       description: 'Salon services, spa treatments, and personal grooming',
       icon: GiLaurelCrown,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -124,8 +124,8 @@ const ServiceCategories = () => {
       name: 'Health & Medical',
       description: 'Healthcare services, fitness training, and wellness',
       icon: FaHeart,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -133,8 +133,8 @@ const ServiceCategories = () => {
       name: 'Construction Services',
       description: 'Building construction, renovation, and project management',
       icon: FaHammer,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -142,8 +142,8 @@ const ServiceCategories = () => {
       name: 'Maintenance Services',
       description: 'Preventive maintenance and facility management',
       icon: FaCogs,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -151,8 +151,8 @@ const ServiceCategories = () => {
       name: 'Automotive Services',
       description: 'Car repair, maintenance, and automotive solutions',
       icon: FaCar,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -160,8 +160,8 @@ const ServiceCategories = () => {
       name: 'Pet Services',
       description: 'Pet grooming, veterinary care, and pet care services',
       icon: FaPaw,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -169,8 +169,8 @@ const ServiceCategories = () => {
       name: 'Pest Control',
       description: 'Pest elimination and prevention services',
       icon: FaBug,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -178,8 +178,8 @@ const ServiceCategories = () => {
       name: 'IT & Technology',
       description: 'Computer repair, IT support, and technology services',
       icon: FaCog,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -187,8 +187,8 @@ const ServiceCategories = () => {
       name: 'Business Services',
       description: 'Consulting, accounting, and professional services',
       icon: FaBriefcase,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     },
     {
@@ -196,8 +196,8 @@ const ServiceCategories = () => {
       name: 'Other Services',
       description: 'Specialized and miscellaneous service categories',
       icon: FaCog,
-      color: '#228B22',
-      gradient: 'linear-gradient(135deg, #E8F5E8 0%, #81C784 100%)',
+      color: '#087ec3',
+      gradient: 'linear-gradient(135deg, #eaf7ff 0%, #8fd4f9 100%)',
       businessCount: 0
     }
   ];

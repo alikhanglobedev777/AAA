@@ -6,7 +6,7 @@
   --primary-hover: #3a5bd9;
   --text-primary: #2d3748;
   --text-secondary: #4a5568;
-  --border-color: #e2e8f0;
+  --border-color: #dbeaf4;
   --bg-color: #f8fafc;
   --error-color: #e53e3e;
   --success-color: #38a169;
@@ -49,7 +49,7 @@
 .form-group select {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dbeaf4;
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -132,7 +132,7 @@
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #e2e8f0;
+  background-color: #dbeaf4;
 }
 
 /* Dropdown styles */
@@ -292,8 +292,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: #f4f8fc;
+  border: 1px solid #edf3f8;
   border-radius: 6px;
   padding: 12px 15px;
   margin-bottom: 1rem;
@@ -410,7 +410,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #dbeaf4;
 }
 
 .complaint-modal-header h2 {
@@ -451,8 +451,8 @@
 }
 
 .business-info {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: #f4f8fc;
+  border: 1px solid #edf3f8;
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 20px;
@@ -481,9 +481,9 @@
 }
 
 .message.success {
-  background: #e8f5e9;
+  background: #edf8ff;
   color: #2E7D32;
-  border: 1px solid #4CAF50;
+  border: 1px solid #128ac7;
 }
 
 .message.error {
@@ -509,7 +509,7 @@
 .form-group textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e1e5e9;
+  border: 2px solid #dbe7f1;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease;
@@ -521,8 +521,8 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  border-color: #128ac7;
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
 }
 
 .form-group textarea {
@@ -562,25 +562,25 @@
 }
 
 .cancel-button {
-  background: #f8f9fa;
+  background: #f4f8fc;
   color: #666;
-  border: 2px solid #e1e5e9;
+  border: 2px solid #dbe7f1;
 }
 
 .cancel-button:hover:not(:disabled) {
-  background: #e9ecef;
+  background: #edf3f8;
   border-color: #ced4da;
 }
 
 .submit-button {
-  background: #4CAF50;
+  background: #128ac7;
   color: white;
 }
 
 .submit-button:hover:not(:disabled) {
   background: #45a049;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 4px 12px rgba(8, 126, 195, 0.3);
 }
 
 .cancel-button:disabled,
@@ -662,7 +662,7 @@
 
 .auth-icon {
   font-size: 3rem;
-  color: #4CAF50;
+  color: #128ac7;
   margin-bottom: 1rem;
 }
 
@@ -693,7 +693,7 @@
 }
 
 .auth-actions .btn-primary {
-  background: #4CAF50;
+  background: #128ac7;
   color: white;
   border: none;
 }
@@ -701,13 +701,13 @@
 .auth-actions .btn-primary:hover {
   background: #45a049;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 4px 12px rgba(8, 126, 195, 0.3);
 }
 
 .auth-actions .btn-secondary {
   background: white;
   color: #4a5568;
-  border: 2px solid #e2e8f0;
+  border: 2px solid #dbeaf4;
 }
 
 .auth-actions .btn-secondary:hover {

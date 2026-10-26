@@ -9,11 +9,11 @@ import './ReviewPage.css';
 export default function WriteReview() {
   const navigate = useNavigate();
   return (
-    <main className="aaa-review-handoff">
+    <section className="aaa-review-handoff" aria-labelledby="aaa-review-handoff-title">
       <div className="aaa-review-handoff__card">
         <span className="aaa-review-handoff__icon" aria-hidden="true"><FaRegStar /></span>
         <span className="aa-eyebrow">Share your experience</span>
-        <h1>Your perspective matters.</h1>
+        <h1 id="aaa-review-handoff-title">Your perspective matters.</h1>
         <p>Help others make informed decisions about local services. Choose a business and leave your review using the secure review form.</p>
         <div className="aaa-review-handoff__note"><FaShieldAlt aria-hidden="true" /><span>Reviews are associated with a business profile and are subject to the platform's review process.</span></div>
         <div className="aaa-review-handoff__actions">
@@ -21,6 +21,6 @@ export default function WriteReview() {
           <button className="btn btn-secondary" type="button" onClick={() => navigate(-1)}><FaArrowLeft aria-hidden="true" /> Go back</button>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

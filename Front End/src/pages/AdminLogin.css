@@ -1,14 +1,14 @@
 /* Admin Login Page Styles - Pakistani Green Theme */
 :root {
-  --admin-green: #228B22;
-  --admin-green-light: #32CD32;
-  --admin-green-dark: #006400;
-  --admin-green-accent: #90EE90;
+  --admin-green: #087ec3;
+  --admin-green-light: #59c2f8;
+  --admin-green-dark: #06669f;
+  --admin-green-accent: #aee2ff;
   --admin-white: #ffffff;
-  --admin-gray: #f8f9fa;
-  --admin-gray-dark: #6c757d;
-  --admin-gray-light: #e9ecef;
-  --admin-border: #dee2e6;
+  --admin-gray: #f4f8fc;
+  --admin-gray-dark: #65788d;
+  --admin-gray-light: #edf3f8;
+  --admin-border: #dae7f1;
   --admin-shadow: rgba(0, 0, 0, 0.1);
   --admin-error: #dc3545;
   --admin-success: #28a745;
@@ -99,7 +99,7 @@
 .admin-form-input:focus {
   outline: none;
   border-color: var(--admin-green);
-  box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
   transform: translateY(-2px);
 }
 
@@ -149,7 +149,7 @@
 
 .admin-login-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 10px 25px rgba(8, 126, 195, 0.3);
 }
 
 .admin-login-button:active {
@@ -293,14 +293,14 @@
 /* AAA unified admin sign-in */
 .admin-login-container { background:radial-gradient(circle at 75% 15%, rgba(64,168,133,.27), transparent 30%),linear-gradient(120deg,#082d29,#135947); padding:24px; font-family:Inter,'Segoe UI',system-ui,sans-serif; }
 .admin-login-card { border-radius:24px; max-width:440px; padding:clamp(26px,5vw,42px); border:1px solid #e6ede8; box-shadow:0 35px 85px rgba(1,32,25,.28); }
-.admin-login-card::before { height:5px; background:linear-gradient(90deg,#0b7964,#eec77f); }
+.admin-login-card::before { height:5px; background:linear-gradient(90deg,#0b7964,#79d3ff); }
 .admin-login-title { font-size:clamp(1.9rem,4vw,2.45rem); letter-spacing:-.045em; color:var(--aa-ink); text-shadow:none; }
 .admin-login-subtitle { color:var(--aa-muted); line-height:1.6; }
 .admin-form-label { color:var(--aa-ink); font-size:.81rem; font-weight:750; text-transform:none; letter-spacing:0; }
 .admin-form-input { min-height:50px; padding:13px 16px; border:1px solid #cbdcd5; color:var(--aa-ink); font-weight:500; border-radius:12px; transition:border-color .15s,box-shadow .15s; }
 .admin-form-input:focus { border-color:var(--aa-primary); box-shadow:0 0 0 3px #cceee1; transform:none; }
 .admin-login-button { background:var(--aa-primary); min-height:50px; border-radius:12px; text-transform:none; letter-spacing:0; box-shadow:none; font-size:.95rem; }
-.admin-login-button:hover { background:var(--aa-primary-hover); box-shadow:0 8px 18px rgba(8,127,105,.18); transform:none; }
+.admin-login-button:hover { background:var(--aa-primary-hover); box-shadow:0 8px 18px rgba(8, 126, 195,.18); transform:none; }
 .admin-error-message { background:#fff2f1; color:#9a2433; border:1px solid #f3c8ca; box-shadow:none; }
 .admin-login-note { font-style:normal; color:var(--aa-muted); }
 .admin-login-header .aa-eyebrow { margin-bottom:8px; }
@@ -312,3 +312,17 @@
 .aa-show-password:hover { background:var(--aa-primary-soft); }
 .aa-admin-back { display:inline-flex; margin-top:12px; font-size:.86rem; font-weight:700; color:var(--aa-primary); text-decoration:none; }
 .aa-admin-back:hover { text-decoration:underline; text-underline-offset:4px; }
+
+/* Premium 2026 — scoped workspace refinement for pages/AdminLogin.css */
+#root .admin-login-container{background:#f4f8fc!important;min-height:100vh;}
+#root .aa-admin-login-v2{background:#f4f8fc!important;}
+#root .aa-admin-login-v2 .aa-admin-login-aside{background:radial-gradient(circle at 78% 13%,rgba(73,192,255,.2),transparent 38%),#081827!important;color:#fff;border-radius:0;}
+#root .aa-admin-login-v2 .aa-admin-login-aside :is(h1,h2,h3,strong){color:#fff!important;}
+#root .aa-admin-login-v2 .aa-admin-login-aside :is(p,li,span){color:#c2d7e6;}
+#root .aa-admin-login-v2 .aa-admin-login-kicker{color:#83d7ff!important;letter-spacing:.17em;text-transform:uppercase;font-weight:850;}
+#root .aa-admin-login-v2 .aa-admin-login-form-side{background:radial-gradient(circle at 94% 7%,#e0f5ff,transparent 39%),#f4f8fc!important;padding:clamp(25px,5vw,70px)!important;}
+#root .aa-admin-login-v2 .admin-login-card{border:1px solid #dbe8f2!important;border-radius:26px!important;background:#fff!important;box-shadow:0 23px 70px rgba(11,45,72,.075)!important;padding:clamp(28px,4vw,47px)!important;}
+#root .aa-admin-login-v2 .admin-login-header{background:#fff!important;}
+#root .aa-admin-login-v2 .admin-login-header :is(h1,h2){font-size:clamp(30px,3.3vw,43px);font-weight:850;letter-spacing:-.065em;}
+#root .aa-admin-login-v2 .admin-login-button{min-height:50px;border-radius:13px!important;}
+@media(max-width:850px){#root .aa-admin-login-v2 .aa-admin-login-aside{padding:40px 24px!important;}}

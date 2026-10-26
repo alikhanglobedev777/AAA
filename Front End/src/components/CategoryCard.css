@@ -5,7 +5,7 @@
 }
 
 .category-card {
-  background: linear-gradient(135deg, #E8F5E9 0%, #A5D6A7 100%);
+  background: linear-gradient(135deg, #edf8ff 0%, #a9daf5 100%);
   border-radius: 20px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -29,7 +29,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(34, 139, 34, 0.1) 0%, rgba(50, 205, 50, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(8, 126, 195, 0.1) 0%, rgba(89, 194, 248, 0.1) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 18px;
@@ -37,8 +37,8 @@
 
 .category-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(34, 139, 34, 0.25);
-  border-color: rgba(34, 139, 34, 0.3);
+  box-shadow: 0 20px 40px rgba(8, 126, 195, 0.25);
+  border-color: rgba(8, 126, 195, 0.3);
 }
 
 .category-card:hover::before {
@@ -81,19 +81,19 @@
 .category-icon-wrapper {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  background: linear-gradient(135deg, #087ec3 0%, #59c2f8 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 4px 15px rgba(8, 126, 195, 0.3);
   transition: all 0.3s ease;
 }
 
 .category-card:hover .category-icon-wrapper {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(34, 139, 34, 0.4);
+  box-shadow: 0 6px 20px rgba(8, 126, 195, 0.4);
 }
 
 .category-icon-wrapper i {
@@ -104,14 +104,14 @@
 .category-name {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #228B22;
+  color: #087ec3;
   margin: 0;
-  text-shadow: 0 1px 2px rgba(34, 139, 34, 0.1);
+  text-shadow: 0 1px 2px rgba(8, 126, 195, 0.1);
   transition: all 0.3s ease;
 }
 
 .category-card:hover .category-name {
-  color: #32CD32;
+  color: #59c2f8;
   transform: scale(1.05);
 }
 
@@ -121,7 +121,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(34, 139, 34, 0.9) 0%, rgba(50, 205, 50, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(8, 126, 195, 0.9) 0%, rgba(89, 194, 248, 0.9) 100%);
   display: flex;
   align-items: center;
   justify-content: center;

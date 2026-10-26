@@ -1,9 +1,9 @@
 /* Modern Professional Services Page - Pakistani Green Theme */
 :root {
-  --pakistani-green: #228B22;
-  --pakistani-green-dark: #006400;
-  --pakistani-green-light: #32CD32;
-  --pakistani-green-accent: #90EE90;
+  --pakistani-green: #087ec3;
+  --pakistani-green-dark: #06669f;
+  --pakistani-green-light: #59c2f8;
+  --pakistani-green-accent: #aee2ff;
   --pakistani-gold: #FFD700;
   --pakistani-gold-dark: #DAA520;
   --text-dark: #1f2937;
@@ -17,16 +17,16 @@
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
   --gray-300: #d1d5db;
-  --shadow-sm: 0 1px 2px 0 rgba(34, 139, 34, 0.1);
-  --shadow: 0 1px 3px 0 rgba(34, 139, 34, 0.15), 0 1px 2px 0 rgba(34, 139, 34, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(34, 139, 34, 0.15), 0 2px 4px -1px rgba(34, 139, 34, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(34, 139, 34, 0.15), 0 4px 6px -2px rgba(34, 139, 34, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(34, 139, 34, 0.15), 0 10px 10px -5px rgba(34, 139, 34, 0.1);
+  --shadow-sm: 0 1px 2px 0 rgba(8, 126, 195, 0.1);
+  --shadow: 0 1px 3px 0 rgba(8, 126, 195, 0.15), 0 1px 2px 0 rgba(8, 126, 195, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(8, 126, 195, 0.15), 0 2px 4px -1px rgba(8, 126, 195, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(8, 126, 195, 0.15), 0 4px 6px -2px rgba(8, 126, 195, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(8, 126, 195, 0.15), 0 10px 10px -5px rgba(8, 126, 195, 0.1);
 }
 
 .services-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #dbeaf4 100%);
   padding: 2rem 1rem;
 }
 
@@ -249,7 +249,7 @@
 }
 
 .clear-location-btn {
-  background: rgba(34, 139, 34, 0.2);
+  background: rgba(8, 126, 195, 0.2);
   border: none;
   color: var(--pakistani-green);
   border-radius: 50%;
@@ -265,7 +265,7 @@
 }
 
 .clear-location-btn:hover {
-  background: rgba(34, 139, 34, 0.3);
+  background: rgba(8, 126, 195, 0.3);
   transform: scale(1.1);
 }
 
@@ -361,7 +361,7 @@
 .results-filter-select:focus {
   outline: none;
   border-color: var(--pakistani-green);
-  box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 0 0 3px rgba(8, 126, 195, 0.1);
 }
 
 .results-sort-select:hover,
@@ -415,14 +415,14 @@
 .mobile-chip:hover {
   border-color: var(--pakistani-green-accent);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 2px 4px rgba(8, 126, 195, 0.1);
 }
 
 .mobile-chip.active {
   background: var(--pakistani-green);
   color: var(--white);
   border-color: var(--pakistani-green);
-  box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 2px 8px rgba(8, 126, 195, 0.3);
 }
 
 .mobile-chip i {
@@ -1557,7 +1557,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
-  box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 2px 8px rgba(8, 126, 195, 0.3);
   height: fit-content;
   white-space: nowrap;
 }
@@ -1565,7 +1565,7 @@
 .filter-toggle-btn:hover {
   background: var(--pakistani-green-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.4);
+  box-shadow: 0 4px 12px rgba(8, 126, 195, 0.4);
 }
 
 .filter-toggle-btn i {
@@ -1711,14 +1711,14 @@
   border-color: var(--pakistani-green-accent);
   background: var(--gray-50);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(34, 139, 34, 0.1);
+  box-shadow: 0 2px 8px rgba(8, 126, 195, 0.1);
 }
 
 .filter-option.active {
   background: var(--pakistani-green);
   color: var(--white);
   border-color: var(--pakistani-green);
-  box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 2px 8px rgba(8, 126, 195, 0.3);
 }
 
 .filter-option i:first-child {
@@ -1764,14 +1764,14 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(34, 139, 34, 0.2);
+  box-shadow: 0 2px 4px rgba(8, 126, 195, 0.2);
   box-sizing: border-box;
 }
 
 .apply-filters-btn:hover {
   background: var(--pakistani-green-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3);
+  box-shadow: 0 4px 12px rgba(8, 126, 195, 0.3);
 }
 
 /* Mobile Filter Sidebar Adjustments */
