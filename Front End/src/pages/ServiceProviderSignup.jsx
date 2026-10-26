@@ -1,12 +1,13 @@
 import Combobox from '../components/ui/Combobox';
 import { API_ORIGIN } from '../config/endpoints';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import ServiceCategorySelector from '../components/ServiceCategorySelector';
 import { toast } from 'react-toastify';
 import { isValidPhoneInput, normalizePhoneInput, phoneValidationMessage } from '../utils/phone';
 import './Signup.css';
+import './ServiceProviderSignupLayout.css';
 
 // Service categories are now fetched from the API via ServiceCategorySelector component
 
@@ -32,6 +33,7 @@ const mapCategoryToBusinessType = (categoryName) => {
 
 const ServiceProviderSignup = () => {
   const [step, setStep] = useState(1);
+  const formScrollRef = useRef(null);
   const [formData, setFormData] = useState({
     // User details
     name: '',
@@ -380,14 +382,14 @@ const ServiceProviderSignup = () => {
     if (validateStep()) {
       setStep(step + 1);
       setError('');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      formScrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const prevStep = () => {
     setStep(step - 1);
     setError('');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    formScrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSubmit = async (e) => {
@@ -506,7 +508,7 @@ const ServiceProviderSignup = () => {
   };
 
   return (
-    <div className="signup-container">
+    <div className="signup-container aaa-provider-registration">
       <div className="signup-card">
         <div className="signup-header">
           <h2>Become a Service Provider</h2>
@@ -531,9 +533,9 @@ const ServiceProviderSignup = () => {
           </div>
         </div>
         
-        <form onSubmit={handleSubmit} className="signup-form">
+        <form ref={formScrollRef} onSubmit={handleSubmit} className="signup-form" aria-label="Service provider registration">
           {step === 1 && (
-            <div className="form-step">
+            <div className="form-step form-step--personal">
               <h2 className="step-title">Personal Information</h2>
               <div className="form-group">
                 <label>Full Name *</label>

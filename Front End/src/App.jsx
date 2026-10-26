@@ -94,9 +94,12 @@ const AppContent = () => {
   };
 
   const hideHeaderFooter = shouldHideHeaderFooter();
+  // Registration keeps the public header visible, but uses the remaining
+  // viewport for an internally scrollable form rather than a page-length form.
+  const isProviderRegistration = ['/service-provider-signup', '/business-signup'].includes(location.pathname);
   
   return (
-    <div className={`app ${hideHeaderFooter ? 'no-header-footer' : ''}`}>
+    <div className={`app ${hideHeaderFooter ? 'no-header-footer' : ''}${isProviderRegistration ? ' aaa-registration-layout' : ''}`}>
       <a href="#main-content" className="aaa-skip-link">Skip to main content</a>
       {!hideHeaderFooter && <Header />}
       <main id="main-content">
@@ -242,7 +245,7 @@ const AppContent = () => {
           </Routes>
         </Suspense>
       </main>
-      {!hideHeaderFooter && <Footer />}
+      {!hideHeaderFooter && !isProviderRegistration && <Footer />}
       <ToastContainer />
     </div>
   );
