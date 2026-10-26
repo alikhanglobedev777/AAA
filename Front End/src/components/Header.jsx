@@ -213,8 +213,11 @@ const Header = () => {
       }
       if (location.trim()) searchParams.append('location', location.trim());
       
-      // Clear any existing category filter when searching globally
-      // This ensures search works across all categories
+      // Close suggestions before navigating so they don't obscure results.
+      setShowServiceSuggestions(false);
+      setShowCitySuggestions(false);
+
+      // Search both fields together, whichever submit button was clicked.
       navigate(`/services?${searchParams.toString()}`);
       
       // Don't clear the search inputs - let user keep their search terms
@@ -357,6 +360,14 @@ const Header = () => {
                       )}
                     </div>
                   )}
+                  <button
+                    type="submit"
+                    className="search-button service-search-button"
+                    aria-label="Search services"
+                    title="Search services"
+                  >
+                    <FaSearch className="search-btn-icon" aria-hidden="true" />
+                  </button>
                 </div>
                 
                 <div className="search-input-wrapper" ref={desktopLocationWrapperRef}>
@@ -414,11 +425,15 @@ const Header = () => {
                       ))}
                     </div>
                   )}
+                  <button
+                    type="submit"
+                    className="search-button location-search-button"
+                    aria-label="Search by location"
+                    title="Search by location"
+                  >
+                    <FaSearch className="search-btn-icon" aria-hidden="true" />
+                  </button>
                 </div>
-                
-                <button type="submit" className="search-button" aria-label="Search businesses">
-                  <FaSearch className="search-btn-icon" />
-                </button>
               </div>
             </form>
           </div>

@@ -248,3 +248,61 @@
   width: 110px !important;
   height: 50px !important;
 }
+
+
+/* UI 6/6: two independently outlined search fields, each with its own action.
+   Both buttons submit the existing shared form (service + location filters).
+   The mobile drawer keeps its existing full-width search button. */
+#root .header.aaa-header-v2 .search-inputs {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important;
+  column-gap: 10px !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper {
+  gap: 0;
+  overflow: visible;
+  padding: 4px 5px 4px 12px !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper .search-input {
+  flex: 1 1 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  padding-right: 5px !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper > .search-button {
+  display: inline-flex !important;
+  flex: 0 0 39px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 39px !important;
+  min-width: 39px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  color: #fff !important;
+  background: #081827 !important;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+#root .header.aaa-header-v2 .search-input-wrapper > .search-button:hover {
+  background: #087ec3 !important;
+}
+#root .header.aaa-header-v2 .search-input-wrapper > .search-button:focus-visible {
+  outline: 3px solid #75cbfa !important;
+  outline-offset: 2px;
+}
+#root .header.aaa-header-v2 .search-input-wrapper > .search-button .search-btn-icon {
+  font-size: 15px;
+}
+@media (min-width: 1101px) and (max-width: 1370px) {
+  #root .header.aaa-header-v2 .search-input-wrapper .search-input {
+    font-size: 12px !important;
+  }
+  #root .header.aaa-header-v2 .search-input-wrapper > .search-button {
+    flex-basis: 35px !important;
+    width: 35px !important;
+    min-width: 35px !important;
+  }
+}
